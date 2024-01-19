@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Questionnaire</title>
+    <!--Style sheet-->
+    <link rel="stylesheet" href="./style.css">
+    <!--Animation script-->
+    <script src="./script.js"></script>
+    <!--Scrapped Mouse scroll effect-->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+        $(window).on('scroll', function() {
+        $("#realcontent").css("left", -$(window).scrollTop());
+        });
+    </script>
+    <!--Confetti effect-->
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <div class="title">
+            <h1>User Satisfaction Survey</h1>
+        </div>
+        <div class="website-redirect-button">
+            <a class="website-redirect-button-text" href="https://www.adveris.fr/">Check out the original webiste!</a>
+        </div>
+    </section>
+    <section id="body">
+        <section id="section1">
+            <div class="left-panel panel">
+                <div class="hero" id="user-info">
+                    <a href="https://www.adveris.fr/"><img class="image3" src="./images/main-logo.png" alt="" id="image"></a>
+                    <div class="hero-content">
+                        <p>Enter your information</p>
+                        <p>First name: <input id="input" type="text"></p>
+                        <p>Last name: <input id="input" type="text"></p>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button id="user-info-next" onclick="window.location.href='#section2'">
+                        <span>Begin</span>
+                    </button>
+                </div>
+                <div class="short">
+                    <p>Click anywhere on the images to be redirected to the website.</p>
+                    <p>This short survey should only take 2 minutes to complete !</p>
+                </div>
+            </div>
+            <div class="right-panel panel">
+                <div class="image-container">
+                    <a href="https://www.adveris.fr/"><img class="image1" src="./images/main-home.png" alt="Website" id="image"></a>
+                    <a href="https://www.adveris.fr/"><img class="image2" src="./images/main-home2.png" alt="Website" id="image"></a>
+                    <a href="https://www.adveris.fr/"><img class="image4" src="./images/main-home4.png" alt="Website" id="image"></a>
+                </div>
+            </div> 
+        </section>
+        <section id="section2">
+            <div class="hero" id="question-hero-1">
+                <div class="question-content">
+                    <p>How would you rate your experience with the website ?</p>
+                    <!--Custom star pattern by Michael Tryhall on Codepen-->
+                    <div class="ratings">
+                        <input type="radio" id="star1" name="rating" value="1" /><input type="radio" id="star2" name="rating" value="2" /><input type="radio" id="star3" name="rating" value="3" /><input type="radio" id="star4" name="rating" value="4" /><input type="radio" id="star5" name="rating" value="5" />
+  
+                        <label for="star1">1 star</label><label for="star2">2 stars</label><label for="star3">3 stars</label><label for="star4">4 stars</label><label for="star5">5 stars</label>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="question-hero-1-next" onclick="window.location.href='#section3'">
+                    <span>Next</span>
+                </button>
+                <button id="question-hero-1-previous" onclick="window.location.href='#section1'">
+                    <span>Previous</span>
+                </button>
+            </div>
+        </section>
+        <section id="section3">
+            <div class="hero" id="question-hero-2">
+                <div class="question-content">
+                    <p>How likely are you to recommend the services based on the look of the website ?</p>
+                    <div class="ratings2">
+                        <input type="radio" id="2star1" name="rating2" value="1" /><input type="radio" id="2star2" name="rating2" value="2" /><input type="radio" id="2star3" name="rating2" value="3" /><input type="radio" id="2star4" name="rating2" value="4" /><input type="radio" id="2star5" name="rating2" value="5" />
+  
+                        <label for="2star1">1 star</label><label for="2star2">2 stars</label><label for="2star3">3 stars</label><label for="2star4">4 stars</label><label for="2star5">5 stars</label>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="question-hero-2-next" onclick="window.location.href='#section4'">
+                    <span>Next</span>
+                </button>
+                <button id="question-hero-2-previous" onclick="window.location.href='#section2'">
+                    <span>Previous</span>
+                </button>
+            </div>
+        </section>
+        <section id="section4">
+            <div class="left-panel panel">
+                <p>What aspects of the website do you enjoy the most ?</p>
+                <div class="selection1">
+                    <input type="checkbox" id="checkbox1" name="checkbox1" value="1">
+                    <label for="checkbox1">The design</label><br>
+                    <input type="checkbox" id="checkbox2" name="checkbox2" value="2">
+                    <label for="checkbox2">The content</label><br>
+                    <input type="checkbox" id="checkbox3" name="checkbox3" value="3">
+                    <label for="checkbox3">The navigation</label><br>
+                </div>
+                <div class="selection2">
+                    <input type="checkbox" id="checkbox4" name="checkbox4" value="4">
+                    <label for="checkbox4">The responsiveness</label><br>
+                    <input type="checkbox" id="checkbox5" name="checkbox5" value="5">
+                    <label for="checkbox5">The overall experience</label><br>
+                    <input type="checkbox" id="checkbox6" name="checkbox6" value="6">
+                    <label for="checkbox6">The color pallete</label><br>
+                </div>
+            </div>
+            <div class="right-panel panel">
+                <div class="slider">
+                    <div class="slide">
+                        <img src="./images/main-home.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="./images/main-assets.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="./images/main-slide1.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="./images/main-slide2.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="./images/main-slide3.png" alt="">
+                    </div>
+                    <button class="btn btn-next"> > </button>
+                    <button class="btn btn-prev"> < </button>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="question-hero-3-next" onclick="window.location.href='#section5'">
+                    <span>Next</span>
+                </button>
+                <button id="question-hero-3-previous" onclick="window.location.href='#section3'">
+                    <span>Previous</span>
+                </button>
+            </div>
+        </section>
+        <section id="section5">
+            <div class="hero" id="question-hero-4">
+                <div class="question-content">
+                    <p>If you have any comments you'd like to add, feel free to mention them in the section below:</p>
+                    <div>
+                        <textarea name="comments" id="comments" cols="100" rows="10" class="comments"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="question-hero-4-next" onclick="window.location.href='#section6'">
+                    <span>Next</span>
+                </button>
+                <button id="question-hero-4-previous" onclick="window.location.href='#section4'">
+                    <span>Previous</span>
+                </button>
+            </div>
+        </section>
+        <section id="section6">
+            <div id="question-hero-5">
+                <div class="question-content">
+                    <p>And finally, what was your first impression of the website ?</p>
+                    <div class="selection3">
+                        <select name="impression" id="impression">
+                            <option value="1">Very good</option>
+                            <option value="2">Good</option>
+                            <option value="3">Average</option>
+                            <option value="4">Bad</option>
+                            <option value="5">Very bad</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="question-hero-5-next" onclick="window.location.href='#section7'">
+                    <span>Next</span>
+                </button>
+                <button id="question-hero-5-previous" onclick="window.location.href='#section5'">
+                    <span>Previous</span>
+                </button>
+            </div>
+        </section>
+        <section id="section7">
+            <div class="hero" id="submit">
+                <div class="question-content">
+                    <p>And that's it!</p>
+                    <p>Thank you for taking the time to fill out this survey.</p>
+                    <p>It is very important to us that we understand your needs and expectations.</p>
+                    <p>It will help us improve our services and provide you with a better experience.</p>
+                </div>
+            </div>
+            <button id="survey-submit" onclick="
+            confetti({
+            particleCount: 100,
+            spread: 360,
+            origin: { y: 0.6 },
+            });">
+                <span>Submit</span>
+            </button>
+        </section>
+    </section>
+    <section class="footer">
+        <div class="signature">
+            <p>Website designed by Christian N'guessan-blé</p>
+        </div>
+        <div class="github-redirect">
+            <p><a href="">Check out the repository on GitHub !</a></p>
+        </div>
+    </section>
+</body>
+</html>
