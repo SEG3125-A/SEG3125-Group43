@@ -1,7 +1,6 @@
 [
     {
         "item": "Apples",
-        "type": "Fruit",
         "price": 1.99,
         "vegetarian": true,
         "glutenFree": true,
@@ -11,7 +10,6 @@
     },
     {
         "item": "Milk",
-        "type": "Dairy",
         "price": 2.49,
         "vegetarian": true,
         "glutenFree": true,
@@ -21,7 +19,6 @@
     },
     {
         "item": "Bread",
-        "type": "Bakery",
         "price": 2.99,
         "vegetarian": true,
         "glutenFree": false,
@@ -31,7 +28,6 @@
     },
     {
         "item": "Chicken",
-        "type": "Meat",
         "price": 5.99,
         "vegetarian": false,
         "glutenFree": true,
@@ -41,7 +37,6 @@
     },
     {
         "item": "Eggs",
-        "type": "Dairy",
         "price": 1.99,
         "vegetarian": true,
         "glutenFree": true,
@@ -51,7 +46,6 @@
     },
     {
         "item": "Potatoes",
-        "type": "Vegetable",
         "price": 3.49,
         "vegetarian": true,
         "glutenFree": true,
@@ -61,7 +55,6 @@
     },
     {
         "item": "Pasta",
-        "type": "Grains",
         "price": 1.99,
         "vegetarian": true,
         "glutenFree": false,
@@ -71,7 +64,6 @@
     },
     {
         "item": "Tomatoes",
-        "type": "Vegetable",
         "price": 2.99,
         "vegetarian": true,
         "glutenFree": true,
@@ -81,7 +73,6 @@
     },
     {
         "item": "Yogurt",
-        "type": "Dairy",
         "price": 1.99,
         "vegetarian": true,
         "glutenFree": true,
@@ -91,7 +82,6 @@
     },
     {
         "item": "Cereal",
-        "type": "Grains",
         "price": 3.99,
         "vegetarian": true,
         "glutenFree": false,

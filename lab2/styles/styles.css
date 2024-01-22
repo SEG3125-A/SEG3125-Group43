@@ -9,6 +9,10 @@
     --simple-green : rgba(0, 200, 0, 0.373);
     --simple-dark-green : rgba(3, 110, 3, 0.797);
     --simple-beige: #f8f7f360;
+
+    --hellokidme : "hellokidmeregular", sans-serif;
+    --couture-bld : "couture-bld", sans-serif;
+    --couture-bldit : "couture-bldit", sans-serif;
 }
 
 @font-face {
@@ -254,9 +258,15 @@ input{
 
 .hero-content{
     color: black;
+    font-family: sans-serif;
+    font-style: bold;
+    text-align: center;
+
+    padding-bottom: 200px;
 }
 
 .diet-selection{
+    margin-top: 100px;
     display: flex;
     gap: 10px;
     justify-content: center;
