@@ -1,0 +1,185 @@
+*{
+    transition: all 0.3s ease-in-out; 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --simple-green : rgba(0, 200, 0, 0.373);
+}
+
+@font-face {
+    font-family: 'hellokidmeregular';
+    src: url('../fonts/hello-kidme-font/HelloKidmeRegular-VG5rl.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'couture-bld';
+    src: url('../fonts/Couture-Bold/couture-bld.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'couture-bldit';
+    src: url('../fonts/Couture-Bold/couture-bldit.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html{
+    overflow: scroll;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+.content{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}
+a{
+    text-decoration: none;
+}
+
+.header {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 60px;
+    background-color: white;
+
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15);
+
+    .title{
+        font-family: 'hellokidmeregular';
+        font-size: 20px;
+    }
+
+    .tabs{
+        font: 15px 'hellokidmeregular';
+        font-size: 17px;
+        display: flex;
+        gap: 20px;
+        top: 2%;
+        right: 10px;
+
+        :hover{
+            cursor: pointer;
+            color: red;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .tabs {
+            display: none;
+        }
+    }
+}
+
+.content {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; 
+    margin-top: 70px;
+
+    #products {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        .title{
+            font-family: 'hellokidmeregular', sans-serif;
+            font-size: 20px;
+            color: var(--simple-green);
+        }
+
+        .subtitle{
+            margin: 10px;
+            margin-bottom: 15px;
+            font-family: 'couture-bld', sans-serif;
+            font-size: 30px;
+            letter-spacing: 3px; 
+        }
+
+        .product-grid {
+            display: grid;
+            margin: auto;
+            padding-right: 15px;
+            width: 100%;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+        }
+        
+        @media (max-width: 800px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+
+
+            .image{
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                background-color: rgba(0, 0, 0, 0.5);
+                img{
+                    width: 100%;
+                    height: auto;
+                    border-radius: 10px;
+                    object-fit: contain;
+                }
+            }
+            .title{
+                font-family: '', sans-serif;
+                font-size: 14px;
+                color: black;
+            }
+            .price{
+                font-family: 'hellokidmeregular', sans-serif;
+                font-size: 14px;
+                color: var(--simple-green);
+            }
+            .description{
+                font-family: 'hellokidmeregular', sans-serif;
+                font-size: 20px;
+                color: var(--simple-green);
+            }
+        }
+    }
+}
