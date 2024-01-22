@@ -1,84 +1,102 @@
-{
-    "groceryList": [
-        {
-            "item": "Apples",
-            "type": "Fruit",
-            "price": 1.99,
-            "vegetarian": true,
-            "glutenFree": true,
-            "organic": true
-        },
-        {
-            "item": "Milk",
-            "type": "Dairy",
-            "price": 2.49,
-            "vegetarian": true,
-            "glutenFree": true,
-            "organic": false
-        },
-        {
-            "item": "Bread",
-            "type": "Bakery",
-            "price": 2.99,
-            "vegetarian": true,
-            "glutenFree": false,
-            "organic": false
-        },
-        {
-            "item": "Chicken",
-            "type": "Meat",
-            "price": 5.99,
-            "vegetarian": false,
-            "glutenFree": true,
-            "organic": false
-        },
-        {
-            "item": "Eggs",
-            "type": "Dairy",
-            "price": 1.99,
-            "vegetarian": true,
-            "glutenFree": true,
-            "organic": false
-        },
-        {
-            "item": "Potatoes",
-            "type": "Vegetable",
-            "price": 3.49,
-            "vegetarian": true,
-            "glutenFree": true,
-            "organic": true
-        },
-        {
-            "item": "Pasta",
-            "type": "Grains",
-            "price": 1.99,
-            "vegetarian": true,
-            "glutenFree": false,
-            "organic": false
-        },
-        {
-            "item": "Tomatoes",
-            "type": "Vegetable",
-            "price": 2.99,
-            "vegetarian": true,
-            "glutenFree": true,
-            "organic": true
-        },
-        {
-            "item": "Yogurt",
-            "type": "Dairy",
-            "price": 1.99,
-            "vegetarian": true,
-            "glutenFree": true,
-            "organic": false
-        },
-        {
-            "item": "Cereal",
-            "type": "Grains",
-            "price": 3.99,
-            "vegetarian": true,
-            "glutenFree": false,
-            "organic": false
-        }
-    ]
-}
+[
+    {
+        "item": "Apples",
+        "type": "Fruit",
+        "price": 1.99,
+        "vegetarian": true,
+        "glutenFree": true,
+        "organic": true,
+        "inCart": false,
+        "image": "images/.jpg"
+    },
+    {
+        "item": "Milk",
+        "type": "Dairy",
+        "price": 2.49,
+        "vegetarian": true,
+        "glutenFree": true,
+        "organic": false,
+        "inCart": false,
+        "image": "images/milk.jpg"
+    },
+    {
+        "item": "Bread",
+        "type": "Bakery",
+        "price": 2.99,
+        "vegetarian": true,
+        "glutenFree": false,
+        "organic": false,
+        "inCart": false,
+        "image": "images/bread.jpg"
+    },
+    {
+        "item": "Chicken",
+        "type": "Meat",
+        "price": 5.99,
+        "vegetarian": false,
+        "glutenFree": true,
+        "organic": false,
+        "inCart": false,
+        "image": "images/chicken.jpg"
+    },
+    {
+        "item": "Eggs",
+        "type": "Dairy",
+        "price": 1.99,
+        "vegetarian": true,
+        "glutenFree": true,
+        "organic": false,
+        "inCart": false,
+        "image": "images/eggs.jpg"
+    },
+    {
+        "item": "Potatoes",
+        "type": "Vegetable",
+        "price": 3.49,
+        "vegetarian": true,
+        "glutenFree": true,
+        "organic": true,
+        "inCart": false,
+        "image": "images/potatoes.jpg"
+    },
+    {
+        "item": "Pasta",
+        "type": "Grains",
+        "price": 1.99,
+        "vegetarian": true,
+        "glutenFree": false,
+        "organic": false,
+        "inCart": false,
+        "image": "images/pasta.jpg"
+    },
+    {
+        "item": "Tomatoes",
+        "type": "Vegetable",
+        "price": 2.99,
+        "vegetarian": true,
+        "glutenFree": true,
+        "organic": true,
+        "inCart": false,
+        "image": "images/tomatoes.jpg"
+    },
+    {
+        "item": "Yogurt",
+        "type": "Dairy",
+        "price": 1.99,
+        "vegetarian": true,
+        "glutenFree": true,
+        "organic": false,
+        "inCart": false,
+        "image": "images/yogurt.jpg"
+    },
+    {
+        "item": "Cereal",
+        "type": "Grains",
+        "price": 3.99,
+        "vegetarian": true,
+        "glutenFree": false,
+        "organic": false,
+        "inCart": false,
+        "image": "images/cereal.jpg"
+    }
+]

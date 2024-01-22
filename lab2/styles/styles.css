@@ -7,6 +7,8 @@
 
 :root{
     --simple-green : rgba(0, 200, 0, 0.373);
+    --simple-dark-green : rgba(3, 110, 3, 0.797);
+    --simple-beige: #f8f7f360;
 }
 
 @font-face {
@@ -30,6 +32,13 @@
     font-style: normal;
 }
 
+@font-face{
+    font-family: 'avocados';
+    src: url('../fonts/Avocados/Avocados.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -39,6 +48,7 @@ html{
     scroll-behavior: smooth;
     -ms-overflow-style: none;  
     scrollbar-width: none;  
+    background-color: var(--simple-beige);
 }
 
 .content{
@@ -81,7 +91,7 @@ a{
 
         :hover{
             cursor: pointer;
-            color: red;
+            color: var(--simple-green);
         }
     }
 
@@ -108,13 +118,13 @@ a{
         margin: 0;
         padding: 0;
         .title{
-            font-family: 'hellokidmeregular', sans-serif;
+            font-family: 'avocados', sans-serif;
             font-size: 20px;
-            color: var(--simple-green);
+            color: var(--simple-dark-green);
+            transform: skewX(-10deg);
         }
 
         .subtitle{
-            margin: 10px;
             margin-bottom: 15px;
             font-family: 'couture-bld', sans-serif;
             font-size: 30px;
@@ -127,7 +137,18 @@ a{
             padding-right: 15px;
             width: 100%;
             grid-template-columns: repeat(4, 1fr);
-            grid-gap: 20px;
+            grid-gap: 30px;
+
+            span{
+                opacity: 0;
+            }
+
+            :hover{
+                transform: scale(1.1);
+                span{
+                    opacity: 1;
+                }
+            }
         }
         
         @media (max-width: 800px) {
@@ -149,10 +170,21 @@ a{
             justify-content: center;
             background-color: rgba(0, 0, 0, 0.03);
             border-radius: 10px;
-            padding: 10px;
+            padding: 70px;
             margin: 10px;
 
+            :hover{
+                transform: scale(1);
+            }
 
+            @media (max-width: 800px) {
+                padding: 10px;
+            }
+
+            @media (max-width: 1000px) {
+                padding: 20px;
+            }
+            
             .image{
                 width: 100%;
                 height: 100%;
@@ -166,19 +198,23 @@ a{
                 }
             }
             .title{
-                font-family: '', sans-serif;
-                font-size: 14px;
+                font-family: 'couture-bld', sans-serif;
+                font-size: 20px;
                 color: black;
             }
             .price{
-                font-family: 'hellokidmeregular', sans-serif;
-                font-size: 14px;
-                color: var(--simple-green);
+                font-family: 'couture-bldit', sans-serif;
+                font-size: 22px;
+                color: var(--simple-dark-green);
             }
-            .description{
-                font-family: 'hellokidmeregular', sans-serif;
-                font-size: 20px;
-                color: var(--simple-green);
+
+            @media (max-width: 500px) {
+                .tilte{
+                    font-size: 15px;
+                }
+                .price{
+                    font-size: 17px;
+                }
             }
         }
     }
