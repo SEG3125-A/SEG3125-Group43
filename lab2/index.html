@@ -3,61 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/tevin.js"></script>
     <script src="./scripts/products.js"></script>
+
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Grocery app</title>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="title"><p class="title-name">Grocery Shop</p></div>
-            <div class="tabs">
-                <input type="radio" name="section" id="home" onchange="toggleSection('products')"> 
-                <label for="home" class="tab">Home</label>
-                
-                <input type="radio" name="section" id="profile" onchange="toggleSection('client')"> 
-                <label for="profile" class="tab">Profile preferences</label>
-
-                <input type="radio" name="section" id="cart" onchange="toggleSection('cart')"> 
-                <label for="cart" class="tab">Cart</label>
+        
+        <nav>
+            <div class="header">
+                <div class="title"><p class="title-name">Grocery Shop</p></div>
+                <div class="tabs">
+                    <input type="radio" name="section" id="home" onchange="toggleSection('products')">
+                    <label for="home" class="tab">Home</label>
+            
+                    <input type="radio" name="section" id="profile" onchange="toggleSection('client')">
+                    <label for="profile" class="tab">Profile preferences</label>
+                    <input type="radio" name="section" id="cart" onchange="toggleSection('cart')">
+                    <label for="cart" class="tab">Cart</label>
+                </div>
             </div>
-        </div>
+        </nav>
+
+
         <div class="content">
+
+            <!-- Products Display -->
             <div id="products" class="hidden section">
                 <div class="titles">
                     <p class="title">Lastest Arrivals</p>
                     <p class="subtitle">NEW PRODUCTS</p>
                 </div>
+
+                <!-- This will not be needed, will implement as an after thought as the products would be idrectly affeted by the client's preferences -->
                 <div class="slider filter">
                     
                 </div>
                 <div class="product-grid">
                 </div>
             </div>
+
+            <!-- Cart Display  -->
             <div id="cart" class="hidden section">
                 <p>CART PAGE</p>
             </div>
+
+            <!-- Client Preferences Display -->
             <div id="client" class="hidden section">
                 <div class="hero">
                     <div class="hero-content">
                         <div class="hero-dropdown">
                             <label for="diet-selection"></label>
                             <div class="diet-selection">
+
                                 <input type="checkbox" id="checkbox1" name="checkbox1" value="1">
                                 <label for="checkbox1">Gluten-free</label><br>
-                                <input type="checkbox" id="checkbox2" name="checkbox1" value="1">
+
+                                <input type="checkbox" id="checkbox2" name="checkbox2" value="1">
                                 <label for="checkbox2">Vegetarian</label><br>
-                                <input type="checkbox" id="checkbox3" name="checkbox1" value="1">
+
+                                <input type="checkbox" id="checkbox3" name="checkbox3" value="1">
                                 <label for="checkbox3">Organic</label><br>
+
                             </div>
                         </div>
                     </div>
                     </div>
                 </div>
             </div>
+
+            <!-- End of Content Display -->
         </div>
     </div>
+
+    <!-- Bottom of Page -->
     <div class="footer">
         <div class="signature">
             <p>Website designed by</p>
