@@ -1,8 +1,8 @@
 // Unhide home page on load
-/*window.onload = function() {
+window.onload = function() {
     const home = document.querySelector('#products');
     home.classList.toggle('hidden');
-}*/
+}
 
 // Fetch the JSON data
 fetch("./scripts/products.json")
