@@ -7,7 +7,7 @@
         "glutenFree": true,
         "organic": true,
         "inCart": false,
-        "image": "images/.jpg"
+        "image": "images/apples.png"
     },
     {
         "item": "Milk",
@@ -17,7 +17,7 @@
         "glutenFree": true,
         "organic": false,
         "inCart": false,
-        "image": "images/milk.jpg"
+        "image": "images/milk.png"
     },
     {
         "item": "Bread",
@@ -27,7 +27,7 @@
         "glutenFree": false,
         "organic": false,
         "inCart": false,
-        "image": "images/bread.jpg"
+        "image": "images/bread.png"
     },
     {
         "item": "Chicken",
@@ -37,7 +37,7 @@
         "glutenFree": true,
         "organic": false,
         "inCart": false,
-        "image": "images/chicken.jpg"
+        "image": "images/chicken.png"
     },
     {
         "item": "Eggs",
@@ -47,7 +47,7 @@
         "glutenFree": true,
         "organic": false,
         "inCart": false,
-        "image": "images/eggs.jpg"
+        "image": "images/eggs.png"
     },
     {
         "item": "Potatoes",
@@ -57,7 +57,7 @@
         "glutenFree": true,
         "organic": true,
         "inCart": false,
-        "image": "images/potatoes.jpg"
+        "image": "images/potatoes.png"
     },
     {
         "item": "Pasta",
@@ -67,7 +67,7 @@
         "glutenFree": false,
         "organic": false,
         "inCart": false,
-        "image": "images/pasta.jpg"
+        "image": "images/pasta.png"
     },
     {
         "item": "Tomatoes",
@@ -77,7 +77,7 @@
         "glutenFree": true,
         "organic": true,
         "inCart": false,
-        "image": "images/tomatoes.jpg"
+        "image": "images/tomatoes.png"
     },
     {
         "item": "Yogurt",
@@ -87,7 +87,7 @@
         "glutenFree": true,
         "organic": false,
         "inCart": false,
-        "image": "images/yogurt.jpg"
+        "image": "images/yogurt.png"
     },
     {
         "item": "Cereal",
@@ -97,6 +97,6 @@
         "glutenFree": false,
         "organic": false,
         "inCart": false,
-        "image": "images/cereal.jpg"
+        "image": "images/cereal.png"
     }
 ]

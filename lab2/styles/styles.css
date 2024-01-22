@@ -1,5 +1,5 @@
 *{
-    transition: all 0.3s ease-in-out; 
+    transition: all 0.15s ease-in-out; 
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -51,13 +51,23 @@ html{
     background-color: var(--simple-beige);
 }
 
+.hidden{
+    display: none;
+}
+
 .content{
     position: absolute;
     align-items: center;
     justify-content: center;
 }
+
 a{
     text-decoration: none;
+    color: white;
+}
+
+input{
+    display: none;
 }
 
 .header {
@@ -83,7 +93,7 @@ a{
 
     .tabs{
         font: 15px 'hellokidmeregular';
-        font-size: 17px;
+        font-size: 20px;
         display: flex;
         gap: 20px;
         top: 2%;
@@ -134,8 +144,7 @@ a{
         .product-grid {
             display: grid;
             margin: auto;
-            padding-right: 15px;
-            width: 100%;
+            padding: 60px;
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 30px;
 
@@ -151,13 +160,13 @@ a{
             }
         }
         
-        @media (max-width: 800px) {
+        @media (max-width: 1400px) {
             .product-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
         
-        @media (max-width: 500px) {
+        @media (max-width: 800px) {
             .product-grid {
                 grid-template-columns: 1fr;
             }
@@ -172,30 +181,28 @@ a{
             border-radius: 10px;
             padding: 70px;
             margin: 10px;
-
+            min-height: 350px;
+        
             :hover{
                 transform: scale(1);
             }
 
-            @media (max-width: 800px) {
+            @media (max-width: 400px) {
                 padding: 10px;
             }
 
             @media (max-width: 1000px) {
                 padding: 20px;
             }
-            
-            .image{
-                width: 100%;
-                height: 100%;
-                border-radius: 10px;
-                background-color: rgba(0, 0, 0, 0.5);
-                img{
-                    width: 100%;
-                    height: auto;
-                    border-radius: 10px;
-                    object-fit: contain;
-                }
+
+            img{
+                max-width: 50%;
+                max-height: 40%;
+                object-fit: contain;
+            }   
+            .description{
+                position: relative;
+                top: 50px;
             }
             .title{
                 font-family: 'couture-bld', sans-serif;
@@ -206,6 +213,15 @@ a{
                 font-family: 'couture-bldit', sans-serif;
                 font-size: 22px;
                 color: var(--simple-dark-green);
+            }
+            span{
+                position: relative;
+                top: 50px;
+                font-size: 50px;
+                :hover{
+                    cursor: pointer;
+                    color: var(--simple-green);
+                }
             }
 
             @media (max-width: 500px) {
@@ -218,4 +234,58 @@ a{
             }
         }
     }
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 300px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    
+}
+
+.hero-content{
+    color: black;
+}
+
+.footer{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    z-index: 100;
+
+    bottom: 0;
+    left: 0;
+    height: 50px;
+
+    background-color: rgba(0,0,0,0.77);
+    color: white;
+
+    font-size: 0.8rem;
+}
+
+.signature{
+    font-family: 'couture-bld', sans-serif;
+    color : white;
+    padding-left: 10px;
+}
+
+.github-redirect{
+    font-family: 'couture-bld', sans-serif;
+
+    position: absolute;
+    right: 10px;
+
+    cursor: pointer;
+       
 }

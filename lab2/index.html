@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./scripts/main.js"></script>
+    <script src="./scripts/products.js"></script>
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Grocery app</title>
 </head>
@@ -12,26 +13,47 @@
         <div class="header">
             <div class="title"><p class="title-name">Grocery Shop</p></div>
             <div class="tabs">
-                <div class="tab" onclick="">Home</div>
-                <div class="tab" onclick="">Cart</div>
-                <div class="tab" onclick="">Profile preferences</div>
+                <input type="radio" name="section" id="home" onchange="toggleSection('products')"> 
+                <label for="home" class="tab">Home</label>
+                
+                <input type="radio" name="section" id="profile" onchange="toggleSection('client')"> 
+                <label for="profile" class="tab">Profile preferences</label>
+
+                <input type="radio" name="section" id="cart" onchange="toggleSection('cart')"> 
+                <label for="cart" class="tab">Cart</label>
             </div>
         </div>
         <div class="content">
-            <div id="products">
+            <div id="products" class="hidden section">
                 <div class="titles">
                     <p class="title">Lastest Arrivals</p>
                     <p class="subtitle">NEW PRODUCTS</p>
                 </div>
-                <div class="slider filter"></div>
+                <div class="slider filter">
+                    
+                </div>
                 <div class="product-grid">
                 </div>
             </div>
-            <div id="client"></div>
-            <div id="cart"></div>
-            <div></div>
+            <div id="cart" class="hidden section">
+                <p>CART PAGE</p>
+            </div>
+            <div id="client" class="hidden section">
+                <div class="hero">
+                    <div class="hero-content">
+                        <p class="title">Use this page to change your content preferences.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+        <div class="signature">
+            <p>Website designed by</p>
+        </div>
+        <div class="github-redirect">
+            <p><a href="github.com">Check out the repository on GitHub !</a></p>
+        </div>
+    </div>
 </body>
 </html>
