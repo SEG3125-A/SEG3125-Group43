@@ -4,69 +4,79 @@
         "price": 1.99,
         "diet": ["GlutenFree", "Vegetarian", "Organic"],
         "inCart": false,
-        "image": "images/apples.png"
+        "image": "images/apples.png",
+        "amount": 0
     },
     {
         "item": "Milk",
         "price": 2.49,
         "diet": ["GlutenFree", "Vegetarian"],
         "inCart": false,
-        "image": "images/milk.png"
+        "image": "images/milk.png",
+        "amount": 0
     },
     {
         "item": "Bread",
         "price": 2.99,
         "diet": ["Vegetarian"],
         "inCart": false,
-        "image": "images/bread.png"
+        "image": "images/bread.png",
+        "amount": 0
     },
     {
         "item": "Chicken",
         "price": 5.99,
         "diet": ["GlutenFree"],
         "inCart": false,
-        "image": "images/chicken.png"
+        "image": "images/chicken.png",
+        "amount": 0
     },
     {
         "item": "Eggs",
         "price": 1.99,
         "diet": ["Vegetarian", "GlutenFree"],
         "inCart": false,
-        "image": "images/eggs.png"
+        "image": "images/eggs.png",
+        "amount": 0
     },
     {
         "item": "Potatoes",
         "price": 3.49,
         "diet": ["GlutenFree", "Vegetarian", "Organic"],
         "inCart": false,
-        "image": "images/potatoes.png"
+        "image": "images/potatoes.png",
+        "amount": 0
     },
     {
         "item": "Pasta",
         "price": 1.99,
         "diet": ["Vegetarian"],
         "inCart": false,
-        "image": "images/pasta.png"
+        "image": "images/pasta.png",
+        "amount": 0
     },
     {
         "item": "Tomatoes",
         "price": 2.99,
         "diet": ["GlutenFree", "Vegetarian", "Organic"],
         "inCart": false,
-        "image": "images/tomatoes.png"
+        "image": "images/tomatoes.png",
+        "amount": 0
     },
     {
         "item": "Yogurt",
         "price": 1.99,
         "diet": ["GlutenFree", "Vegetarian"],
         "inCart": false,
-        "image": "images/yogurt.png"
+        "image": "images/yogurt.png",
+        "amount": 0
     },
     {
         "item": "Cereal",
         "price": 3.99,
         "diet": ["Vegetarian"],
         "inCart": false,
-        "image": "images/cereal.png"
+        "image": "images/cereal.png",
+        "amount": 0
     }
 ]

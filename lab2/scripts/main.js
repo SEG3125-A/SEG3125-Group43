@@ -1,6 +1,6 @@
 // Unhide home page on load
 document.addEventListener("DOMContentLoaded", function () {
-    const home = document.querySelector('#products');
+    const home = document.querySelector('#cart');
     home.classList.toggle('hidden');
     loadProductsPage();
     });
@@ -56,10 +56,12 @@ async function loadProductsPage() {
         if (user.diet.length === 0 || (item.diet.some((choice) => user.diet.includes(choice)) && !item.displayed)) {
             displayItem(item);
         }
+        // Remove user.diet.length === 0 to display only items which match the user's dietary choices
     });
 
 }
 
+// Function to display a single item on product page
 function displayItem(item){
     // Get the product grid element
     const productGrid = document.querySelector('.product-grid');
@@ -83,6 +85,7 @@ function displayItem(item){
     item.displayed = true;
 }
 
+// Function to show or hide a section, also loads content appropriately
 function toggleSection(sectionId) {
     // Toggle hidden for every other section
     const allSections = document.querySelectorAll('.content .section');
@@ -114,6 +117,7 @@ function toggleSection(sectionId) {
 
 
 //TEVIN
+// Function to control the dietary checkboxes
 function toggleDietaryCheck(dietaryId) {
     if (user.diet.includes(dietaryId)) {
         user.diet = user.diet.filter(choice => {
@@ -125,44 +129,44 @@ function toggleDietaryCheck(dietaryId) {
     }
 }
 
-
+// Function to load the cart page content
 function loadCartPage() {
-
+    var empty = true;
     total = 0;
+    cart = []
+
     items.forEach(item => {
-        if(item.inCart) total+= item.price;
+        if(item.inCart) {
+            empty = false;
+            total+= item.price
+            item.amount=+1
+            cart.push({"item": item.item, "amount": item.amount, 'image' : item.image})
+        };
     });
 
-    document.querySelector("#cart-total").innerHTML = `\$${total}`;
+    // Check if cart is empty, otherwise display total
+    if(empty) {
+        // Display a message when the cart is empty
+        document.querySelector("#cart").innerHTML = "Your cart is empty!";
+    } else {
+        cart.forEach(item => {
+        // Moved cart-total inside the cart-grid div
+        const itemElement = document.createElement('div');
+        itemElement.className = 'cart-item';
 
+        // Set the item's HTML
+        itemElement.innerHTML = 
+        `
+        <img src="" alt="IMAGE" class="image">
+        <p class="name">${item.image}</p>
+        <p class="price">PRICE</p>
+        <p class="quantity">QUANTITY</p>
+        `
+        document.querySelector(".cart-grid").appendChild(itemElement);
+        })
+    }
+    
     //TODO: Maybe display the items in the cart? Switch the + button to a - button and when clicked change the state so that it is no longer in the cart? Code below was attempting to do that but CSS is messy
-    // Get the product grid element
-    // const cartGrid = document.querySelector('.cart-grid');
-
-    // // Remove all existing items
-    // while (cartGrid.firstChild) {
-    //     cartGrid.firstChild.remove();
-    // }
-
-    // items.forEach(item => {
-
-    //     if (item.inCart) {
-    //         const itemElement = document.createElement('div');
-    //         itemElement.className = 'item';
-
-    //         // Set the item's HTML
-    //         itemElement.innerHTML = `
-    //             <img src="${item.image}" class="image" alt="IMAGE">
-    //             <div class="description">
-    //             <p class="title">${item.item}</p>
-    //             <p class="price">${item.price}</p>
-    //             </div>
-    //             <span class="remove-button reveal"><p class="remove prod-${item.item}">-</p></span>
-    //             `;
-    //         // Add the item element to the cart grid
-    //         cartGrid.appendChild(itemElement);
-    //     }
-    // });
 }
 
 
@@ -182,9 +186,7 @@ document.addEventListener("click", function (e) {
                 items.forEach(item => {
                     if (item.item === itemName) {
                         item.inCart = !item.inCart;
-                        sign = item.inCart ? '-' : '+';
                         console.log(item.inCart);
-                        loadProductsPage();
                         return;
                     }
                 })
