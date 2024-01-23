@@ -16,6 +16,8 @@
     --couture-bldit : "couture-bldit", sans-serif;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 @font-face {
     font-family: 'hellokidmeregular';
     src: url('../fonts/hello-kidme-font/HelloKidmeRegular-VG5rl.ttf') format('truetype');
@@ -93,12 +95,11 @@ input{
 
     .title{
         font-family: 'hellokidmeregular';
-        font-size: 20px;
+        font-size: 25px;
     }
 
     .tabs{
-        font: 15px 'hellokidmeregular';
-        font-size: 20px;
+        font: 25px 'hellokidmeregular';
         display: flex;
         gap: 20px;
         top: 2%;
@@ -339,30 +340,42 @@ input{
 }
 
 #cart{
-    .hero{
+
+    .cart-grid {
         position: absolute;
-        border: 1px solid;
+
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
         border-radius: 10px;
+
         display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
         gap: 20px;
-        width: 500px;
-        margin-top: 60px;
-        top: 50%;
+
+        width: 900px;
+        margin-top: 100px;
+        top: -80px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
+
+        font-family: 'Open Sans', sans-serif;
         background-color: var(--simple-grey);
+    }
     .cart-item{
+        display: flex;
+        font-weight: bold;
+        font-size: small;
+        align-items: center;
+        margin: 10px;
             .image{
-                position: absolute;
+                top: 10px;
                 left: 20px;
-                background-color: var(--simple-grey);
+                max-width: 20%;
+                max-height: 20%;
             }
         
             .name{
-                padding-right: 60px;
+                position: absolute;
+                left: 30%;
                 background-color: var(--simple-grey);
             }
         
@@ -372,11 +385,13 @@ input{
                 background-color: var(--simple-grey);
             }
             .quantity{
+                position: absolute;
+                left: 60%;
                 background-color: var(--simple-grey);
             }
         }
     }
-}
+
 /* Footer content */
 .footer{
     width: 100%;

@@ -1,8 +1,10 @@
 // Unhide home page on load
 document.addEventListener("DOMContentLoaded", function () {
-    const home = document.querySelector('#cart');
+    const home = document.querySelector('#products');
     home.classList.toggle('hidden');
+    resetInputs();
     loadProductsPage();
+    loadCartPage();
     });
 
 // Our userObject and saved Preferences
@@ -115,7 +117,6 @@ function toggleSection(sectionId) {
     sectionElement.classList.toggle('hidden');
 }
 
-
 //TEVIN
 // Function to control the dietary checkboxes
 function toggleDietaryCheck(dietaryId) {
@@ -134,13 +135,16 @@ function loadCartPage() {
     var empty = true;
     total = 0;
     cart = []
+    cart.push({"item": "item", "price" : 10, "amount": 1, 'image' : './images/bread.png'})
+    cart.push({"item": "item", "price" : 10, "amount": 1, 'image' : './images/bread.png'})
+    cart.push({"item": "item", "price" : 10, "amount": 1, 'image' : './images/bread.png'})
 
     items.forEach(item => {
         if(item.inCart) {
             empty = false;
             total+= item.price
             item.amount=+1
-            cart.push({"item": item.item, "amount": item.amount, 'image' : item.image})
+            if(!cart.includes(item)) cart.push({"item": item.item, "price" : item.price, "amount": item.amount, 'image' : item.image});
         };
     });
 
@@ -149,6 +153,10 @@ function loadCartPage() {
         // Display a message when the cart is empty
         document.querySelector("#cart").innerHTML = "Your cart is empty!";
     } else {
+        // ".cart-grid" doesn't exist ??
+        // Clear existing items in the cart
+        document.querySelector(".cart-grid").innerHTML = '';
+
         cart.forEach(item => {
         // Moved cart-total inside the cart-grid div
         const itemElement = document.createElement('div');
@@ -157,13 +165,18 @@ function loadCartPage() {
         // Set the item's HTML
         itemElement.innerHTML = 
         `
-        <img src="" alt="IMAGE" class="image">
-        <p class="name">${item.image}</p>
-        <p class="price">PRICE</p>
-        <p class="quantity">QUANTITY</p>
+        <img src="${item.image}" alt="IMAGE" class="image">
+        <p class="name">${item.item}</p>
+        <p class="price">Price: \$${item.price}</p>
+        <p class="quantity">Quantity: ${item.amount}</p>
         `
         document.querySelector(".cart-grid").appendChild(itemElement);
         })
+        document.querySelector(".cart-grid").innerHTML += 
+        `<div class="cart-item">
+        <p class="total">Total: \$${total}</p
+        </div>
+        ` 
     }
     
     //TODO: Maybe display the items in the cart? Switch the + button to a - button and when clicked change the state so that it is no longer in the cart? Code below was attempting to do that but CSS is messy
@@ -220,3 +233,15 @@ fetch("./scripts/preferences.json")
         })
 
     })
+
+    // Function to clear all inputs to fix navigation 
+    function resetInputs() {
+        const inputs = document.querySelectorAll('input');
+    
+        inputs.forEach((input) => {
+            if (input.type === 'checkbox' || input.type === 'radio') {
+                // Reset checkboxes and radio buttons to their default checked state
+                input.checked = input.defaultChecked;
+            }
+        });
+    }
