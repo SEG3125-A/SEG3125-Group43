@@ -1,12 +1,9 @@
 // Unhide home page on load
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
     const home = document.querySelector('#products');
     home.classList.toggle('hidden');
-}
-
-document.addEventListener("DOMContentLoaded", function () {
     loadProductsPage();
-});
+    });
 
 // Our userObject and saved Preferences
 let user = {
@@ -36,8 +33,7 @@ async function loadProductsPage() {
                         "diet": item.diet,
                         "displayed": false,
                         "inCart": item.inCart,
-                    },
-                    )
+                    })
                 })
 
                 // Sort array based on item price 
@@ -47,7 +43,6 @@ async function loadProductsPage() {
 
             });
     }
-
     // Get the product grid element
     const productGrid = document.querySelector('.product-grid');
 
@@ -56,60 +51,37 @@ async function loadProductsPage() {
         productGrid.firstChild.remove();
     }
 
-    // Loop through the items and update their display
-    items.forEach(item => {
-
+    items.forEach((item) => {
         // Filtering based on client dietary choices
-        user.diet.forEach(choice => {
-            if (item.diet.includes(choice) && item.displayed === false) {
+        if (user.diet.length === 0 || (item.diet.some((choice) => user.diet.includes(choice)) && !item.displayed)) {
+            displayItem(item);
+        }
+    });
 
-                // Create a new item element
-                const itemElement = document.createElement('div');
-                itemElement.className = 'item';
-
-                // Set the item's HTML
-                itemElement.innerHTML = `
-                <img src="${item.image}" class="image" alt="IMAGE">
-                <div class="description">
-                <p class="title">${item.item}</p>
-                <p class="price">${item.price}</p>
-                </div>
-                <span class="add-button reveal"><p class="add prod-${item.item}">+</p></span>
-                `;
-                // Add the item element to the product grid
-                productGrid.appendChild(itemElement);
-
-                item.displayed = true;
-            }
-
-        })
-    })
 }
 
-fetch("./scripts/preferences.json")
-    .then(response => response.json())
-    .then(data => {
-        // get diet-selection element
-        const dietSelection = document.querySelector('.diet-selection');
+function displayItem(item){
+    // Get the product grid element
+    const productGrid = document.querySelector('.product-grid');
 
-        // empty div
-        while (dietSelection.firstChild) {
-            dietSelection.firstChild.remove();
-        }
+    // Create a new item element
+    const itemElement = document.createElement('div');
+    itemElement.className = 'item';
 
-        data.forEach(item => {
-            const diet = document.createElement('div');
+    // Set the item's HTML
+    itemElement.innerHTML = `
+    <img src="${item.image}" class="image" alt="IMAGE">
+    <div class="description">
+    <p class="title">${item.item}</p>
+    <p class="price">${item.price}</p>
+    </div>
+    <span class="add-button reveal"><p class="add prod-${item.item}">+</p></span>
+    `;
+    // Add the item element to the product grid
+    productGrid.appendChild(itemElement);
 
-            diet.innerHTML = `
-            <input type="checkbox" id="${item}" name="${item}" value="${item}">
-            <label for="${item}">${item}</label>
-        `;
-
-            // Add each item to the selection list
-            dietSelection.appendChild(diet);
-        })
-
-    })
+    item.displayed = true;
+}
 
 function toggleSection(sectionId) {
     // Toggle hidden for every other section
@@ -210,7 +182,9 @@ document.addEventListener("click", function (e) {
                 items.forEach(item => {
                     if (item.item === itemName) {
                         item.inCart = !item.inCart;
+                        sign = item.inCart ? '-' : '+';
                         console.log(item.inCart);
+                        loadProductsPage();
                         return;
                     }
                 })
@@ -218,3 +192,29 @@ document.addEventListener("click", function (e) {
         })
     }
 });
+
+// Fetching content
+fetch("./scripts/preferences.json")
+    .then(response => response.json())
+    .then(data => {
+        // get diet-selection element
+        const dietSelection = document.querySelector('.diet-selection');
+
+        // empty div
+        while (dietSelection.firstChild) {
+            dietSelection.firstChild.remove();
+        }
+
+        data.forEach(item => {
+            const diet = document.createElement('div');
+
+            diet.innerHTML = `
+            <input type="checkbox" id="${item}" name="${item}" value="${item}">
+            <label for="${item}">${item}</label>
+        `;
+
+            // Add each item to the selection list
+            dietSelection.appendChild(diet);
+        })
+
+    })
