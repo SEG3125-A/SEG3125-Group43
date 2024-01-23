@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="./scripts/main.js"></script>
-    <script src="./scripts/tevin.js"></script>
-    <script src="./scripts/products.js"></script>
+    <!-- <script src="./scripts/tevin.js"></script> -->
+    <!-- <script src="./scripts/products.js"></script> -->
 
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Grocery app</title>
@@ -43,6 +43,7 @@
                 <div class="slider filter">
                     
                 </div>
+
                 <div class="product-grid">
                 </div>
             </div>
@@ -50,6 +51,11 @@
             <!-- Cart Display  -->
             <div id="cart" class="hidden section">
                 <p>CART PAGE</p>
+                <span>
+                    <p>Your cart total is: </p><p id="cart-total"></p>
+                </span>
+                <div class="cart-grid">
+                </div>
             </div>
 
             <!-- Client Preferences Display -->
@@ -60,16 +66,8 @@
                             <label for="diet-selection">
                                 <p>Select your diet preferences</p>
                             </label>
+                           
                             <div class="diet-selection">
-
-                                <input type="checkbox" id="checkbox1" name="checkbox1" value="1">
-                                <label for="checkbox1">Gluten-free</label><br>
-
-                                <input type="checkbox" id="checkbox2" name="checkbox2" value="1">
-                                <label for="checkbox2">Vegetarian</label><br>
-
-                                <input type="checkbox" id="checkbox3" name="checkbox3" value="1">
-                                <label for="checkbox3">Organic</label><br>
 
                             </div>
                         </div>
