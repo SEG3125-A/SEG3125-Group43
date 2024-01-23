@@ -2,70 +2,70 @@
     {
         "item": "Apples",
         "price": 1.99,
-        "diet": ["glutenFree", "vegetarian", "organic"],
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
         "inCart": false,
         "image": "images/apples.png"
     },
     {
         "item": "Milk",
         "price": 2.49,
-        "diet": ["glutenFree", "vegetarian"],
+        "diet": ["GlutenFree", "Vegetarian"],
         "inCart": false,
         "image": "images/milk.png"
     },
     {
         "item": "Bread",
         "price": 2.99,
-        "diet": ["vegetarian"],
+        "diet": ["Vegetarian"],
         "inCart": false,
         "image": "images/bread.png"
     },
     {
         "item": "Chicken",
         "price": 5.99,
-        "diet": ["glutenFree"],
+        "diet": ["GlutenFree"],
         "inCart": false,
         "image": "images/chicken.png"
     },
     {
         "item": "Eggs",
         "price": 1.99,
-        "diet": ["vegetarian", "glutenFree"],
+        "diet": ["Vegetarian", "GlutenFree"],
         "inCart": false,
         "image": "images/eggs.png"
     },
     {
         "item": "Potatoes",
         "price": 3.49,
-        "diet": ["glutenFree", "vegetarian", "organic"],
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
         "inCart": false,
         "image": "images/potatoes.png"
     },
     {
         "item": "Pasta",
         "price": 1.99,
-        "diet": ["vegetarian"],
+        "diet": ["Vegetarian"],
         "inCart": false,
         "image": "images/pasta.png"
     },
     {
         "item": "Tomatoes",
         "price": 2.99,
-        "diet": ["glutenFree", "vegetarian", "organic"],
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
         "inCart": false,
         "image": "images/tomatoes.png"
     },
     {
         "item": "Yogurt",
         "price": 1.99,
-        "diet": ["glutenFree", "vegetarian"],
+        "diet": ["GlutenFree", "Vegetarian"],
         "inCart": false,
         "image": "images/yogurt.png"
     },
     {
         "item": "Cereal",
         "price": 3.99,
-        "diet": ["vegetarian"],
+        "diet": ["Vegetarian"],
         "inCart": false,
         "image": "images/cereal.png"
     }
