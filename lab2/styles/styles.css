@@ -268,12 +268,17 @@ input{
 }
 
 .diet-selection{
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     gap: 10px;
     justify-content: center;
     align-items: center;
     width: 100vw;
+
+    p{
+        position: absolute;
+        margin-top: 100px;
+    }
 
     label{
         align-items: center;
@@ -388,6 +393,20 @@ input{
             .quantity{
                 position: absolute;
                 left: 60%;
+            }
+            
+            .item-add-button{
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                right: 22%;
+            }
+
+            .item-remove-button{
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                right: 15%;
             }
         }
 }

@@ -16,6 +16,12 @@ let user = {
 // Contains each productObject that is loaded from our JSON fetch
 var items = [];
 
+// Contains all products that are in the cart
+var cart = [];
+
+var total = 0;
+
+
 // Fetch the JSON data
 async function loadProductsPage() {
 
@@ -60,7 +66,7 @@ async function loadProductsPage() {
         }
         // Remove user.diet.length === 0 to display only items which match the user's dietary choices
     });
-
+    console.log(items)
 }
 
 // Function to display a single item on product page
@@ -136,16 +142,13 @@ function toggleDietaryCheck(dietaryId) {
 // Function to load the cart page content
 function loadCartPage() {
     var empty = true;
-    total = 0;
-    cart = []
-
 
     items.forEach(item => {
         if(item.inCart) {
             empty = false;
             total+= item.price
             item.amount=+1
-            if(!cart.includes(item)) cart.push({"item": item.item, "price" : item.price, "amount": item.amount, 'image' : item.image});
+            if(!cart.includes(item)) cart.push(item);
         };
     });
 
@@ -161,6 +164,7 @@ function loadCartPage() {
         // Moved cart-total inside the cart-grid div
         const itemElement = document.createElement('div');
         itemElement.className = 'cart-item';
+        const identifier = item.item.replace(/\W/g, '_');
 
         // Set the item's HTML
         itemElement.innerHTML = 
@@ -168,20 +172,20 @@ function loadCartPage() {
         <img src="${item.image}" alt="IMAGE" class="image">
         <p class="name">${item.item}</p>
         <p class="price">Price: \$${item.price}</p>
-        <p class="quantity">Quantity: ${item.amount}</p>
+        <p class="${identifier}-quantity quantity">Quantity: ${item.amount}</p>
+        <button class="item-add-button" onclick="increaseItem(${index = cart.findIndex(i => i.item === item.item)})">+</button>
+        <button class="item-remove-button" onclick="decreaseItem(${index = cart.findIndex(i => i.item === item.item)})">-</button> 
         `
         document.querySelector('.cart-grid').appendChild(itemElement);
         })
         document.querySelector('.cart-grid').innerHTML += 
         `<div class="cart-item">
-        <p class="total">Total: \$${total}</p
+            <p class="total">Total: \$${total}</p
         </div>
         ` 
     }
     
-    //TODO: Maybe display the items in the cart? Switch the + button to a - button and when clicked change the state so that it is no longer in the cart? Code below was attempting to do that but CSS is messy
 }
-
 
 //EVENT LISTENERS
 document.addEventListener("click", function (e) {
@@ -209,6 +213,53 @@ document.addEventListener("click", function (e) {
     }
 });
 
+// Function to clear all inputs to fix navigation 
+function resetInputs() {
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach((input) => {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            // Reset checkboxes and radio buttons to their default checked state
+            input.checked = input.defaultChecked;
+        }
+    });
+}
+
+// Function to remove an item from the cart
+function removeItem(cart, index) {
+    total -= cart[index].price;
+    if (total < 0) total = 0;
+    cart[index].inCart = false;
+    cart.splice(index, 1);
+    loadCartPage();
+}
+
+// Function to increase the amount of one item in cart
+function increaseItem(index){
+    cart[index].amount++;
+    total+= cart[index].price;
+    console.log(total);
+
+    document.querySelector('.'+cart[index].item+'-quantity').innerHTML = `Quantity: ${cart[index].amount}`;
+    document.querySelector('.total').innerHTML = `Total: \$${total}`;
+}
+
+// Function to decrease the amount of one item in cart
+function decreaseItem(index){
+    total -= cart[index].price;
+    if (total < 0) total = 0;
+    if (cart[index].amount > 1) {
+        cart[index].amount--;
+    } else {
+        removeItem(cart, index);
+        console.log('removed')
+    }
+
+    console.log(total);
+
+    cart.length == 0 ? null : document.querySelector('.total').innerHTML = `Total: \$${total}`;
+}
+
 // Fetching content
 fetch("./scripts/preferences.json")
     .then(response => response.json())
@@ -234,15 +285,3 @@ fetch("./scripts/preferences.json")
         })
 
     })
-
-// Function to clear all inputs to fix navigation 
-function resetInputs() {
-    const inputs = document.querySelectorAll('input');
-
-    inputs.forEach((input) => {
-        if (input.type === 'checkbox' || input.type === 'radio') {
-            // Reset checkboxes and radio buttons to their default checked state
-            input.checked = input.defaultChecked;
-        }
-    });
-}
