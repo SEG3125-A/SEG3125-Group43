@@ -55,7 +55,7 @@ async function loadProductsPage() {
 
     items.forEach((item) => {
         // Filtering based on client dietary choices
-        if (user.diet.length === 0 || (item.diet.some((choice) => user.diet.includes(choice)) && !item.displayed)) {
+        if (user.diet.length === 0 || (item.diet.some((choice) => user.diet.includes(choice)))) {
             displayItem(item);
         }
         // Remove user.diet.length === 0 to display only items which match the user's dietary choices
