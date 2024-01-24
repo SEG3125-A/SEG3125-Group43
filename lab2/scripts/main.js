@@ -64,7 +64,7 @@ async function loadProductsPage() {
 }
 
 // Function to display a single item on product page
-function displayItem(item){
+function displayItem(item) {
     // Get the product grid element
     const productGrid = document.querySelector('.product-grid');
 
@@ -76,11 +76,14 @@ function displayItem(item){
     itemElement.innerHTML = `
     <img src="${item.image}" class="image" alt="IMAGE">
     <div class="description">
-    <p class="title">${item.item}</p>
-    <p class="price">${item.price}</p>
+        <p class="title">${item.item}</p>
+        <p class="price">${item.price}</p>
     </div>
-    <span class="add-button reveal"><p class="add prod-${item.item}">+</p></span>
+    <span class="add-button reveal">
+        <p class="add prod-${item.item}">${item.inCart ? "-" : "+"}</p>
+    </span>
     `;
+
     // Add the item element to the product grid
     productGrid.appendChild(itemElement);
 
@@ -135,9 +138,7 @@ function loadCartPage() {
     var empty = true;
     total = 0;
     cart = []
-    cart.push({"item": "item", "price" : 10, "amount": 1, 'image' : './images/bread.png'})
-    cart.push({"item": "item", "price" : 10, "amount": 1, 'image' : './images/bread.png'})
-    cart.push({"item": "item", "price" : 10, "amount": 1, 'image' : './images/bread.png'})
+
 
     items.forEach(item => {
         if(item.inCart) {
@@ -151,11 +152,10 @@ function loadCartPage() {
     // Check if cart is empty, otherwise display total
     if(empty) {
         // Display a message when the cart is empty
-        document.querySelector("#cart").innerHTML = "Your cart is empty!";
+        document.querySelector('.cart-grid').innerHTML = "Your cart is empty!";
     } else {
-        // ".cart-grid" doesn't exist ??
         // Clear existing items in the cart
-        document.querySelector(".cart-grid").innerHTML = '';
+        document.querySelector('.cart-grid').innerHTML = '';
 
         cart.forEach(item => {
         // Moved cart-total inside the cart-grid div
@@ -170,9 +170,9 @@ function loadCartPage() {
         <p class="price">Price: \$${item.price}</p>
         <p class="quantity">Quantity: ${item.amount}</p>
         `
-        document.querySelector(".cart-grid").appendChild(itemElement);
+        document.querySelector('.cart-grid').appendChild(itemElement);
         })
-        document.querySelector(".cart-grid").innerHTML += 
+        document.querySelector('.cart-grid').innerHTML += 
         `<div class="cart-item">
         <p class="total">Total: \$${total}</p
         </div>
@@ -199,6 +199,7 @@ document.addEventListener("click", function (e) {
                 items.forEach(item => {
                     if (item.item === itemName) {
                         item.inCart = !item.inCart;
+                        loadProductsPage();
                         console.log(item.inCart);
                         return;
                     }
@@ -234,14 +235,14 @@ fetch("./scripts/preferences.json")
 
     })
 
-    // Function to clear all inputs to fix navigation 
-    function resetInputs() {
-        const inputs = document.querySelectorAll('input');
-    
-        inputs.forEach((input) => {
-            if (input.type === 'checkbox' || input.type === 'radio') {
-                // Reset checkboxes and radio buttons to their default checked state
-                input.checked = input.defaultChecked;
-            }
-        });
-    }
+// Function to clear all inputs to fix navigation 
+function resetInputs() {
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach((input) => {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            // Reset checkboxes and radio buttons to their default checked state
+            input.checked = input.defaultChecked;
+        }
+    });
+}
