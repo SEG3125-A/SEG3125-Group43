@@ -147,6 +147,7 @@ function loadCartPage() {
         if(item.inCart) {
             empty = false;
             total+= item.price
+            total = parseFloat(total.toFixed(2));
             item.amount=+1
             if(!cart.includes(item)) cart.push(item);
         };
@@ -228,6 +229,7 @@ function resetInputs() {
 // Function to remove an item from the cart
 function removeItem(cart, index) {
     total -= cart[index].price;
+    total = parseFloat(total.toFixed(2));
     if (total < 0) total = 0;
     cart[index].inCart = false;
     cart.splice(index, 1);
@@ -238,6 +240,7 @@ function removeItem(cart, index) {
 function increaseItem(index){
     cart[index].amount++;
     total+= cart[index].price;
+    total = parseFloat(total.toFixed(2));
     console.log(total);
 
     document.querySelector('.'+cart[index].item+'-quantity').innerHTML = `Quantity: ${cart[index].amount}`;
@@ -247,15 +250,19 @@ function increaseItem(index){
 // Function to decrease the amount of one item in cart
 function decreaseItem(index){
     total -= cart[index].price;
+    total = parseFloat(total.toFixed(2));
     if (total < 0) total = 0;
     if (cart[index].amount > 1) {
         cart[index].amount--;
+
+        console.log(total);
+
+        document.querySelector('.'+cart[index].item+'-quantity').innerHTML = `Quantity: ${cart[index].amount}`;
+        document.querySelector('.total').innerHTML = `Total: \$${total}`;
     } else {
         removeItem(cart, index);
         console.log('removed')
     }
-
-    console.log(total);
 
     cart.length == 0 ? null : document.querySelector('.total').innerHTML = `Total: \$${total}`;
 }
