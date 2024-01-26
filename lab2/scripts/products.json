@@ -78,5 +78,53 @@
         "inCart": false,
         "image": "images/cereal.png",
         "amount": 0
+    },
+    {
+        "item": "Oranges",
+        "price": 2.49,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/oranges.png",
+        "amount": 0
+    },
+    {
+        "item": "Salmon",
+        "price": 8.99,
+        "diet": ["GlutenFree", "Organic"],
+        "inCart": false,
+        "image": "images/salmon.png",
+        "amount": 0
+    },
+    {
+        "item": "Spinach",
+        "price": 2.99,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/spinach.png",
+        "amount": 0
+    },
+    {
+        "item": "Cheese",
+        "price": 4.99,
+        "diet": ["Vegetarian"],
+        "inCart": false,
+        "image": "images/cheese.png",
+        "amount": 0
+    },
+    {
+        "item": "Carrots",
+        "price": 1.49,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/carrots.png",
+        "amount": 0
+    },
+    {
+        "item": "Bananas",
+        "price": 0.99,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/bananas.png",
+        "amount": 0
     }
 ]

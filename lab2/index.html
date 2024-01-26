@@ -86,6 +86,13 @@
                     <div class="product-display">
                         <div class="side-panel-wrapper" >
                             <div class="side-panel" id="sidebar" style="font-family: 'Open Sans', sans-serif;">
+                                <p class="itemsperpage-text">Select the number of items per page</p>
+                                <select name="itemsperpage" id="items-per-page">
+                                    <option value="6">6</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                </select>
                                 <p class="desc">Select your diet preferences</p>
                                 <div class="diet-selection" id="sidebar">
     
@@ -98,12 +105,20 @@
                                         <p>Descending Price</p>
                                     </div>
                                 </div>
+                                <p>Once you're done selecting your items,</p>
+                                <p style="padding-bottom: 60px;"> head over to the cart page !</p>
                             </div>
                         </div>
                         <!--Auto feed in JS-->
-                        <div class="product-grid" id="product-grid">
+                        <div class="product-grid-wrapper">
+                            <div class="product-grid" id="product-grid">
     
+                            </div>
+                            <div class="page-numbers">
+
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

@@ -165,6 +165,8 @@ input{
 
         .product-grid {
             flex: 1;
+            /* min-width: calc(100vw - 900px); */
+            max-width: calc(100vw - 500px);
             display: grid;
             margin: auto;
             padding: 60px;
@@ -197,7 +199,6 @@ input{
             position: sticky;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
             min-width: 500px;
-            padding-left: 20px;
             height: 100%;
             transition: all 0.3s ease-in-out;
 
@@ -277,10 +278,25 @@ input{
               
         }
         
+        .itemsperpage-text{
+            padding-top: 50px;
+        }
 
-        @media (max-width: 900px) { /* Updated media query */
+        select {
+            display: inline-block;
+            position: relative;
+            width: 200px;
+            height: 40px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 900px) { 
             .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* Updated width */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -298,7 +314,6 @@ input{
             background-color: rgba(0, 0, 0, 0.03);
             border-radius: 10px;
             padding: 70px;
-            margin: 10px;
             min-height: 350px;
         
             :hover{
