@@ -25,9 +25,6 @@
                 <div class="tabs">
                     <input type="radio" name="section" id="home" onchange="toggleSection('products')">
                     <label for="home" class="tab">Home</label>
-
-                    <input type="radio" name="section" id="profile" onchange="toggleSection('client')">
-                    <label for="profile" class="tab">Profile preferences</label>
                     
                     <input type="radio" name="section" id="cart-page" onchange="toggleSection('cart')">
                     <label for="cart-page" class="tab">Cart</label>
@@ -48,7 +45,7 @@
                             <div class="slide-text">
                                 <p class="txt-1">Welcome to</p>
                                 <p class="txt-2">Auto-Cart</p>
-                                <button onclick="var titles = document.getElementById('titles');
+                                <button onclick="var titles = document.getElementById('product-grid');
                                 var titlesPosition = titles.getBoundingClientRect().top + window.pageYOffset;
                                 window.scrollTo({ top: titlesPosition - 80, behavior: 'smooth' });">Shop Now</button>
                             </div>
@@ -58,7 +55,7 @@
                             <div class="slide-text">
                                 <p class="txt-1">A wide selection of</p>
                                 <p class="txt-2">Baked goods</p>
-                                <button onclick="var titles = document.getElementById('titles');
+                                <button onclick="var titles = document.getElementById('product-grid');
                                 var titlesPosition = titles.getBoundingClientRect().top + window.pageYOffset;
                                 window.scrollTo({ top: titlesPosition - 80, behavior: 'smooth' });">Shop Now</button>
                             </div>
@@ -68,7 +65,7 @@
                             <div class="slide-text">
                                 <p class="txt-1">You will love our</p>
                                 <p class="txt-2">Fresh vegetables</p>
-                                <button onclick="var titles = document.getElementById('titles');
+                                <button onclick="var titles = document.getElementById('product-grid');
                                 var titlesPosition = titles.getBoundingClientRect().top + window.pageYOffset;
                                 window.scrollTo({ top: titlesPosition - 80, behavior: 'smooth' });">Shop Now</button>
                             </div>
@@ -86,16 +83,27 @@
                         <p style="font-size: 20px; font-family: 'Roboto', sans-serif; margin-top: 40px;">Check out our newly added products</p>
                     </div>
 
-                    <div class="latest">
-                        
-                    </div>
-
-                    <div class="side-panel">
-                        
-                    </div>
-                    <!--Auto feed in JS-->
-                    <div class="product-grid">
-
+                    <div class="product-display">
+                        <div class="side-panel-wrapper" >
+                            <div class="side-panel" id="sidebar" style="font-family: 'Open Sans', sans-serif;">
+                                <p class="desc">Select your diet preferences</p>
+                                <div class="diet-selection" id="sidebar">
+    
+                                </div>
+                                <div class="sorter">
+                                    <p>Sort by </p>
+                                    <div class="sorter-options">
+                                        <p>Ascending Price</p>
+                                        <input type="checkbox" id="sort-price">
+                                        <p>Descending Price</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Auto feed in JS-->
+                        <div class="product-grid" id="product-grid">
+    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,23 +113,6 @@
                 <!--Auto feed in JS-->
                 <div class="cart-grid hero" id="cart-grid">
                    
-                </div>
-            </div>
-
-            <!-- Client Preferences Display -->
-            <div id="client" class="hidden section">
-                <div class="hero">
-                    <div class="hero-content">
-                        <div class="hero-dropdown" style="font-family: 'Open Sans', sans-serif;">
-                            <label for="diet-selection">
-                                 <p>Select your diet preferences</p>
-                            </label>
-                           <!--Auto feed in JS-->
-                            <div class="diet-selection">
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -135,7 +126,7 @@
             <p>Created by Tevin and CHristian</p>
         </div>
         <div class="github-redirect">
-            <p><a href="github.com">Check out the repository on GitHub !</a></p>
+            <p><a href="https://github.com/SEG3125-A/SEG3125-Group43">Check out the repository on GitHub !</a></p>
         </div>
     </div>
 </body>

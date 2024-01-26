@@ -21,9 +21,10 @@ var cart = [];
 
 var total = 0;
 
+const sortPriceCheckbox = document.querySelector('#sort-price');
 
 // Fetch the JSON data
-async function loadProductsPage() {
+async function loadProductsPage(criteria = 'price', order = 'asc') {
 
     // Checking if our itemsArray is empty, if it is, fill it with objects from the products.json file
     if (items.length === 0) {
@@ -43,14 +44,10 @@ async function loadProductsPage() {
                         "inCart": item.inCart,
                     })
                 })
-
-                // Sort array based on item price 
-                items.sort(function (a, b) {
-                    return a.price - b.price;
-                })
-
             });
-    }
+        }
+
+    sort(items, criteria, order);
     // Get the product grid element
     const productGrid = document.querySelector('.product-grid');
 
@@ -67,6 +64,28 @@ async function loadProductsPage() {
         // Remove user.diet.length === 0 to display only items which match the user's dietary choices
     });
     console.log(items)
+}
+
+function sort(items, criteria, order) {
+    if (criteria === 'item') {
+        if (order === 'asc') {
+            items.sort((a, b) => a.item.localeCompare(b.item));
+        } else {
+            items.sort((a, b) => b.item.localeCompare(a.item));
+        }
+    } else if (criteria === 'price') {
+        if (order === 'asc') {
+            items.sort((a, b) => a.price - b.price);
+        } else {
+            items.sort((a, b) => b.price - a.price);
+        }
+    } else if (criteria === 'diet') {
+        if (order === 'asc') {
+            items.sort((a, b) => a.diet - b.diet);
+        } else {
+            items.sort((a, b) => b.diet - a.diet);
+        }
+    }
 }
 
 // Function to display a single item on product page
@@ -112,6 +131,10 @@ function toggleSection(sectionId) {
 
     if (sectionId === 'products') {
         loadProductsPage();
+        handleSortChange();
+        window.onchange = function() {
+            window.scrollTo({top: document.getElementById('product-grid').offsetTop, behavior: 'smooth'});
+        };
     } else {
         items.forEach(item => {
             item.displayed = false;
@@ -137,6 +160,8 @@ function toggleDietaryCheck(dietaryId) {
     } else {
         user.diet.push(dietaryId);
     }
+    handleSortChange();
+    loadProductsPage();
 }
 
 // Function to load the cart page content
@@ -180,17 +205,22 @@ function loadCartPage() {
         document.querySelector('.cart-grid').appendChild(itemElement);
         })
         document.querySelector('.cart-grid').innerHTML += 
-        `<div class="cart-item">
-            <p class="total">Total: \$${total}</p
+        `<div class="cart-bottom">
+            <div class="cart-item">
+                <p class="total">Total: \$${total}</p
+            </div>
+        </div>
+        <div class="checkout">
+            <button class="checkout-button" onclick="alert('Thank you for shopping at Auto-Cart !')">Checkout</button>
         </div>
         ` 
     }
     
 }
 
-//EVENT LISTENERS
+//EVENT LISTENER
 document.addEventListener("click", function (e) {
-    if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
+    if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox' && !e.target.parentElement.classList.contains('sorter-options')) {
         toggleDietaryCheck(e.target.name);
     }
 
@@ -202,6 +232,7 @@ document.addEventListener("click", function (e) {
                 console.log(itemName);
 
                 items.forEach(item => {
+                    handleSortChange();
                     if (item.item === itemName) {
                         item.inCart = !item.inCart;
                         loadProductsPage();
@@ -211,6 +242,28 @@ document.addEventListener("click", function (e) {
                 })
             }
         })
+    }
+
+    // Add event listeners
+    sortPriceCheckbox.addEventListener('change', handleSortChange());
+});
+
+function handleSortChange() {
+    // Determine the sorting criteria and order
+    let order = sortPriceCheckbox.checked ? 'desc' : 'asc';
+
+    // Call the loadProductsPage function with the sorting criteria and order
+    loadProductsPage('price', order);
+}
+
+window.addEventListener('change', function (e) {
+    if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox' && e.target.parentElement.classList.contains('sorter-options')) {
+        const sortPriceCheckbox = document.querySelector('#sort-price');
+        // Determine the sorting criteria and order
+        let order = sortPriceCheckbox.checked ? 'desc' : 'asc';
+
+        // Call the loadProductsPage function with the sorting criteria and order
+        loadProductsPage(criteria, order);
     }
 });
 

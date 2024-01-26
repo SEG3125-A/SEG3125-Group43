@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         //   move slide by 100%
         slides.forEach((slide, indx) => {
-            slide.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+            slide.style.transform = `translateX(${-100 * (curSlide)}%)`;
         });
     });
 
