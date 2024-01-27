@@ -121,7 +121,7 @@
     },
     {
         "item": "Bananas",
-        "price": 0.99,
+        "price": 0.50,
         "diet": ["GlutenFree", "Vegetarian", "Organic"],
         "inCart": false,
         "image": "images/bananas.png",

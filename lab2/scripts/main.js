@@ -27,6 +27,18 @@ var total = 0;
 
 const sortPriceCheckbox = document.querySelector('#sort-price');
 
+// Function to clear all inputs to fix navigation 
+function resetInputs() {
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach((input) => {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+            // Reset checkboxes and radio buttons to their default checked state
+            input.checked = input.defaultChecked;
+        }
+    });
+}
+
 // Fetch the JSON data
 async function loadProductsPage(criteria = 'price', order = 'asc') {
     const start = (currentPage - 1) * itemsPerPage;
@@ -84,35 +96,6 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
     console.log(items);
 }
 
-function sort(items, criteria, order) {
-    if (criteria === 'item') {
-        if (order === 'asc') {
-            items.sort((a, b) => a.item.localeCompare(b.item));
-        } else {
-            items.sort((a, b) => b.item.localeCompare(a.item));
-        }
-    } else if (criteria === 'price') {
-        if (order === 'asc') {
-            items.sort((a, b) => a.price - b.price);
-        } else {
-            items.sort((a, b) => b.price - a.price);
-        }
-    } else if (criteria === 'diet') {
-        if (order === 'asc') {
-            items.sort((a, b) => a.diet - b.diet);
-        } else {
-            items.sort((a, b) => b.diet - a.diet);
-        }
-    }
-}
-
-function filterItems(items) {
-    return items.filter(item => {
-        // Filtering based on client dietary choices
-        return user.diet.length === 0 || item.diet.some(choice => user.diet.includes(choice));
-    });
-}
-
 // Function to display a single item on product page
 function displayItem(item) {
     // Get the product grid element
@@ -140,70 +123,6 @@ function displayItem(item) {
     item.displayed = true;
 }
 
-// Update the page numbers
-function updatePageNumbers(items) {
-    const totalPages = getTotalPages(items);
-
-    // Clear the page numbers
-    document.querySelector('.page-numbers').innerHTML = '';
-
-    // Add the page numbers
-    for (let i = 1; i <= totalPages; i++) {
-        const pageNumberElement = document.createElement('button');
-        pageNumberElement.textContent = i;
-        pageNumberElement.addEventListener('click', () => {
-            currentPage = i;
-            loadProductsPage();
-        });
-        pageNumberElement.setAttribute("style", "position: relative; bottom: 100px; border: none; margin-right: 7px; background-color: transparent; color: " + (i === currentPage ? "green" : "#000") + "; font-size: 1.2em; font-family: 'Roboto', sans-serif; cursor: pointer; margin: 0 5px;")
-        document.querySelector('.page-numbers').appendChild(pageNumberElement);
-    }
-}
-
-// Calculate the total number of pages
-function getTotalPages(items) {
-    return Math.ceil(items.length / itemsPerPage);
-}
-
-function calculateItemsPerPage() {
-    const matchingItems = items.filter(item => item.diet.some(choice => user.diet.includes(choice)));
-    return Math.ceil(matchingItems.length / 2);
-}
-
-// Function to show or hide a section, also loads content appropriately
-function toggleSection(sectionId) {
-    // Toggle hidden for every other section
-    const allSections = document.querySelectorAll('.content .section');
-
-    allSections.forEach((sec) => {
-        if (!sec.classList.contains('hidden')) {
-            sec.classList.add('hidden');
-        }
-    });
-
-    // Get the section element
-    const sectionElement = document.querySelector(`#${sectionId}`);
-
-    if (sectionId === 'products') {
-        loadProductsPage();
-        handleSortChange();
-        window.onchange = function() {
-            window.scrollTo({top: document.getElementById('product-grid').offsetTop, behavior: 'smooth'});
-        };
-    } else {
-        items.forEach(item => {
-            item.displayed = false;
-        })
-
-        if (sectionId === 'cart') {
-            loadCartPage();
-        }
-    }
-
-    // Toggle the section
-    sectionElement.classList.toggle('hidden');
-}
-
 //TEVIN
 // Function to control the dietary checkboxes
 function toggleDietaryCheck(dietaryId) {
@@ -218,6 +137,37 @@ function toggleDietaryCheck(dietaryId) {
     currentPage = 1;
 }
 
+//EVENT LISTENER
+document.addEventListener("click", function (e) {
+    if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox' && !e.target.parentElement.classList.contains('sorter-options')) {
+        toggleDietaryCheck(e.target.name);
+    }
+    handleSortChange();
+    loadProductsPage();
+    if (e.target.classList.contains('add')) {
+        e.target.classList.forEach(className => {
+            if (className.includes('prod')) {
+
+                itemName = className.substring(5);
+                console.log(itemName);
+
+                items.forEach(item => {
+                    handleSortChange();
+                    if (item.item === itemName) {
+                        item.inCart = !item.inCart;
+                        loadProductsPage();
+                        console.log(item.inCart);
+                        return;
+                    }
+                })
+            }
+        })
+    }
+
+    // Add event listeners
+    sortPriceCheckbox.addEventListener('change', handleSortChange());
+});
+
 // Function to load the cart page content
 function loadCartPage() {
     var empty = true;
@@ -227,7 +177,7 @@ function loadCartPage() {
             empty = false;
             total+= item.price
             total = parseFloat(total.toFixed(2));
-            item.amount=+1
+            if(item.amount === undefined) item.amount = 1;
             if(!cart.includes(item)) cart.push(item);
         };
     });
@@ -236,6 +186,7 @@ function loadCartPage() {
     if(empty) {
         // Display a message when the cart is empty
         document.querySelector('.cart-grid').innerHTML = "Your cart is empty!";
+        total = 0;
     } else {
         // Clear existing items in the cart
         document.querySelector('.cart-grid').innerHTML = '';
@@ -272,116 +223,7 @@ function loadCartPage() {
     
 }
 
-//EVENT LISTENER
-document.addEventListener("click", function (e) {
-    if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox' && !e.target.parentElement.classList.contains('sorter-options')) {
-        toggleDietaryCheck(e.target.name);
-    }
-    handleSortChange();
-    loadProductsPage();
-    if (e.target.classList.contains('add')) {
-        e.target.classList.forEach(className => {
-            if (className.includes('prod')) {
-
-                itemName = className.substring(5);
-                console.log(itemName);
-
-                items.forEach(item => {
-                    handleSortChange();
-                    if (item.item === itemName) {
-                        item.inCart = !item.inCart;
-                        loadProductsPage();
-                        console.log(item.inCart);
-                        return;
-                    }
-                })
-            }
-        })
-    }
-
-    // Add event listeners
-    sortPriceCheckbox.addEventListener('change', handleSortChange());
-});
-
-document.querySelector('#items-per-page').addEventListener('change', function(e) {
-    itemsPerPage = parseInt(e.target.value);
-    currentPage = 1; 
-    loadProductsPage(); 
-});
-
-function handleSortChange() {
-    // Determine the sorting criteria and order
-    let order = sortPriceCheckbox.checked ? 'desc' : 'asc';
-
-    // Call the loadProductsPage function with the sorting criteria and order
-    loadProductsPage('price', order);
-}
-
-window.addEventListener('change', function (e) {
-    if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox' && e.target.parentElement.classList.contains('sorter-options')) {
-        const sortPriceCheckbox = document.querySelector('#sort-price');
-        // Determine the sorting criteria and order
-        let order = sortPriceCheckbox.checked ? 'desc' : 'asc';
-
-        // Call the loadProductsPage function with the sorting criteria and order
-        loadProductsPage(criteria, order);
-    }
-});
-
-// Function to clear all inputs to fix navigation 
-function resetInputs() {
-    const inputs = document.querySelectorAll('input');
-
-    inputs.forEach((input) => {
-        if (input.type === 'checkbox' || input.type === 'radio') {
-            // Reset checkboxes and radio buttons to their default checked state
-            input.checked = input.defaultChecked;
-        }
-    });
-}
-
-// Function to remove an item from the cart
-function removeItem(cart, index) {
-    total -= cart[index].price;
-    total = parseFloat(total.toFixed(2));
-    if (total < 0) total = 0;
-    cart[index].inCart = false;
-    cart.splice(index, 1);
-    loadCartPage();
-}
-
-// Function to increase the amount of one item in cart
-function increaseItem(index){
-    cart[index].amount++;
-    total+= cart[index].price;
-    total = parseFloat(total.toFixed(2));
-    console.log(total);
-
-    document.querySelector('.'+cart[index].item+'-quantity').innerHTML = `Quantity: ${cart[index].amount}`;
-    document.querySelector('.total').innerHTML = `Total: \$${total}`;
-}
-
-// Function to decrease the amount of one item in cart
-function decreaseItem(index){
-    total -= cart[index].price;
-    total = parseFloat(total.toFixed(2));
-    if (total < 0) total = 0;
-    if (cart[index].amount > 1) {
-        cart[index].amount--;
-
-        console.log(total);
-
-        document.querySelector('.'+cart[index].item+'-quantity').innerHTML = `Quantity: ${cart[index].amount}`;
-        document.querySelector('.total').innerHTML = `Total: \$${total}`;
-    } else {
-        removeItem(cart, index);
-        console.log('removed')
-    }
-
-    cart.length == 0 ? null : document.querySelector('.total').innerHTML = `Total: \$${total}`;
-}
-
-// Fetching content
+// Fetching preferences content
 fetch("./scripts/preferences.json")
     .then(response => response.json())
     .then(data => {
@@ -406,3 +248,37 @@ fetch("./scripts/preferences.json")
         })
 
     })
+
+// Function to show or hide a section, also loads content appropriately
+function toggleSection(sectionId) {
+    // Toggle hidden for every other section
+    const allSections = document.querySelectorAll('.content .section');
+
+    allSections.forEach((sec) => {
+        if (!sec.classList.contains('hidden')) {
+            sec.classList.add('hidden');
+        }
+    });
+
+    // Get the section element
+    const sectionElement = document.querySelector(`#${sectionId}`);
+
+    if (sectionId === 'products') {
+        loadProductsPage();
+        handleSortChange();
+        window.onchange = function() {
+            window.scrollTo({top: document.getElementById('product-grid').offsetTop, behavior: 'smooth'});
+        };
+    } else {
+        items.forEach(item => {
+            item.displayed = false;
+        })
+
+        if (sectionId === 'cart') {
+            loadCartPage();
+        }
+    }
+
+    // Toggle the section
+    sectionElement.classList.toggle('hidden');
+}
