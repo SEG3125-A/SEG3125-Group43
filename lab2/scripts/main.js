@@ -39,6 +39,13 @@ function resetInputs() {
     });
 }
 
+document.querySelector('#items-per-page').addEventListener('change', function(e) {
+    itemsPerPage = parseInt(e.target.value);
+    currentPage = 1; 
+    loadProductsPage(); 
+});
+
+
 // Fetch the JSON data
 async function loadProductsPage(criteria = 'price', order = 'asc') {
     const start = (currentPage - 1) * itemsPerPage;
