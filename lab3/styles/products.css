@@ -36,6 +36,41 @@
             font-size: 40px;
             letter-spacing: 3px; 
         }
+        
+        #search-input{
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .searchInputWrapper {
+            position: relative;
+        }
+          
+        .searchInput {
+        width: 20rem;
+        height: 2rem;
+        padding: 0 2rem; 
+        border-radius: 2rem;
+        border: none;
+        transition: transform 0.1s ease-in-out;
+        }
+        
+        ::placeholder {
+        color: #a1a1a1;
+        }
+        
+        /* hide the placeholder text on focus */
+        :focus::placeholder {
+        text-indent: -999px
+        }
+        
+        .searchInput:focus {
+        outline: none;
+        transform: scale(1.1);
+        transition: all 0.1s ease-in-out;
+        }
 
         .product-display {
             display: flex;
@@ -95,6 +130,10 @@
             .desc{
                 padding-top: 40px;
             }
+
+            input{
+                display: none;
+            }
         }
 
         .sorter{
@@ -105,7 +144,6 @@
 
             input{
                 display: block;
-
             }
 
             .sorter-options{

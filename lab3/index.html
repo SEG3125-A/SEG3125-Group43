@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="./styles/products.css">
     <link rel="stylesheet" href="./styles/cart.css">
     <link rel="stylesheet" href="./styles/footer.css">
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,7 +84,7 @@
                     </div>
                 </div>
 
-                <!-- This will not be needed, will implement as an after thought as the products would be idrectly affeted by the client's preferences -->
+                <!-- Make sure to change the input: display none rule in css when adding input elements -->
                 <div class="filter">  
                     <div class="titles" id="titles">
                         <p class="title">Lastest Arrivals</p>
@@ -118,6 +120,10 @@
                         </div>
                         <!--Auto feed in JS-->
                         <div class="product-grid-wrapper">
+                            <div class="searchInputWrapper">
+                                <input class="searchInput" id="search-input" type="text" placeholder='Search products...'>
+                                </input>
+                              </div>
                             <div class="product-grid" id="product-grid">
     
                             </div>

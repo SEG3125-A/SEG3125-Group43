@@ -20,10 +20,10 @@ function sort(items, criteria, order) {
     }
 }
 
-function filterItems(items) {
+function filterItems(items, query) {
     return items.filter(item => {
         // Filtering based on client dietary choices
-        return user.diet.length === 0 || item.diet.some(choice => user.diet.includes(choice));
+        return (user.diet.length === 0 || item.diet.some(choice => user.diet.includes(choice))) && item.item.toLowerCase().includes(query.toLowerCase());
     });
 }
 
@@ -42,6 +42,6 @@ window.addEventListener('change', function (e) {
         let order = sortPriceCheckbox.checked ? 'desc' : 'asc';
 
         // Call the loadProductsPage function with the sorting criteria and order
-        loadProductsPage(criteria, order);
+        loadProductsPage('price', order);
     }
 });

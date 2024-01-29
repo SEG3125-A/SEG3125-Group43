@@ -27,12 +27,14 @@ var total = 0;
 
 const sortPriceCheckbox = document.querySelector('#sort-price');
 
+const searchInput = document.querySelector('#search-input');
+
 // Function to clear all inputs to fix navigation 
 function resetInputs() {
     const inputs = document.querySelectorAll('input');
 
     inputs.forEach((input) => {
-        if (input.type === 'checkbox' || input.type === 'radio') {
+        if (input.type === 'checkbox' || input.type === 'radio' || input.type === 'text') {
             // Reset checkboxes and radio buttons to their default checked state
             input.checked = input.defaultChecked;
         }
@@ -74,7 +76,7 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
     sort(items, criteria, order);
 
     // Filter the items
-    const filteredItems = filterItems(items);
+    const filteredItems = filterItems(items, searchInput.value);
 
     // Get a certain number of items to display
     const itemsToDisplay = filteredItems.slice(start, end);
@@ -94,7 +96,9 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
 
     // Check if productGrid is empty or has no elements
     if (!productGrid.firstChild) {
-        productGrid.setAttribute("style", "display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif; font-size: 1.2em; position: relative; top: -100px;");
+        document.querySelector('.page-numbers').innerHTML = '';
+        document.querySelector('#search-input').setAttribute("style", "position: absolute; left: -250px ");
+        productGrid.setAttribute("style", "position: absolute; display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif; font-size: 1.2em; transform: translateY(200%);");
         productGrid.innerHTML = `There are no items that match your dietary choices.`;
     } else {
         // Update the page numbers
@@ -172,7 +176,11 @@ document.addEventListener("click", function (e) {
     }
 
     // Add event listeners
-    sortPriceCheckbox.addEventListener('change', handleSortChange());
+    sortPriceCheckbox.addEventListener('change', handleSortChange);
+
+    searchInput.addEventListener('input', function (e) {
+        handleSortChange();
+    });
 });
 
 // Function to load the cart page content
