@@ -1,0 +1,34 @@
+/* Footer content */
+.footer{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    z-index: 100;
+
+    bottom: 0;
+    left: 0;
+    height: 50px;
+
+    background-color: rgba(0,0,0,0.77);
+    color: white;
+
+    font-size: 0.8rem;
+}
+
+.signature{
+    font-family: 'couture-bld', sans-serif;
+    color : white;
+    padding-left: 10px;
+}
+
+.github-redirect{
+    font-family: 'couture-bld', sans-serif;
+
+    position: absolute;
+    right: 10px;
+
+    cursor: pointer;
+       
+}

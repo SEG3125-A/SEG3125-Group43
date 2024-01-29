@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Scripts-->
+    <script src="./scripts/main.js" defer></script>
+    <script src="./scripts/slider.js"></script>
+    <script src="./scripts/pagination.js"></script>
+    <script src="./scripts/cart.js"></script>
+    <script src="./scripts/sort.js"></script>
+    <!-- <script src="./scripts/tevin.js"></script> -->
+    <!-- <script src="./scripts/products.js"></script> -->
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/products.css">
+    <link rel="stylesheet" href="./styles/cart.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Auto-Cart</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Top of Page -->
+        <nav>
+            <div class="header">
+                <div class="title"><p class="title-name">Auto-Cart</p></div>
+                <div class="tabs">
+                    <input type="radio" name="section" id="home" onchange="toggleSection('products')">
+                    <label for="home" class="tab">Home</label>
+                    
+                    <input type="radio" name="section" id="cart-page" onchange="toggleSection('cart')">
+                    <label for="cart-page" class="tab">Cart</label>
+                </div>
+            </div>
+        </nav>
+        <!--End of Top of Page-->
+
+        <!-- Content Display -->
+        <div class="content">
+            <!-- Products Display -->
+            <div id="products" class="hidden section">
+                <div class="side-panel"></div>
+                <div class="banner-container">
+                    <div class="slider">
+                        <div class="slide">
+                            <img class="img-1" src="./images/slides/slide-1-result.png" alt="">
+                            <div class="slide-text">
+                                <p class="txt-1">Welcome to</p>
+                                <p class="txt-2">Auto-Cart</p>
+                                <button onclick="var titles = document.getElementById('product-grid');
+                                var titlesPosition = titles.getBoundingClientRect().top + window.pageYOffset;
+                                window.scrollTo({ top: titlesPosition - 80, behavior: 'smooth' });">Shop Now</button>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img class="img-2" src="./images/slides/slide-2.jpg" alt="">
+                            <div class="slide-text">
+                                <p class="txt-1">A wide selection of</p>
+                                <p class="txt-2">Baked goods</p>
+                                <button onclick="var titles = document.getElementById('product-grid');
+                                var titlesPosition = titles.getBoundingClientRect().top + window.pageYOffset;
+                                window.scrollTo({ top: titlesPosition - 80, behavior: 'smooth' });">Shop Now</button>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img class="img-3" src="./images/slides/slide-3.jpg" alt="">
+                            <div class="slide-text">
+                                <p class="txt-1">You will love our</p>
+                                <p class="txt-2">Fresh vegetables</p>
+                                <button onclick="var titles = document.getElementById('product-grid');
+                                var titlesPosition = titles.getBoundingClientRect().top + window.pageYOffset;
+                                window.scrollTo({ top: titlesPosition - 80, behavior: 'smooth' });">Shop Now</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-prev"> < </button>
+                        <button class="btn btn-next"> > </button>
+                    </div>
+                </div>
+
+                <!-- This will not be needed, will implement as an after thought as the products would be idrectly affeted by the client's preferences -->
+                <div class="filter">  
+                    <div class="titles" id="titles">
+                        <p class="title">Lastest Arrivals</p>
+                        <p class="subtitle">NEW PRODUCTS</p>
+                        <p style="font-size: 20px; font-family: 'Roboto', sans-serif; margin-top: 40px;">Check out our newly added products</p>
+                    </div>
+
+                    <div class="product-display">
+                        <div class="side-panel-wrapper" >
+                            <div class="side-panel" id="sidebar" style="font-family: 'Open Sans', sans-serif;">
+                                <p class="itemsperpage-text">Select the number of items per page</p>
+                                <select name="itemsperpage" id="items-per-page">
+                                    <option value="6">6</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                </select>
+                                <p class="desc">Select your diet preferences</p>
+                                <div class="diet-selection" id="sidebar">
+    
+                                </div>
+                                <div class="sorter">
+                                    <p>Sort by </p>
+                                    <div class="sorter-options">
+                                        <p>Ascending Price</p>
+                                        <input type="checkbox" id="sort-price">
+                                        <p>Descending Price</p>
+                                    </div>
+                                </div>
+                                <p>Once you're done selecting your items,</p>
+                                <p style="padding-bottom: 60px;"> head over to the cart page !</p>
+                            </div>
+                        </div>
+                        <!--Auto feed in JS-->
+                        <div class="product-grid-wrapper">
+                            <div class="product-grid" id="product-grid">
+    
+                            </div>
+                            <div class="page-numbers">
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Display  -->
+            <div id="cart" class="hidden section" style="font-family: 'Open Sans', sans-serif;">
+                <!--Auto feed in JS-->
+                <div class="cart-grid hero" id="cart-grid">
+                   
+                </div>
+            </div>
+        </div>
+
+        <!-- End of Content Display -->
+    </div>
+
+    <!-- Bottom of Page -->
+    <div class="footer">
+        <div class="signature">
+            <p>Created by Tevin and CHristian</p>
+        </div>
+        <div class="github-redirect">
+            <p><a href="https://github.com/SEG3125-A/SEG3125-Group43">Check out the repository on GitHub !</a></p>
+        </div>
+    </div>
+</body>
+</html>

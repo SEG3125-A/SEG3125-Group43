@@ -1,0 +1,248 @@
+.content {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; 
+    margin-top: 70px;
+
+    #products {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        overflow: scroll;
+
+        .titles{
+            position: relative;
+            width: 100%;
+            justify-content: center;
+            height: 200px;
+        }
+
+        .title{
+            margin-top: 20px;
+            font-family: 'avocados', sans-serif;
+            font-size: 30px;
+            color: var(--simple-dark-green);
+            transform: skewX(-10deg);
+        }
+
+        .subtitle{
+            margin-bottom: 15px;
+            font-family: 'couture-bld', sans-serif;
+            font-size: 40px;
+            letter-spacing: 3px; 
+        }
+
+        .product-display {
+            display: flex;
+        }
+
+        .product-grid {
+            flex: 1;
+            /* min-width: calc(100vw - 900px); */
+            max-width: calc(100vw - 500px);
+            display: grid;
+            margin: auto;
+            padding: 60px;
+            margin-bottom: 100px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Updated width */
+            grid-gap: 30px;
+
+            span {
+                opacity: 0;
+            }
+
+            :hover {
+                transform: scale(1.1);
+                span {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .side-panel-wrapper{
+            position: -webkit-sticky;
+            position: sticky;
+            margin-top: 70px;
+            margin-left: 20px;
+            height: 100%;
+            z-index: 99;
+        }
+
+        .side-panel {
+            position: sticky;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+            min-width: 500px;
+            height: 100%;
+            transition: all 0.3s ease-in-out;
+
+            #sidebar {
+                width: 100%;
+                object-position: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .fixed{
+                    position: fixed;
+                }
+            }
+
+            .desc{
+                padding-top: 40px;
+            }
+        }
+
+        .sorter{
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            input{
+                display: block;
+
+            }
+
+            .sorter-options{
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                gap: 30px;
+            }
+
+            input[type="checkbox"] {
+                position: relative;
+                width: 80px;
+                height: 40px;
+                -webkit-appearance: none;
+                appearance: none;
+                background: rgb(91, 91, 91);
+                outline: none;
+                border-radius: 2rem;
+                cursor: pointer;
+                box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+              }
+              
+              input[type="checkbox"]::before {
+                content: "";
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #fff;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: 0.5s;
+              }
+              
+              input[type="checkbox"]:checked::before {
+                transform: translateX(100%);
+                background: #fff;
+              }
+              
+              input[type="checkbox"]:checked {
+                background: #acacac;
+              }
+            .sorter-options{
+                margin-bottom: 40px;
+            }
+              
+        }
+        
+        .itemsperpage-text{
+            padding-top: 50px;
+        }
+
+        select {
+            display: inline-block;
+            position: relative;
+            width: 200px;
+            height: 40px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 900px) { 
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 800px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: 10px;
+            padding: 70px;
+            min-height: 350px;
+        
+            :hover{
+                transform: scale(1);
+            }
+
+            @media (max-width: 500px) {
+                padding: 10px;
+            }
+
+            @media (max-width: 1000px) {
+                padding: 20px;
+            }
+
+            img{
+                max-width: 50%;
+                max-height: 50%;
+                object-fit: cover;
+            }   
+            .description{
+                position: relative;
+                top: 50px;
+            }
+            .title{
+                font-family: 'couture-bld', sans-serif;
+                font-size: 20px;
+                color: black;
+            }
+            .price{
+                font-family: 'couture-bldit', sans-serif;
+                font-size: 22px;
+                color: var(--simple-dark-green);
+            }
+            span{
+                position: relative;
+                top: 50px;
+                font-size: 50px;
+                :hover{
+                    cursor: pointer;
+                    color: var(--simple-green);
+                }
+            }
+
+            @media (max-width: 500px) {
+                .tilte{
+                    font-size: 15px;
+                }
+                .price{
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+}

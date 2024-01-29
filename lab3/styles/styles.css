@@ -1,0 +1,272 @@
+*{
+    transition: all 0.15s ease-in-out; 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+:root{
+    --simple-green : rgba(0, 200, 0, 0.373);
+    --simple-dark-green : rgba(3, 110, 3, 0.797);
+    --simple-beige: #f1ecd960;
+    --simple-grey: #bbbbbb24;
+
+    --hellokidme : "hellokidmeregular", sans-serif;
+    --couture-bld : "couture-bld", sans-serif;
+    --couture-bldit : "couture-bldit", sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@font-face {
+    font-family: 'hellokidmeregular';
+    src: url('../fonts/hello-kidme-font/HelloKidmeRegular-VG5rl.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'couture-bld';
+    src: url('../fonts/Couture-Bold/couture-bld.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'couture-bldit';
+    src: url('../fonts/Couture-Bold/couture-bldit.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'avocados';
+    src: url('../fonts/Avocados/Avocados.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html{
+    overflow: scroll;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+    background-color: var(--simple-beige);
+}
+
+.hidden{
+    display: none;
+}
+
+.content{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+input{
+    display: none;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: 100%;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    
+}
+
+.hero-content{
+    color: black;
+    font-family: sans-serif;
+    font-style: bold;
+    text-align: center;
+
+    padding-bottom: 200px;
+}
+
+.diet-selection{
+    margin-top: 50px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+    p{
+        position: absolute;
+        margin-top: 100px;
+    }
+
+    label{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+    
+    input[type="checkbox"] {
+        display: none;
+      }
+      
+      input + label {
+        display: inline-block;
+        border: 2px solid rgba(4, 3, 3, 0.62);
+        padding: 8px 20px 8px 45px;
+        border-radius: 5px;
+        position: relative;
+        cursor: pointer;
+      }
+      
+      input + label::after {
+        position: absolute;
+        content: '';
+        opacity: 0.5;
+        left: 16px;
+        top: 7px;
+        width: 18px;
+        height: 18px;
+        line-height: 1;
+        border: 2px solid rgba(4, 3, 3, 0.62);
+        border-radius: 50%;
+      }
+      
+      input + label::before {
+        font-size: 17px;
+        position: absolute;
+        left: 24px;
+        top: 6px;
+        opacity: 0;
+      }
+
+      input:hover + label{
+        box-shadow: 0px 4px 15px 0px rgba(34, 34, 34, 0.41);
+        border-color: #fff;
+        background: #fff;
+        color: #333;
+      }
+      
+      input:checked + label {
+        box-shadow: 0px 4px 15px 0px rgba(34, 34, 34, 0.41);
+        border-color: #fff;
+        background: #fff;
+        color: #333;
+      }
+      
+      input:checked + label::before {
+        opacity: 1;
+      }
+      
+      input:checked + label::after {
+        opacity: 1;
+        border-color: #333;
+      }
+}
+
+/*Slider*/
+.banner-container{
+    position: relative;
+    height: 650px;
+    width: 100vw;
+    top: 0;
+}
+
+.slider{
+        position: relative;
+        display: flex;
+        width: 100vw;
+        height: 100%;
+        overflow: hidden; /* <===  */
+            
+            .slide {
+                height: 100%;
+                min-width: 100%;
+                transition: all 0.5s;
+                object-fit: cover;
+            }
+            
+            .slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .img-1{
+                object-position: top;
+            }
+
+            .slide-text {
+                position: fixed;
+                top: 50%;
+                left: 20%;
+                transform: translate(0, -50%);
+                transition: opacity 0.5s;
+                color: white;
+
+                .txt-1{
+                    font-family: 'couture-bld', sans-serif;
+                    font-size: 30px;
+                    letter-spacing: 3px;
+                }
+
+                .txt-2{
+                    font-family: 'couture-bld', sans-serif;
+                    font-size: 50px;
+                    letter-spacing: 3px;
+                }
+
+                button{
+                    font-family: 'couture-bld', sans-serif;
+                    font-size: 20px;
+                    letter-spacing: 3px;
+                    padding: 10px;
+                    margin-top:50px;
+                    border-radius: 10px;
+                    background-color: rgba(0,0,0,0.5);
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+
+            .btn{
+                transform: translateY(-50%);
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: rgba(0,0,0,0.5);
+                color: white;
+                font-size: 20px;
+                text-align: center;
+            }
+            
+            .btn:active {
+                transform: scale(1.1);
+            }
+
+            .btn-prev {
+                top: 50%;
+                left: 2%;
+            }
+            
+            .btn-next {
+                top: 50%;
+                right: 2%;
+            }
+            
+}
