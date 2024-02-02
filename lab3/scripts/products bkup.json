@@ -1,0 +1,155 @@
+[
+    {
+        "item": "Apples",
+        "price": 1.99,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/apples.png",
+        "amount": 0
+    },
+    {
+        "item": "Milk",
+        "price": 2.49,
+        "diet": ["GlutenFree", "Vegetarian"],
+        "inCart": false,
+        "image": "images/milk.png",
+        "amount": 0
+    },
+    {
+        "item": "Bread",
+        "price": 2.99,
+        "diet": ["Vegetarian"],
+        "inCart": false,
+        "image": "images/bread.png",
+        "amount": 0
+    },
+    {
+        "item": "Chicken",
+        "price": 5.99,
+        "diet": ["GlutenFree"],
+        "inCart": false,
+        "image": "images/chicken.png",
+        "amount": 0
+    },
+    {
+        "item": "Eggs",
+        "price": 1.99,
+        "diet": ["Vegetarian", "GlutenFree"],
+        "inCart": false,
+        "image": "images/eggs.png",
+        "amount": 0
+    },
+    {
+        "item": "Potatoes",
+        "price": 3.49,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/potatoes.png",
+        "amount": 0
+    },
+    {
+        "item": "Pasta",
+        "price": 1.99,
+        "diet": ["Vegetarian"],
+        "inCart": false,
+        "image": "images/pasta.png",
+        "amount": 0
+    },
+    {
+        "item": "Tomatoes",
+        "price": 2.99,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/tomatoes.png",
+        "amount": 0
+    },
+    {
+        "item": "Yogurt",
+        "price": 1.99,
+        "diet": ["GlutenFree", "Vegetarian"],
+        "inCart": false,
+        "image": "images/yogurt.png",
+        "amount": 0
+    },
+    {
+        "item": "Cereals",
+        "price": 3.99,
+        "diet": ["Vegetarian"],
+        "inCart": false,
+        "image": "images/cereal.png",
+        "amount": 0
+    },
+    {
+        "item": "Oranges",
+        "price": 2.49,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/oranges.png",
+        "amount": 0
+    },
+    {
+        "item": "Salmon",
+        "price": 8.99,
+        "diet": ["GlutenFree", "Organic"],
+        "inCart": false,
+        "image": "images/salmon.png",
+        "amount": 0
+    },
+    {
+        "item": "Spinach",
+        "price": 2.99,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/spinach.png",
+        "amount": 0
+    },
+    {
+        "item": "Cheese",
+        "price": 4.99,
+        "diet": ["Vegetarian"],
+        "inCart": false,
+        "image": "images/cheese.png",
+        "amount": 0
+    },
+    {
+        "item": "Carrots",
+        "price": 1.49,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/carrots.png",
+        "amount": 0
+    },
+    {
+        "item": "Bananas",
+        "price": 0.50,
+        "diet": ["GlutenFree", "Vegetarian", "Organic"],
+        "inCart": false,
+        "image": "images/bananas.png",
+        "amount": 0
+    },
+    {
+        "item": "Samosa",
+        "price": 1.75,
+        "diet": ["Halal"],
+        "inCart": false,
+        "image": "images/samosa.png",
+        "amount": 0
+    }
+    ,
+    {
+        "item": "LF IceCream",
+        "price": 1.75,
+        "diet": ["LactoseFree"],
+        "inCart": false,
+        "image": "images/ice-cream.png",
+        "amount": 0
+    },
+    {
+        "item": "Almond Milk",
+        "price": 23.75,
+        "diet": ["DairyFree"],
+        "inCart": false,
+        "image": "images/milk.png",
+        "amount": 0
+    }
+]
