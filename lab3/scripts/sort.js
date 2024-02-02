@@ -41,7 +41,22 @@ window.addEventListener('change', function (e) {
         // Determine the sorting criteria and order
         let order = sortPriceCheckbox.checked ? 'desc' : 'asc';
 
+        // Is this really necessary? Criteria is always null when this is called and provides no functionality to the current project
+        // Furthermore, commenting out this load entirely does not affect the app AFAIK 
+
         // Call the loadProductsPage function with the sorting criteria and order
-        loadProductsPage('price', order);
+        // loadProductsPage(criteria, order);
+    }
+});
+
+// Change listener for the price range selector to update the display as well as the user object datastore
+window.addEventListener('input', function (e) {
+    if (e.target.tagName === 'INPUT' && e.target.type === 'range' && e.target.parentElement.classList.contains('price-selector-container')) {
+        const priceRangeInput = document.querySelector('#price-selector');
+        // Determine the sorting criteria and order
+        let value = priceRangeInput.value;
+        // console.log("Current price range: " + value);
+        document.querySelector("#price-selector-max").innerHTML = `${value}`;
+        user.max = value;
     }
 });

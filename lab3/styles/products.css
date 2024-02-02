@@ -115,12 +115,26 @@
             height: 100%;
             transition: all 0.3s ease-in-out;
 
-            #sidebar {
+            /* #sidebar {
                 width: 100%;
                 object-position: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                .fixed{
+                    position: fixed;
+                }
+            } */
+
+            #sidebar {
+                width: 100%;
+                object-position: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                align-items: center;
+                justify-content: center;
+                /* grid-auto-flow: row; */
 
                 .fixed{
                     position: fixed;

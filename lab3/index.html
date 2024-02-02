@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,19 +23,23 @@
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <title>Auto-Cart</title>
 </head>
+
 <body>
     <div class="container">
         <!-- Top of Page -->
         <nav>
             <div class="header">
-                <div class="title"><p class="title-name">Auto-Cart</p></div>
+                <div class="title">
+                    <p class="title-name">Auto-Cart</p>
+                </div>
                 <div class="tabs">
                     <input type="radio" name="section" id="home" onchange="toggleSection('products')">
                     <label for="home" class="tab">Home</label>
-                    
+
                     <input type="radio" name="section" id="cart-page" onchange="toggleSection('cart')">
                     <label for="cart-page" class="tab">Cart</label>
                 </div>
@@ -79,21 +84,23 @@
                                 window.scrollTo({ top: titlesPosition - 80, behavior: 'smooth' });">Shop Now</button>
                             </div>
                         </div>
-                        <button class="btn btn-prev"> < </button>
-                        <button class="btn btn-next"> > </button>
+                        <button class="btn btn-prev">
+                            < </button>
+                                <button class="btn btn-next"> > </button>
                     </div>
                 </div>
 
                 <!-- Make sure to change the input: display none rule in css when adding input elements -->
-                <div class="filter">  
+                <div class="filter">
                     <div class="titles" id="titles">
                         <p class="title">Lastest Arrivals</p>
                         <p class="subtitle">NEW PRODUCTS</p>
-                        <p style="font-size: 20px; font-family: 'Roboto', sans-serif; margin-top: 40px;">Check out our newly added products</p>
+                        <p style="font-size: 20px; font-family: 'Roboto', sans-serif; margin-top: 40px;">Check out our
+                            newly added products</p>
                     </div>
 
                     <div class="product-display">
-                        <div class="side-panel-wrapper" >
+                        <div class="side-panel-wrapper">
                             <div class="side-panel" id="sidebar" style="font-family: 'Open Sans', sans-serif;">
                                 <p class="itemsperpage-text">Select the number of items per page</p>
                                 <select name="itemsperpage" id="items-per-page">
@@ -104,8 +111,22 @@
                                 </select>
                                 <p class="desc">Select your diet preferences</p>
                                 <div class="diet-selection" id="sidebar">
-    
+
                                 </div>
+
+                                <!-- Price Range Selector - Tevin -->
+                                <div class="price-range">
+                                    
+                                    <div class="price-selector-container"><p>Max Price Range: $</p> <p id="price-selector-max">50</p></div>
+                                   
+                                    <div class="price-selector-container">
+                                        <p class="price-selector-label">$1</p>
+                                        <input id="price-selector" type="range" min="1" max="100" value="50">
+                                        <p class="price-selector-label">$100</p>
+                                    </div>
+
+                                </div>
+
                                 <div class="sorter">
                                     <p>Sort by </p>
                                     <div class="sorter-options">
@@ -125,13 +146,13 @@
                                 </input>
                               </div>
                             <div class="product-grid" id="product-grid">
-    
+
                             </div>
                             <div class="page-numbers">
 
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -140,7 +161,7 @@
             <div id="cart" class="hidden section" style="font-family: 'Open Sans', sans-serif;">
                 <!--Auto feed in JS-->
                 <div class="cart-grid hero" id="cart-grid">
-                   
+
                 </div>
             </div>
         </div>
@@ -158,4 +179,5 @@
         </div>
     </div>
 </body>
+
 </html>

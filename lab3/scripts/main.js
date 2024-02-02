@@ -1,3 +1,13 @@
+// Our userObject and saved Preferences
+let user = {
+    name: 'SEG3125-Group43',
+    diet: [],
+    min: 0,
+    // This is tied to the value of the price-selector input, if it changes from the default of 50 then this should also change 
+    // It was not dynamically done onDOMLoad because in theory is not guarenteed that the price-range-slider WILL be on the page (ie if the default page  changes to something else) 
+    max: 50,
+}
+
 // Unhide home page on load
 document.addEventListener("DOMContentLoaded", function () {
     const home = document.querySelector('#products');
@@ -6,12 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     loadProductsPage();
     loadCartPage();
     });
-
-// Our userObject and saved Preferences
-let user = {
-    name: 'SEG3125-Group43',
-    diet: [],
-}
 
 // Define the current page number and the number of items per page
 let currentPage = 1;
@@ -37,6 +41,10 @@ function resetInputs() {
         if (input.type === 'checkbox' || input.type === 'radio' || input.type === 'text') {
             // Reset checkboxes and radio buttons to their default checked state
             input.checked = input.defaultChecked;
+        }
+
+        if(input.type === 'range'){
+            input.value = input.defaultValue;
         }
     });
 }
@@ -67,6 +75,7 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
                         "diet": item.diet,
                         "displayed": false,
                         "inCart": item.inCart,
+                        "discounted": false, //Discounted flag for filtering, would be made random for testing
                     });
                 });
             });
@@ -91,8 +100,12 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
     }
 
     itemsToDisplay.forEach(item => {
-        displayItem(item);
+        // console.log('Product:', item);
+        if(item.price < user.max){
+            displayItem(item);
+        }
     });
+    // console.log('displayed: ' + JSON.stringify(itemsToDisplay));
 
     // Check if productGrid is empty or has no elements
     if (!productGrid.firstChild) {
@@ -104,7 +117,7 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
         // Update the page numbers
         updatePageNumbers(filteredItems);
     }
-    console.log(items);
+    // console.log(items);
 }
 
 // Function to display a single item on product page
@@ -252,6 +265,7 @@ fetch("./scripts/preferences.json")
 
         data.forEach(item => {
             const diet = document.createElement('div');
+            // console.log('Diet: ' + item);
 
             diet.innerHTML = `
             <input type="checkbox" id="${item}" name="${item}" value="${item}">

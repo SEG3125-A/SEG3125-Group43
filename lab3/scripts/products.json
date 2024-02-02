@@ -126,5 +126,30 @@
         "inCart": false,
         "image": "images/bananas.png",
         "amount": 0
+    },
+    {
+        "item": "Samosa",
+        "price": 1.75,
+        "diet": ["Halal"],
+        "inCart": false,
+        "image": "images/samosa.png",
+        "amount": 0
+    }
+    ,
+    {
+        "item": "LF IceCream",
+        "price": 1.75,
+        "diet": ["LactoseFree"],
+        "inCart": false,
+        "image": "images/ice-cream.png",
+        "amount": 0
+    },
+    {
+        "item": "Almond Milk",
+        "price": 23.75,
+        "diet": ["DairyFree"],
+        "inCart": false,
+        "image": "images/milk.png",
+        "amount": 0
     }
 ]

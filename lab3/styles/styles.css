@@ -78,6 +78,24 @@ input{
     display: none;
 }
 
+#price-selector {
+    display: inline;
+}
+
+.price-range {
+    margin-top: 20px;
+}
+
+.price-selector-container {
+    display: flex;
+    justify-content: center;
+}
+
+.price-selector-label {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .hero{
     display: flex;
     flex-direction: column;
