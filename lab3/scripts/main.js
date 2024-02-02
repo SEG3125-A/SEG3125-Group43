@@ -1,17 +1,22 @@
-// Unhide home page on load
-document.addEventListener("DOMContentLoaded", function () {
-    const home = document.querySelector('#products');
-    home.classList.toggle('hidden');
-    resetInputs();
-    loadProductsPage();
-    loadCartPage();
-    });
-
 // Our userObject and saved Preferences
 let user = {
     name: 'SEG3125-Group43',
     diet: [],
+    min: 0,
+    // This is tied to the value of the price-selector input, if it changes from the default of 50 then this should also change 
+    // It was not dynamically done onDOMLoad because in theory is not guarenteed that the price-range-slider WILL be on the page (ie if the default page  changes to something else) 
+    max: 50,
 }
+
+// Unhide home page on load
+document.addEventListener("DOMContentLoaded", function () {
+    const home = document.querySelector('#cart');
+    home.classList.toggle('hidden');
+    resetInputs();
+    loadProductsPage();
+    loadCartPage();
+    checkout();
+    });
 
 // Define the current page number and the number of items per page
 let currentPage = 1;
@@ -27,14 +32,20 @@ var total = 0;
 
 const sortPriceCheckbox = document.querySelector('#sort-price');
 
+const searchInput = document.querySelector('#search-input');
+
 // Function to clear all inputs to fix navigation 
 function resetInputs() {
     const inputs = document.querySelectorAll('input');
 
     inputs.forEach((input) => {
-        if (input.type === 'checkbox' || input.type === 'radio') {
+        if (input.type === 'checkbox' || input.type === 'radio' || input.type === 'text') {
             // Reset checkboxes and radio buttons to their default checked state
             input.checked = input.defaultChecked;
+        }
+
+        if(input.type === 'range'){
+            input.value = input.defaultValue;
         }
     });
 }
@@ -65,6 +76,7 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
                         "diet": item.diet,
                         "displayed": false,
                         "inCart": item.inCart,
+                        "discounted": false, //Discounted flag for filtering, would be made random for testing
                     });
                 });
             });
@@ -74,7 +86,7 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
     sort(items, criteria, order);
 
     // Filter the items
-    const filteredItems = filterItems(items);
+    const filteredItems = filterItems(items, searchInput.value);
 
     // Get a certain number of items to display
     const itemsToDisplay = filteredItems.slice(start, end);
@@ -89,18 +101,24 @@ async function loadProductsPage(criteria = 'price', order = 'asc') {
     }
 
     itemsToDisplay.forEach(item => {
-        displayItem(item);
+        // console.log('Product:', item);
+        if(item.price < user.max){
+            displayItem(item);
+        }
     });
+    // console.log('displayed: ' + JSON.stringify(itemsToDisplay));
 
     // Check if productGrid is empty or has no elements
     if (!productGrid.firstChild) {
-        productGrid.setAttribute("style", "display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif; font-size: 1.2em; position: relative; top: -100px;");
+        document.querySelector('.page-numbers').innerHTML = '';
+        document.querySelector('#search-input').setAttribute("style", "position: absolute; left: -250px ");
+        productGrid.setAttribute("style", "position: absolute; display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif; font-size: 1.2em; transform: translateY(200%);");
         productGrid.innerHTML = `There are no items that match your dietary choices.`;
     } else {
         // Update the page numbers
         updatePageNumbers(filteredItems);
     }
-    console.log(items);
+    // console.log(items);
 }
 
 // Function to display a single item on product page
@@ -156,14 +174,14 @@ document.addEventListener("click", function (e) {
             if (className.includes('prod')) {
 
                 itemName = className.substring(5);
-                console.log(itemName);
+                // console.log(itemName);
 
                 items.forEach(item => {
                     handleSortChange();
                     if (item.item === itemName) {
                         item.inCart = !item.inCart;
                         loadProductsPage();
-                        console.log(item.inCart);
+                        // console.log(item.inCart);
                         return;
                     }
                 })
@@ -172,18 +190,23 @@ document.addEventListener("click", function (e) {
     }
 
     // Add event listeners
-    sortPriceCheckbox.addEventListener('change', handleSortChange());
+    sortPriceCheckbox.addEventListener('change', handleSortChange);
+
+    searchInput.addEventListener('input', function (e) {
+        handleSortChange();
+    });
 });
 
 // Function to load the cart page content
 function loadCartPage() {
     var empty = true;
+    update();
 
     items.forEach(item => {
         if(item.inCart) {
             empty = false;
             total+= item.price
-            total = parseFloat(total.toFixed(2));
+            total = parseFloat(total.toFixed(3));
             if(item.amount === undefined) item.amount = 1;
             if(!cart.includes(item)) cart.push(item);
         };
@@ -193,10 +216,11 @@ function loadCartPage() {
     if(empty) {
         // Display a message when the cart is empty
         document.querySelector('.cart-grid').innerHTML = "Your cart is empty!";
+        document.querySelector('.cart-grid').setAttribute("style", "position: absolute; display: flex; justify-content: center;");
         total = 0;
     } else {
         // Clear existing items in the cart
-        document.querySelector('.cart-grid').innerHTML = '';
+        document.querySelector('.cart-grid').innerHTML = '<p>Here are the items currently in your cart !</p>';
 
         cart.forEach(item => {
         // Moved cart-total inside the cart-grid div
@@ -218,17 +242,28 @@ function loadCartPage() {
         })
         document.querySelector('.cart-grid').innerHTML += 
         `<div class="cart-bottom">
-            <div class="cart-item">
+            <div class="cart-item total">
                 <p class="total">Total: \$${total}</p
             </div>
-        </div>
-        <div class="checkout">
-            <button class="checkout-button" onclick="alert('Thank you for shopping at Auto-Cart !')">Checkout</button>
         </div>
         ` 
     }
     
 }
+
+// function loadClientPage(){
+//     const clientPage = document.querySelector('#client-grid');
+
+//     clientPage.innerHTML = 
+//     `
+//     <div class="client-item">
+//         <p class="client-name">Name: </p>
+//     </div>
+//     <div class="client-item">
+//         <p class="client-diet">Dietary choices:</p>
+//     </div>
+//     `
+// }
 
 // Fetching preferences content
 fetch("./scripts/preferences.json")
@@ -244,6 +279,7 @@ fetch("./scripts/preferences.json")
 
         data.forEach(item => {
             const diet = document.createElement('div');
+            // console.log('Diet: ' + item);
 
             diet.innerHTML = `
             <input type="checkbox" id="${item}" name="${item}" value="${item}">
@@ -261,6 +297,7 @@ function toggleSection(sectionId) {
     // Toggle hidden for every other section
     const allSections = document.querySelectorAll('.content .section');
 
+    // Hide all sections
     allSections.forEach((sec) => {
         if (!sec.classList.contains('hidden')) {
             sec.classList.add('hidden');
@@ -284,8 +321,23 @@ function toggleSection(sectionId) {
         if (sectionId === 'cart') {
             loadCartPage();
         }
+
+        if(sectionId === 'client'){
+            loadClientPage();
+            console.log("loaded client page");
+        }
+    }
+
+    // If the sectionId is not 'cart', hide the cart
+    if (sectionId !== 'cart') {
+        const cart = document.querySelector('#cart');
+        cart.setAttribute('style', 'display: none;');
+    } else {
+        const cart = document.querySelector('#cart');
+        cart.setAttribute('style', 'display: block; font-family: "Open Sans", sans-serif;');
     }
 
     // Toggle the section
     sectionElement.classList.toggle('hidden');
+    update();
 }

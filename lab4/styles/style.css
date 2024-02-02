@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Monoton&family=Poppins&display=swap');
+html {
+    scroll-behavior: smooth;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+
+}
+
+
+a{
+    text-decoration: none;
+    color: white;
+
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: rgb(0, 0, 0);
+}
+
+/* Add styles for the logo image */
+.logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.about-us {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: space-between;
+    text-align: center;
+    margin: 100px 80px;
+
+}
+
+.about-us #about-txt{
+    width: 90%;
+    color: white;
+    font-size: 17px;
+    padding: 10px;
+
+}
+
+
+.banner-image .img-fluid {
+    width: 100%;
+    height: 100%;
+    filter: blur(0px);
+}
+
+
+.services-offered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: space-between ;
+}
+
+.services-offered .card{
+    background-color: transparent;
+    width: 250px;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.services-offered .card h4{
+    color: white;
+    font-size: 20px;
+}
+
+.services-offered .card p{
+    color: white;
+    font-size: 17px;
+}
+
+.services-container{
+    margin: 50px;
+    align-items: center;
+}
+/* Add styles for the table */
+.services-container .table{
+    table-layout: fixed;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+/* Add styles for the team 
+TODO fix colours, spacing, margins
+*/
+
+.team-container{
+
+}
+
+
+
+
+footer{
+    background-color: #000000;
+    padding: 85px;
+    display: flex;
+    flex-direction: column;
+}
+footer .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer .bx, footer .credits{
+    color: white;
+}
+footer .separator{
+    width: 100%;
+    height: 1px;
+    background-color: #ffffff;
+    margin: 30px 0 20px;
+}
+

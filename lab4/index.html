@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- The head should contain an appropriate title for your site -->
+<head>
+    <title>Module 4 - Labo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Style sheet (CSS) and JavaScript scripts necessary to use Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>    
+
+    <!-- Your own additional style sheet -->
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <!-- TODO fix general styles, maybe add Google maps API for a small map widget at bottom-->
+    <!-- TODO add opening times and address somewhere-->
+    <!-- LAYOUT banner -> about us -> services -> prices? -> employees ->general contact info/booking -->
+
+    <!-- NAVBAR TODO add logo-->
+    <nav class="navbar navbar-expand-sm bg-dark justify-content-center ">
+        <a class="navbar-brand" href="#">
+            <img src="" alt="Logo" style="width:40px;">
+        </a>
+        <!-- Links -->
+        <!-- TODO add links to content and add styles-->
+        <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="team">Our Team</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Book Us</a>
+        </li>
+        </ul>
+    </nav>
+
+    <!-- Banner img -->
+    <div class="banner-image">
+        <img class="img-fluid" src="imgs/barber-banner.png" alt="Banner">
+           <!-- TODO Fix alignment so its ontop of image--> 
+        <div class="slide-text">
+            <p class="txt-1">Ottawas Barbershop</p>
+            <p class="txt-2">Dude Hair</p>
+        </div>
+    </div>
+
+    <!-- A container for the about us section -->
+     <!-- TODO add header and styles-->
+    <div class="about-us">
+        <div class="row">
+            <div class="col" id = "about-txt">
+                <p>Our barbershop is the best in Ottawa. We have been in business for over 20 years and have a team of experienced barbers. We offer a variety of services and are open 7 days a week. We are located in the heart of downtown Ottawa and are easily accessible by public transit. We are committed to providing the best service to our clients and are always looking for ways to improve. We are proud to be a part of the Ottawa community and look forward to serving you.</p>
+            </div>
+            <div class="col">
+                <img src="imgs/front.png" alt="">
+            </div>
+        </div>
+    </div>
+
+     <!-- A container for services offered-->
+    <!-- Held in row col as seperate cards -->
+    <!-- Each card has a collapsible part -->
+    <!-- TODO add images and header and fix buttons-->
+    <div class="services-offered">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Hair Consultation</h4>
+                        <!-- collapsible part -->
+                        <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
+                        <div id="profile" class="collapse p-3">
+                            <p>Types of services offered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Hair Stylings</h4>
+                        <!-- collapsible part -->
+                        <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
+                        <div id="profile" class="collapse p-3">
+                            <p>Types of services offered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Hair Cuts</h4>
+                        <!-- collapsible part -->
+                        <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
+                        <div id="profile" class="collapse p-3">
+                            <p>Types of services offered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Hair Dying</h4>
+                        <!-- collapsible part -->
+                        <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
+                        <div id="profile" class="collapse p-3">
+                            <p>Types of services offered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- A container for the team as a dropdown collection of cards in cols-->
+    <!-- TODO fix margins and add cards and styles-->
+    <div class="team-container">
+        <div class="container">
+            <a href="#team" class="btn btn-primary btn-block" data-toggle="collapse">Meet our team</a>
+            <div id="team" class="collapse">
+                <div class="row">
+                    <div class="col">
+                        <div class="card" style="width:200px">
+                            <img class="card-img-top" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Erwind</h4>
+                                <p class="card-text">Hiar styling and cuts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO add more cards just copy paste-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- A container for the services offered -->
+    <!-- i dont think a table will be the best design ideabut im leaving it here for now-->
+    <div class="services-container">         
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cut</td>
+                    <td>$45</td>
+                </tr>
+                <tr>
+                    <td>Dye</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <td>Dye</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <td>Dye</td>
+                    <td>$100</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="top">
+            <div class="credits">
+                <span>Made by ..........</span>
+            </div>
+        </div>
+        <div class="separator"></div>
+    </footer>
+
+
+
+
+    
+</body>
+</html>

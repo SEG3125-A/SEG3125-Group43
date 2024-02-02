@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Scripts-->
     <script src="./scripts/main.js" defer></script>
-    <script src="./scripts/slider.js"></script>
-    <script src="./scripts/pagination.js"></script>
-    <script src="./scripts/cart.js"></script>
-    <script src="./scripts/sort.js"></script>
+    <script src="./scripts/slider.js" defer></script>
+    <script src="./scripts/pagination.js" defer></script>
+    <script src="./scripts/cart.js" defer></script>
+    <script src="./scripts/sort.js" defer></script>
+    <script src="./scripts/progressbar.js" defer></script>
     <!-- <script src="./scripts/tevin.js"></script> -->
     <!-- <script src="./scripts/products.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--Stylesheet-->
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/products.css">
     <link rel="stylesheet" href="./styles/cart.css">
     <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/client.css">
+    <link rel="stylesheet" href="./styles/progressbar.css">
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
     <title>Auto-Cart</title>
 </head>
+
 <body>
     <div class="container">
         <!-- Top of Page -->
         <nav>
             <div class="header">
-                <div class="title"><p class="title-name">Auto-Cart</p></div>
+                <div class="title">
+                    <p class="title-name">Auto-Cart</p>
+                </div>
                 <div class="tabs">
                     <input type="radio" name="section" id="home" onchange="toggleSection('products')">
-                    <label for="home" class="tab">Home</label>
-                    
+                    <label for="home" class="tab">Products</label>
+
                     <input type="radio" name="section" id="cart-page" onchange="toggleSection('cart')">
                     <label for="cart-page" class="tab">Cart</label>
                 </div>
@@ -82,16 +93,17 @@
                     </div>
                 </div>
 
-                <!-- This will not be needed, will implement as an after thought as the products would be idrectly affeted by the client's preferences -->
-                <div class="filter">  
+                <!-- Make sure to change the input: display none rule in css when adding input elements -->
+                <div class="filter">
                     <div class="titles" id="titles">
                         <p class="title">Lastest Arrivals</p>
                         <p class="subtitle">NEW PRODUCTS</p>
-                        <p style="font-size: 20px; font-family: 'Roboto', sans-serif; margin-top: 40px;">Check out our newly added products</p>
+                        <p style="font-size: 20px; font-family: 'Roboto', sans-serif; margin-top: 40px;">Check out our
+                            newly added products</p>
                     </div>
 
                     <div class="product-display">
-                        <div class="side-panel-wrapper" >
+                        <div class="side-panel-wrapper">
                             <div class="side-panel" id="sidebar" style="font-family: 'Open Sans', sans-serif;">
                                 <p class="itemsperpage-text">Select the number of items per page</p>
                                 <select name="itemsperpage" id="items-per-page">
@@ -102,8 +114,22 @@
                                 </select>
                                 <p class="desc">Select your diet preferences</p>
                                 <div class="diet-selection" id="sidebar">
-    
+
                                 </div>
+
+                                <!-- Price Range Selector - Tevin -->
+                                <div class="price-range">
+                                    
+                                    <div class="price-selector-container"><p>Max Price Range: $</p> <p id="price-selector-max">50</p></div>
+                                   
+                                    <div class="price-selector-container">
+                                        <p class="price-selector-label">$1</p>
+                                        <input id="price-selector" type="range" min="1" max="100" value="50">
+                                        <p class="price-selector-label">$100</p>
+                                    </div>
+
+                                </div>
+
                                 <div class="sorter">
                                     <p>Sort by </p>
                                     <div class="sorter-options">
@@ -118,23 +144,105 @@
                         </div>
                         <!--Auto feed in JS-->
                         <div class="product-grid-wrapper">
+                            <div class="searchInputWrapper">
+                                <input class="searchInput" id="search-input" type="text" placeholder='Search products...'>
+                                </input>
+                              </div>
                             <div class="product-grid" id="product-grid">
-    
+
                             </div>
                             <div class="page-numbers">
 
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
 
             <!-- Cart Display  -->
             <div id="cart" class="hidden section" style="font-family: 'Open Sans', sans-serif;">
+                <div class="container">
+                    <div class="progress-container">
+                        <div class="progress" id="progress"></div>
+                        <div class="text-wrap active">
+                            <div class="circle">1</div>
+                            <p class="text">Cart</p>
+                        </div>
+                        <div class="text-wrap">
+                            <div class="circle">2</div>
+                            <p class="text">Delivery</p>
+                        </div>
+                        <div class="text-wrap">
+                            <div class="circle">3</div>
+                            <p class="text">Payment</p>
+                        </div>
+                        <div class="text-wrap">
+                            <div class="circle">4</div>
+                            <p class="text">Review</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="btn back-btn" id="back-btn" disabled>&larr; Back</button>
+                    <button class="btn next-btn" id="next-btn">Next &rarr;</button>
+                </div>
                 <!--Auto feed in JS-->
-                <div class="cart-grid hero" id="cart-grid">
+                <div class="cart-wrapper hero grid-section active">
+                    <div class="cart-grid" id="cart-grid">
                    
+                    </div>
+                </div>
+                <div class="billing-grid grid-section active" id="billing-grid">
+                    <form action="">
+                        <h3>Billing Address</h3>
+                        <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                        <input type="text" id="fname" name="firstname" placeholder="John M. Doe" required>
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="text" id="email" name="email" placeholder="john@example.com" required>
+                        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                        <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
+                        <label for="city"><i class="fa fa-institution"></i> City</label>
+                        <input type="text" id="city" name="city" placeholder="Ottawa" required>
+                        <label for="province"><i class="fa fa-territory"></i>Province</label>
+                        <input type="text" id="province" name="province" placeholder="Ontario" required>
+                    </form>
+                </div>
+                <div class="payment-grid grid-section active" id="payment-grid">
+                    <form action="">
+                        <h3>Payment</h3>
+                        <label for="fname">Accepted Cards</label>
+                        <div class="icon-container">
+                            <i class="fa fa-cc-visa" style="color:navy;"></i>
+                            <i class="fa fa-cc-amex" style="color:blue;"></i>
+                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                            <i class="fa fa-cc-discover" style="color:orange;"></i>
+                        </div>
+                        <label for="cname">Name on Card</label>
+                        <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
+                        <label for="ccnum">Credit card number</label>
+                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required>
+                        <label for="expmonth">Exp Month</label>
+                        <input type="text" id="expmonth" name="expmonth" placeholder="September" required>
+
+                        <label for="expyear">Exp Year</label>
+                        <input type="text" id="expyear" name="expyear" placeholder="2028" required>
+
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="352" required>
+
+                    </form>
+                </div>
+                <div class="confirmation-grid grid-section active" id="confirmation-grid">
+                    <!-- Auto feed in JS -->
+                </div>
+            </div>
+
+            <!-- Client Display -->
+            <div id="client" class="hidden section">
+                <!-- Auto feed in JS -->
+                <div class="client-grid" id="client-grid">
+
                 </div>
             </div>
         </div>
@@ -145,11 +253,12 @@
     <!-- Bottom of Page -->
     <div class="footer">
         <div class="signature">
-            <p>Created by Tevin and CHristian</p>
+            <p>Created by Tevin and Christian</p>
         </div>
         <div class="github-redirect">
             <p><a href="https://github.com/SEG3125-A/SEG3125-Group43">Check out the repository on GitHub !</a></p>
         </div>
     </div>
 </body>
+
 </html>

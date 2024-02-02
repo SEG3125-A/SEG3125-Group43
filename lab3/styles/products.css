@@ -13,7 +13,7 @@
         text-align: center;
         margin: 0;
         padding: 0;
-        overflow: scroll;
+        overflow: hidden;
 
         .titles{
             position: relative;
@@ -35,6 +35,41 @@
             font-family: 'couture-bld', sans-serif;
             font-size: 40px;
             letter-spacing: 3px; 
+        }
+        
+        #search-input{
+            display: block;
+            position: absolute;
+            left: -250px;
+            transform: translate(-50%, 0%);
+        }
+
+        .searchInputWrapper {
+            position: relative;
+        }
+          
+        .searchInput {
+        width: 20rem;
+        height: 2rem;
+        padding: 0 2rem; 
+        border-radius: 2rem;
+        border: none;
+        transition: transform 0.1s ease-in-out;
+        }
+        
+        ::placeholder {
+        color: #a1a1a1;
+        }
+        
+        /* hide the placeholder text on focus */
+        :focus::placeholder {
+        text-indent: -999px
+        }
+        
+        .searchInput:focus {
+        outline: none;
+        transform: scale(1.1);
+        transition: all 0.1s ease-in-out;
         }
 
         .product-display {
@@ -80,7 +115,7 @@
             height: 100%;
             transition: all 0.3s ease-in-out;
 
-            #sidebar {
+            /* #sidebar {
                 width: 100%;
                 object-position: center;
                 display: flex;
@@ -90,10 +125,28 @@
                 .fixed{
                     position: fixed;
                 }
+            } */
+
+            #sidebar {
+                width: 100%;
+                object-position: center;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                align-items: center;
+                justify-content: center;
+                /* grid-auto-flow: row; */
+
+                .fixed{
+                    position: fixed;
+                }
             }
 
             .desc{
                 padding-top: 40px;
+            }
+
+            input{
+                display: none;
             }
         }
 
@@ -105,7 +158,6 @@
 
             input{
                 display: block;
-
             }
 
             .sorter-options{

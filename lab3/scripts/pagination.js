@@ -27,4 +27,3 @@ function updatePageNumbers(items) {
         document.querySelector('.page-numbers').appendChild(pageNumberElement);
     }
 }
-
