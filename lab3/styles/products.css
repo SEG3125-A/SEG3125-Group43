@@ -40,9 +40,6 @@
         #search-input{
             display: block;
             position: absolute;
-            left : -250px;
-            /* left: 50%; */
-            transform: translate(-50%);
         }
 
         .searchInputWrapper {
