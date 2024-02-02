@@ -10,7 +10,7 @@ let user = {
 
 // Unhide home page on load
 document.addEventListener("DOMContentLoaded", function () {
-    const home = document.querySelector('#cart');
+    const home = document.querySelector('#products');
     home.classList.toggle('hidden');
     resetInputs();
     loadProductsPage();
