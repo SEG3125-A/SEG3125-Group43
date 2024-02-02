@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 :root {
-    --color:  oklch(86.63% 0.25 148.01);
-    --line-border-empty: oklch(76.63% 0.25 148.01);
-    --text-empty:        oklch(71.63% 0.25 148.01);
-    --line-border-fill:  oklch(64.29% 0.26 360);
-    --text-fill:         oklch(46.63% 0.25 148.01);
+    --color:  rgb(255, 255, 255);
+    --line-border-empty: #bbbbbb24;
+    --text-empty:        #bbbbbb24;
+    --line-border-fill:  rgba(3, 110, 3, 0.797);
+    --text-fill:         rgba(3, 110, 3, 0.797);
 } 
 
 /* * {
@@ -83,14 +83,14 @@ body {
 
 .text-wrap.active p {
     font-weight: 500;
-    color: var(--text-fill);
+    color: black;
     transition: 400ms ease;
 }
 
 .circle {
     background-color: var(--color);
     border: 3px solid var(--line-border-empty);
-    color: var(--text-empty);
+    color: black;
     font-weight: 600;
     border-radius: 50%;
     height: 35px;
@@ -105,7 +105,7 @@ body {
 
 .text-wrap.active div.circle {
     border-color: var(--line-border-fill);
-    color: var(--text-fill);
+    color: black;
 }
 
 .btn {

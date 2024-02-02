@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const home = document.querySelector('#cart');
     home.classList.toggle('hidden');
     resetInputs();
-    loadClientPage();
     loadProductsPage();
-    // loadCartPage();
+    loadCartPage();
+    checkout();
     });
 
 // Define the current page number and the number of items per page
@@ -199,8 +199,8 @@ document.addEventListener("click", function (e) {
 
 // Function to load the cart page content
 function loadCartPage() {
-    updateBreadCrumbs();
     var empty = true;
+    update();
 
     items.forEach(item => {
         if(item.inCart) {
@@ -216,10 +216,11 @@ function loadCartPage() {
     if(empty) {
         // Display a message when the cart is empty
         document.querySelector('.cart-grid').innerHTML = "Your cart is empty!";
+        document.querySelector('.cart-grid').setAttribute("style", "position: absolute; display: flex; justify-content: center;");
         total = 0;
     } else {
         // Clear existing items in the cart
-        document.querySelector('.cart-grid').innerHTML = '';
+        document.querySelector('.cart-grid').innerHTML = '<p>Here are the items currently in your cart !</p>';
 
         cart.forEach(item => {
         // Moved cart-total inside the cart-grid div
@@ -245,65 +246,24 @@ function loadCartPage() {
                 <p class="total">Total: \$${total}</p
             </div>
         </div>
-        <div class="checkout">
-            <button class="checkout-button" onclick="{loadBillingPage();}">Go to Billing</button>
-        </div>
         ` 
     }
     
 }
 
-function loadBillingPage(){
-    console.log("loaded billing page");
-    updateBreadCrumbs();
-    // Hide other pages, show billing page
-    document.querySelector('.cart-grid').classList.add('hidden');
-    document.querySelector('.payment-grid').classList.add('hidden');
-    document.querySelector('.confirmation-grid').classList.add('hidden');
+// function loadClientPage(){
+//     const clientPage = document.querySelector('#client-grid');
 
-    // Show billing page
-    document.querySelector('.billing-grid').classList.remove('hidden');
-}
-
-function loadPaymentPage() {
-    console.log("loaded payment page");
-    updateBreadCrumbs();
-
-    // Hide other pages, show payment page
-    document.querySelector('.cart-grid').classList.add('hidden');
-    document.querySelector('.billing-grid').classList.add('hidden');
-    document.querySelector('.confirmation-grid').classList.add('hidden');
-
-    // Show payment page
-    document.querySelector('.payment-grid').classList.remove('hidden');
-}
-
-function loadConfirmationPage(){
-    console.log("loaded confirmation page");
-    updateBreadCrumbs();
-
-    // Hide other pages, show confirmation page
-    document.querySelector('.cart-grid').classList.add('hidden');
-    document.querySelector('.billing-grid').classList.add('hidden');
-    document.querySelector('.payment-grid').classList.add('hidden');
-
-    // Show confirmation page
-    document.querySelector('.confirmation-grid').classList.remove('hidden');
-}
-
-function loadClientPage(){
-    const clientPage = document.querySelector('#client-grid');
-
-    clientPage.innerHTML = 
-    `
-    <div class="client-item">
-        <p class="client-name">Name: </p>
-    </div>
-    <div class="client-item">
-        <p class="client-diet">Dietary choices:</p>
-    </div>
-    `
-}
+//     clientPage.innerHTML = 
+//     `
+//     <div class="client-item">
+//         <p class="client-name">Name: </p>
+//     </div>
+//     <div class="client-item">
+//         <p class="client-diet">Dietary choices:</p>
+//     </div>
+//     `
+// }
 
 // Fetching preferences content
 fetch("./scripts/preferences.json")
@@ -359,8 +319,7 @@ function toggleSection(sectionId) {
         })
 
         if (sectionId === 'cart') {
-            // loadCartPage();
-            loadBillingPage();
+            loadCartPage();
         }
 
         if(sectionId === 'client'){
@@ -369,6 +328,16 @@ function toggleSection(sectionId) {
         }
     }
 
+    // If the sectionId is not 'cart', hide the cart
+    if (sectionId !== 'cart') {
+        const cart = document.querySelector('#cart');
+        cart.setAttribute('style', 'display: none;');
+    } else {
+        const cart = document.querySelector('#cart');
+        cart.setAttribute('style', 'display: block; font-family: "Open Sans", sans-serif;');
+    }
+
     // Toggle the section
     sectionElement.classList.toggle('hidden');
+    update();
 }

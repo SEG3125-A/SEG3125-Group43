@@ -13,7 +13,7 @@
         text-align: center;
         margin: 0;
         padding: 0;
-        overflow: scroll;
+        overflow: hidden;
 
         .titles{
             position: relative;
@@ -40,6 +40,8 @@
         #search-input{
             display: block;
             position: absolute;
+            left: -250px;
+            transform: translate(-50%, 0%);
         }
 
         .searchInputWrapper {
