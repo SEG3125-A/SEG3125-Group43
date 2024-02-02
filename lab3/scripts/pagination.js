@@ -28,3 +28,17 @@ function updatePageNumbers(items) {
     }
 }
 
+function updateBreadCrumbs(){
+    const breadcrumbsWrapper = document.querySelector('#cart-breadcrumbs');
+    breadcrumbsWrapper.childNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            if (node.textContent === 'Cart') {
+                loadCartPage();
+            } else if (node.textContent === 'Billing information') {
+                loadBillingPage();
+            } else if (node.textContent === 'Confirmation') {
+                loadConfirmationPage();
+            }
+        })
+    });
+}

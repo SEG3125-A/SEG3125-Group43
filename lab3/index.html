@@ -6,18 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Scripts-->
     <script src="./scripts/main.js" defer></script>
-    <script src="./scripts/slider.js"></script>
-    <script src="./scripts/pagination.js"></script>
-    <script src="./scripts/cart.js"></script>
-    <script src="./scripts/sort.js"></script>
+    <script src="./scripts/slider.js" defer></script>
+    <script src="./scripts/pagination.js" defer></script>
+    <script src="./scripts/cart.js" defer></script>
+    <script src="./scripts/sort.js" defer></script>
+    <script src="./scripts/progressbar.js" defer></script>
     <!-- <script src="./scripts/tevin.js"></script> -->
     <!-- <script src="./scripts/products.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--Stylesheet-->
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/products.css">
     <link rel="stylesheet" href="./styles/cart.css">
     <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/client.css">
+    <link rel="stylesheet" href="./styles/progressbar.css">
     <!-- Load icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
     <!--Fonts-->
@@ -37,8 +41,11 @@
                     <p class="title-name">Auto-Cart</p>
                 </div>
                 <div class="tabs">
+                    <input type="radio" name="section" id="client-nav" onchange="toggleSection('client')">
+                    <label for="client-nav" class="tab">Preferences</label>
+
                     <input type="radio" name="section" id="home" onchange="toggleSection('products')">
-                    <label for="home" class="tab">Home</label>
+                    <label for="home" class="tab">Products</label>
 
                     <input type="radio" name="section" id="cart-page" onchange="toggleSection('cart')">
                     <label for="cart-page" class="tab">Cart</label>
@@ -159,8 +166,108 @@
 
             <!-- Cart Display  -->
             <div id="cart" class="hidden section" style="font-family: 'Open Sans', sans-serif;">
+                <div class="container">
+                    <div class="progress-container">
+                        <div class="progress" id="progress"></div>
+                        <div class="text-wrap active">
+                            <div class="circle">1</div>
+                            <p class="text">Cart</p>
+                        </div>
+                        <div class="text-wrap">
+                            <div class="circle">2</div>
+                            <p class="text">Delivery</p>
+                        </div>
+                        <div class="text-wrap">
+                            <div class="circle">3</div>
+                            <p class="text">Payment</p>
+                        </div>
+                        <div class="text-wrap">
+                            <div class="circle">4</div>
+                            <p class="text">Review</p>
+                        </div>
+                    </div>
+                    <button class="btn back-btn" id="back-btn" disabled>&larr; Back</button>
+                    <button class="btn next-btn" id="next-btn">Next &rarr;</button>
+                </div>
                 <!--Auto feed in JS-->
                 <div class="cart-grid hero" id="cart-grid">
+                   
+                </div>
+                <div class="billing-grid" id="billing-grid">
+                    <form action="">
+                        <div class="billing">
+                            <div class="row">
+                              <div class="col-50">
+                                <h3>Billing Address</h3>
+                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" id="email" name="email" placeholder="john@example.com">
+                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                                <label for="city"><i class="fa fa-institution"></i> City</label>
+                                <input type="text" id="city" name="city" placeholder="New York">
+                    
+                                <div class="row">
+                                  <div class="col-50">
+                                    <label for="state">State</label>
+                                    <input type="text" id="state" name="state" placeholder="NY">
+                                  </div>
+                                  <div class="col-50">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" id="zip" name="zip" placeholder="10001">
+                                  </div>
+                                </div>
+                              </div>
+                            <input type="submit" value="Continue to payment" class="btn">
+                            </div>
+                    </form>
+                </div>
+                <div class="payment-grid" id="payment-grid">
+                    <form action="">
+                        <div class="col-50">
+                            <h3>Payment</h3>
+                            <label for="fname">Accepted Cards</label>
+                            <div class="icon-container">
+                              <i class="fa fa-cc-visa" style="color:navy;"></i>
+                              <i class="fa fa-cc-amex" style="color:blue;"></i>
+                              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                              <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            </div>
+                            <label for="cname">Name on Card</label>
+                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                            <label for="expmonth">Exp Month</label>
+                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                
+                            <div class="row">
+                              <div class="col-50">
+                                <label for="expyear">Exp Year</label>
+                                <input type="text" id="expyear" name="expyear" placeholder="2018">
+                              </div>
+                              <div class="col-50">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="352">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <label>
+                            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                        </label>
+                        <input type="submit" value="Continue to review" class="btn">
+                    </form>
+                </div>
+                <div class="confirmation-grid" id="confirmation-grid">
+
+                </div>
+            </div>
+
+            <!-- Client Display -->
+            <div id="client" class="hidden section">
+                <!-- Auto feed in JS -->
+                <div class="client-grid" id="client-grid">
 
                 </div>
             </div>
@@ -172,7 +279,7 @@
     <!-- Bottom of Page -->
     <div class="footer">
         <div class="signature">
-            <p>Created by Tevin and CHristian</p>
+            <p>Created by Tevin and Christian</p>
         </div>
         <div class="github-redirect">
             <p><a href="https://github.com/SEG3125-A/SEG3125-Group43">Check out the repository on GitHub !</a></p>

@@ -10,11 +10,12 @@ let user = {
 
 // Unhide home page on load
 document.addEventListener("DOMContentLoaded", function () {
-    const home = document.querySelector('#products');
+    const home = document.querySelector('#cart');
     home.classList.toggle('hidden');
     resetInputs();
+    loadClientPage();
     loadProductsPage();
-    loadCartPage();
+    // loadCartPage();
     });
 
 // Define the current page number and the number of items per page
@@ -173,14 +174,14 @@ document.addEventListener("click", function (e) {
             if (className.includes('prod')) {
 
                 itemName = className.substring(5);
-                console.log(itemName);
+                // console.log(itemName);
 
                 items.forEach(item => {
                     handleSortChange();
                     if (item.item === itemName) {
                         item.inCart = !item.inCart;
                         loadProductsPage();
-                        console.log(item.inCart);
+                        // console.log(item.inCart);
                         return;
                     }
                 })
@@ -198,13 +199,14 @@ document.addEventListener("click", function (e) {
 
 // Function to load the cart page content
 function loadCartPage() {
+    updateBreadCrumbs();
     var empty = true;
 
     items.forEach(item => {
         if(item.inCart) {
             empty = false;
             total+= item.price
-            total = parseFloat(total.toFixed(2));
+            total = parseFloat(total.toFixed(3));
             if(item.amount === undefined) item.amount = 1;
             if(!cart.includes(item)) cart.push(item);
         };
@@ -239,16 +241,68 @@ function loadCartPage() {
         })
         document.querySelector('.cart-grid').innerHTML += 
         `<div class="cart-bottom">
-            <div class="cart-item">
+            <div class="cart-item total">
                 <p class="total">Total: \$${total}</p
             </div>
         </div>
         <div class="checkout">
-            <button class="checkout-button" onclick="alert('Thank you for shopping at Auto-Cart !')">Checkout</button>
+            <button class="checkout-button" onclick="{loadBillingPage();}">Go to Billing</button>
         </div>
         ` 
     }
     
+}
+
+function loadBillingPage(){
+    console.log("loaded billing page");
+    updateBreadCrumbs();
+    // Hide other pages, show billing page
+    document.querySelector('.cart-grid').classList.add('hidden');
+    document.querySelector('.payment-grid').classList.add('hidden');
+    document.querySelector('.confirmation-grid').classList.add('hidden');
+
+    // Show billing page
+    document.querySelector('.billing-grid').classList.remove('hidden');
+}
+
+function loadPaymentPage() {
+    console.log("loaded payment page");
+    updateBreadCrumbs();
+
+    // Hide other pages, show payment page
+    document.querySelector('.cart-grid').classList.add('hidden');
+    document.querySelector('.billing-grid').classList.add('hidden');
+    document.querySelector('.confirmation-grid').classList.add('hidden');
+
+    // Show payment page
+    document.querySelector('.payment-grid').classList.remove('hidden');
+}
+
+function loadConfirmationPage(){
+    console.log("loaded confirmation page");
+    updateBreadCrumbs();
+
+    // Hide other pages, show confirmation page
+    document.querySelector('.cart-grid').classList.add('hidden');
+    document.querySelector('.billing-grid').classList.add('hidden');
+    document.querySelector('.payment-grid').classList.add('hidden');
+
+    // Show confirmation page
+    document.querySelector('.confirmation-grid').classList.remove('hidden');
+}
+
+function loadClientPage(){
+    const clientPage = document.querySelector('#client-grid');
+
+    clientPage.innerHTML = 
+    `
+    <div class="client-item">
+        <p class="client-name">Name: </p>
+    </div>
+    <div class="client-item">
+        <p class="client-diet">Dietary choices:</p>
+    </div>
+    `
 }
 
 // Fetching preferences content
@@ -283,6 +337,7 @@ function toggleSection(sectionId) {
     // Toggle hidden for every other section
     const allSections = document.querySelectorAll('.content .section');
 
+    // Hide all sections
     allSections.forEach((sec) => {
         if (!sec.classList.contains('hidden')) {
             sec.classList.add('hidden');
@@ -304,7 +359,13 @@ function toggleSection(sectionId) {
         })
 
         if (sectionId === 'cart') {
-            loadCartPage();
+            // loadCartPage();
+            loadBillingPage();
+        }
+
+        if(sectionId === 'client'){
+            loadClientPage();
+            console.log("loaded client page");
         }
     }
 

@@ -1,0 +1,23 @@
+#client{
+    position: absolute;
+    top: 20px;
+    
+    #client-grid {
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 40px;
+        margin-top: 100px;
+        left: 50%;
+
+        font-family: 'Open Sans', sans-serif;
+        background-color: var(--simple-grey);
+    }
+
+    .client-diet{
+        color: black;
+    }
+}
