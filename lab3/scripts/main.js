@@ -12,6 +12,8 @@ let user = {
 document.addEventListener("DOMContentLoaded", function () {
     const home = document.querySelector('#products');
     home.classList.toggle('hidden');
+    const cart = document.querySelector('#cart');
+    cart.setAttribute('style', 'display: none;');
     resetInputs();
     loadProductsPage();
     loadCartPage();

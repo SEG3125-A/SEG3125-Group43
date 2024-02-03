@@ -27,6 +27,7 @@ back.addEventListener('click', () => {
 })
 
 function update() {
+    checkout();
     wraps.forEach((wrap, index) => {
         if(index < currentActive) {
             wrap.classList.add('active')
