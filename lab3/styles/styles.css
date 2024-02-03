@@ -79,7 +79,7 @@ input{
 }
 
 #price-selector {
-    display: inline;
+    display: inline !important;
 }
 
 .price-range {
