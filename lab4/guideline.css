@@ -1,0 +1,17 @@
+:root{
+    --main-brown : #AE8448;
+    --main-light-brown : #D9B26A;
+    --main-black: #1F1F1F;
+    --main-grey : #F2F2F2;
+}
+
+/*Font for main banner title and other uppercase text*/
+@font-face {
+    font-family: "Fono W00 Compressed uni Obl";
+    src: url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.eot");
+    src: url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.svg#Fono W00 Compressed uni Obl")format("svg");
+}
