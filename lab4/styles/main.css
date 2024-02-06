@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Monoton&family=Poppins&display=swap');
+@import '../guideline.css';
+html {
+    scroll-behavior: smooth;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+a, .nav-link{
+    text-decoration: none;
+    color: var(--main-brown);
+    font-family: var(--PlayfairDisplay);
+}
+
+a:hover, .nav-link:hover{
+    color: var(--main-light-brown);
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: rgb(0, 0, 0);
+}
+
+/* Nav bar styles */
+
+.navbar.scrolled {
+    background-color: var(--bg-dark); /* Replace with your desired color */
+}
+
+.nav-link:hover{
+    color: var(--main-light-brown);
+}
+
+#booking-btn{
+    position: absolute;
+    right: 10%;
+
+    font-family: var(--PlayfairDisplay);
+    background-color: var(--main-brown);
+    border: 1px solid var(--main-brown);
+}
+
+#booking-btn:hover{
+    background-color: var(--main-light-brown);
+    border: 1px solid var(--main-light-brown);
+}
+
+/*End navbar styles*/
+
+/* Banner styles */
+
+.banner-image {
+    height: auto;
+    overflow: hidden;
+
+    .img{
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+    }
+
+    .slide-text{
+        font-size: xx-large;
+        position: absolute;
+        color: white;
+        top: 20%;
+        right: 20%;
+    }
+
+    @media screen and (max-width: 1000px){
+        .slide-text{
+            top: 15%;
+            right: 15%;
+            font-size: x-large;
+        }
+        
+    }
+
+    @media screen and (max-width: 800px){
+        .slide-text{
+            top: 11%;
+            right: 11%;
+            font-size: large;
+        }
+        
+    }
+
+    .title{
+        font-family: var(--Fono); /*Maybe an italic font isn't the best for this*/
+        margin-bottom: -10px;
+    }
+
+    .subtitle{
+        font-family: var(--PlayfairDisplay);
+    }
+}
+
+/* End banner styles */
+
+/* Quick view styles */
+.quick-view{
+    .row{
+        /* border: 1px solid white; */
+        color: white;
+        font-family: "Montserrat";
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .col{
+        /* border: 1px solid white; */
+        justify-content: center;
+        text-align: center;
+    }
+
+    .booking-preview{
+        text-align: center;
+        padding-top: 20px;
+        font-family: var(--PlayfairDisplay);
+    }
+
+    .panel1{
+        background-color: var(--main-grey);
+        color: black;
+    }
+
+    .panel2{
+        background-color: var(--main-brown);
+    }
+
+    .panel2 a{
+        color: black;
+    }
+
+    .panel2 a:hover{
+        color: var(--main-light-brown);
+    }
+
+    .panel3{
+        background-color: var(--main-black);
+    }
+}
+/*End quick view styles*/
+
+/* Add styles for the logo image */
+.logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.about-us {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: space-between;
+    text-align: center;
+    margin: 100px 80px;
+
+}
+
+.about-us #about-txt{
+    width: 90%;
+    color: white;
+    font-size: 17px;
+    padding: 10px;
+
+}
+
+.services-offered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: space-between ;
+}
+
+.services-offered .card{
+    background-color: transparent;
+    width: 250px;
+    margin: 15px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.services-offered .card h4{
+    color: white;
+    font-size: 20px;
+}
+
+.services-offered .card p{
+    color: white;
+    font-size: 17px;
+}
+
+.services-container{
+    margin: 50px;
+    align-items: center;
+}
+/* Add styles for the table */
+.services-container .table{
+    table-layout: fixed;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+/* Add styles for the team 
+TODO fix colours, spacing, margins
+*/
+
+.team-container{
+
+}
+
+
+
+
+footer{
+    background-color: #000000;
+    padding: 85px;
+    display: flex;
+    flex-direction: column;
+}
+footer .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer .bx, footer .credits{
+    color: white;
+}
+footer .separator{
+    width: 100%;
+    height: 1px;
+    background-color: #ffffff;
+    margin: 30px 0 20px;
+}
+
