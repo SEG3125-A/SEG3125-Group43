@@ -253,6 +253,7 @@ body{
 /* About us section */ 
 .about-us {
     display: flex;
+    overflow: hidden;
 
     background-color: var(--main-black);
     width: 100vw;
@@ -270,12 +271,11 @@ body{
 
 }
 
-#about-img{
-    margin-bottom: 20px;
-}
-
 #about-txt{
+    transform: translate(0, 25px);
     font-size: large;
+    max-height: 230px;
+    max-width: 650px;
 }
 
 /* Services section */
