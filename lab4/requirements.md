@@ -22,12 +22,12 @@
 - Calendar page with sporatic booking (random days being booked), and being able to book through the calendar 
 Different pages for different sections 
 
-# Service collection page 
+# Service collection page (Tevin) 
 - Shows all services available in a vertical or horizontal list display 
 - Service should have a price, description and a descriptive image
 - User should be able to book an appointment through this page 
 
-# Service Booking page 
+# Service Booking page (Tevin, after the collection's page)
 - Should allow the user to book in different locations
 - Clicking on the location button redirects to respective booking page with different time slots
 
