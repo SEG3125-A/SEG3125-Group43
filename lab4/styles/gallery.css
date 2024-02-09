@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Monoton&family=Poppins&display=swap');
+@import '../guideline.css';
+html {
+    scroll-behavior: smooth;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+a, .nav-link{
+    text-decoration: none;
+    color: var(--main-brown);
+    font-family: var(--PlayfairDisplay);
+}
+
+a:hover, .nav-link:hover{
+    color: var(--main-light-brown);
+}
+
+.btn:hover{
+    background-color: var(--main-light-brown);
+    border: 1px solid var(--main-light-brown);
+}
+
+.btn-primary, .btn:active, .btn:focus{
+    font-family: var(--PlayfairDisplay);
+    background-color: var(--main-brown);
+    border: 1px solid var(--main-brown);
+}
+
+.btn:hover{
+    background-color: var(--main-light-brown);
+    border: 1px solid var(--main-light-brown);
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: rgb(0, 0, 0);
+}
+
+/* Nav bar styles */
+
+/* Add styles for the logo image */
+.navbar.scrolled {
+    backdrop-filter: blur(5px);
+}
+
+.navbar-nav{
+    display: flex;
+    gap: 15px;
+}
+
+.nav-link:hover{
+    color: var(--main-light-brown);
+}
+
+.nav-link:focus{
+    color: var(--main-light-brown);
+}
+
+.nav-link{
+    font-family: var(--PlayfairDisplay);
+    text-shadow: var(--main-black) 0px 1px 1px;
+    border-bottom: 1px solid var(--main-brown);
+}
+
+#booking-btn{
+    position: absolute;
+    right: 10%;
+
+    font-family: var(--PlayfairDisplay);
+    background-color: var(--main-brown);
+    border: 1px solid var(--main-brown);
+}
+
+#booking-btn:hover{
+    background-color: var(--main-light-brown);
+    border: 1px solid var(--main-light-brown);
+}
+
+@media screen and (max-width: 800px){
+    #booking-btn{
+        right: 2%;
+        transition: all 0.5s ease;
+        top: 15px;
+        display: block;
+    }
+
+    .nav-link{
+        display: none;
+    }
+
+    .navbar-brand{
+        position: absolute;
+        left: 70px;
+    }
+
+    .navbar-nav{
+        height: 50px;
+    }
+}
+/*End navbar styles*/
+
+/* Content start */
+
+.content{
+    margin-top: 100px;
+    .title{
+        font-family: var(--PlayfairDisplay);
+        color: var(--main-brown);
+        text-align: center;
+    }
+    
+    .container{
+        object-position: center;
+    }
+
+    .gallery{
+        display: grid;
+        grid-template-columns: repeat(3, 2fr);
+    }
+
+    .gallery-item{
+        border: 1px solid red;
+    }
+
+    .gallery img{
+        border: 1px solid blue;
+        min-width: 150px;
+        max-width: 200px;
+
+        max-height: 100px;
+        min-height: 200px;
+
+        object-fit: cover;
+        margin: auto; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+    }
+
+    @media screen and (max-width: 800px){
+        .gallery{
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-item{
+            min-width: 150px;
+        }
+    }
+
+    @media screen and (max-width: 600px){
+        .gallery{
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}
+/* Content end */
+
+/* Footer styles */
+
+footer{
+    background-color: var(--main-black);
+    padding-right: 85px;
+    padding-left: 85px;
+    display: flex;
+    flex-direction: column;
+}
+footer .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer .bx, footer .credits{
+    color: white;
+}
+footer .separator{
+    width: 100%;
+    height: 1px;
+    background-color: #ffffff;
+    margin: 30px 0 20px;
+}
+
+footer h4{
+    font-family: "Montserrat";
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    font-family: "Montserrat";
+    color: white;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* footer #map{
+    border: 1px solid red;
+    height: 100px;
+} */
+
+footer .scrolltop{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--main-brown);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}

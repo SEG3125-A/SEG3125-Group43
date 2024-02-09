@@ -31,7 +31,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="./scripts/maps.js" type="module"></script>
     <!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyAor730Mf1xsU6euyiHlZnNSe-qPdeLylU", v: "weekly"});
+        ({key: "", v: "weekly"});
     </script> -->
         <!--Main-->
     <script src="./scripts/navbar.js"></script>
@@ -69,10 +69,10 @@
                     </ul>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="#">Availability</a>
+                    <a class="nav-link" href="./pages/booking.html">Availability</a>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="#">Photo Gallery</a>
+                    <a class="nav-link" href="./pages/gallery.html">Photo Gallery</a>
                 </li>
                 <li class="nav-item bg-transparent">
                     <a class="nav-link" href="#about-us">About us</a>
@@ -110,7 +110,7 @@
                         <i class="fa fa-eye" aria-hidden="false"></i>
                         <h3>Hair Consultation</h3>
                         <p>Get feedback and recommendations from our top hairstylists. Satisfaction 100% guaranteed. </p>
-                        <a href="">Read more</a>
+                        <a href="#services">Read more</a>
                     </div>
                 </div>
                 <div class="col p-5 panel2">
@@ -118,7 +118,7 @@
                         <i class="fa fa-scissors" aria-hidden="false"></i>
                         <h3>Hair Cuts</h3>
                         <p>Good huuuhh cuts</p>
-                        <a href="">Read more</a>
+                        <a href="#services">Read more</a>
                     </div>
                 </div>
                 <div class="col p-5 panel3">
@@ -126,7 +126,7 @@
                         <i class="fa fa-paint-brush" aria-hidden="false"></i>
                         <h3>Hair Dying</h3>
                         <p>Dye today !</p>
-                        <a href="">Read more</a>
+                        <a href="#services">Read more</a>
                     </div>
                 </div>
             </div>
@@ -160,56 +160,64 @@
         <!-- Held in row col as seperate cards -->
         <!-- Each card has a collapsible part -->
         <!-- TODO add images and header and fix buttons-->
-        <div class="services-offered px-5 mx-5">
+        <div class="services-offered px-5 mx-5" id="services">
             <div class="row">
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Consultation</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Consultation</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile1" aria-expanded="false" aria-controls="profile1">Learn More</button>
+                            <div id="profile1" class="collapse p-5">
+                                <p class="px-3">Take an appointment with our hairstylists to get advice on how to treat and take care of your hair.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Stylings</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Stylings</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile2" aria-expanded="false" aria-controls="profile2">Learn More</button>
+                            <div id="profile2" class="collapse p-5">
+                                <p class="px-3">Several hairstyles, made by experts - exactly like or better than you'd excpect !</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Cuts</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Cuts</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile3" aria-expanded="false" aria-controls="profile3">Learn More</button>
+                            <div id="profile3" class="collapse p-5">
+                                <p class="px-3">Whatever cut, whatever style, your call - we're here to service you !</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Dying</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Dying</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile4" aria-expanded="false" aria-controls="profile4">Learn More</button>
+                            <div id="profile4" class="collapse p-5">
+                                <p class="px-3">Colors, textures and bazinga.<button></button></p>
                             </div>
                         </div>
                     </div>

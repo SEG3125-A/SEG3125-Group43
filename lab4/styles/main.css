@@ -22,7 +22,12 @@ a:hover, .nav-link:hover{
     color: var(--main-light-brown);
 }
 
-.btn-primary{
+.btn:hover{
+    background-color: var(--main-light-brown);
+    border: 1px solid var(--main-light-brown);
+}
+
+.btn-primary, .btn:active, .btn:focus{
     font-family: var(--PlayfairDisplay);
     background-color: var(--main-brown);
     border: 1px solid var(--main-brown);
@@ -40,6 +45,12 @@ body{
 
 /* Nav bar styles */
 
+/* Add styles for the logo image */
+.logo img {
+    width: 30px;
+    height: 30px;
+  }
+
 .navbar.scrolled {
     backdrop-filter: blur(5px);
 }
@@ -53,7 +64,12 @@ body{
     color: var(--main-light-brown);
 }
 
+.nav-link:focus{
+    color: var(--main-light-brown);
+}
+
 .nav-link{
+    font-size: large;
     font-family: var(--PlayfairDisplay);
     text-shadow: var(--main-black) 0px 1px 1px;
     border-bottom: 1px solid var(--main-brown);
@@ -63,6 +79,7 @@ body{
     position: absolute;
     right: 10%;
 
+    font-size: 20px;
     font-family: var(--PlayfairDisplay);
     background-color: var(--main-brown);
     border: 1px solid var(--main-brown);
@@ -75,8 +92,32 @@ body{
 
 @media screen and (max-width: 800px){
     #booking-btn{
-        right: 5%;
+        right: 2%;
         transition: all 0.5s ease;
+        top: 15px;
+    }
+
+    .nav-link{
+        display: none;
+    }
+
+    .navbar-brand{
+        position: absolute;
+        left: 70px;
+    }
+
+    .navbar-nav{
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .quick-view .row .col .container p{
+        display: none;
+    }
+
+    .quick-view .row{
+        max-width: 30%;
     }
 }
 /*End navbar styles*/
@@ -139,7 +180,11 @@ body{
         font-family: "Montserrat";
         margin-right: 20px;
         margin-left: 20px;
-        margin-top: 10px;
+        /* margin-top: 10px; */
+        margin-bottom: 2px;
+
+        max-width: 80%;
+        transform: translate(10%);
     }
 
     .col{
@@ -173,7 +218,7 @@ body{
     }
 
     .container p{
-        max-width: 70%;
+        max-width: 60%;
     }
 
     .booking-preview{
@@ -205,12 +250,7 @@ body{
 }
 /*End quick view styles*/
 
-/* Add styles for the logo image */
-.logo img {
-  width: 30px;
-  height: 30px;
-}
-
+/* About us section */ 
 .about-us {
     display: flex;
 
@@ -226,10 +266,19 @@ body{
 .about-us #about-txt, .about-us #about-img{
     width: 90%;
     color: white;
-    font-size: 17px;
     padding: 10px;
 
 }
+
+#about-img{
+    margin-bottom: 20px;
+}
+
+#about-txt{
+    font-size: large;
+}
+
+/* Services section */
 
 .services-offered {
     /* border: 1px solid red; */
@@ -250,7 +299,7 @@ body{
 .services-offered .card{
     /* border: 1px solid blue; */
     object-position: center;
-    padding-bottom: 10px;
+    padding-bottom: 70px;
     width: 250px;
 
     align-items: center;
@@ -260,14 +309,37 @@ body{
 
 }
 
+.services-offered .title{
+    position: relative;
+    min-width: 200px;
+}
+
+.services-offered .btn-primary{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    /* border: 1px solid red; */
+}
+
 .services-offered .card h4{
     color: white;
     font-size: 20px;
+
+    text-align: center;
+    width: 100%;
+    /* border: 1px solid red; */
 }
 
 .services-offered .card p{
     color: white;
     font-size: 17px;
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 20%);
+
+    width: 100%;
+    text-align: center;
 }
 
 .services-container{
@@ -320,10 +392,10 @@ footer p {
     margin-bottom: 20px;
 }
 
-footer #map{
+/* footer #map{
     border: 1px solid red;
     height: 100px;
-}
+} */
 
 footer .scrolltop{
     position: fixed;
