@@ -3,7 +3,7 @@
 
 <!-- The head should contain an appropriate title for your site -->
 <head>
-    <title>Module 4 - Labo</title>
+    <title>Barber Bros</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,6 +30,8 @@
         <!--Maps-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="./scripts/maps.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
         ({key: "", v: "weekly"});
     </script> -->
@@ -69,13 +71,13 @@
                     </ul>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="./pages/booking.html">Availability</a>
+                    <a class="nav-link" href="#about-us-section">About Us</a>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="./pages/gallery.html">Photo Gallery</a>
+                    <a class="nav-link" href="#services">Services</a>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="#about-us-section">About us</a>
+                    <a class="nav-link" href="#barber-team">Our Barbers</a>
                 </li>
                 <li class="nav-item bg-transparent booking-button">
                     <a
@@ -246,6 +248,62 @@
             </div>
         </div>
     </div>
+    <!-- Our barbers section -->
+    <div class="barber-team" id="barber-team">
+        <div class="team-header">
+            <div class="col mx-5 my-2"><h4>Meet our talent</h4></div>
+                <div class="col my-2">
+                    <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#mechanics">The Bros</button>
+                </div>
+        </div>
+        <div id="mechanics" class="collapse">
+            <div class="barber-container">
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Vincent Vega</h4>
+                                <p class="card-text">Haircuts, styling and consultations</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Jules Winnfield</h4>
+                                <p class="card-text">Haircuts, styling and dyes.</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Butch Coolid</h4>
+                                <p class="card-text">Haircuts, dyes and consultation</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/placeholder.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Marsell Wall</h4>
+                                <p class="card-text">Haircuts, styling and dyes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -285,9 +343,9 @@
                 </div>
                 <div class="col service-info">
                     <h4>Services</h4>
-                    <p><a href="#">Hair consultation</a></p>
+                    <p><a href="#">Hair Consultation</a></p>
                     <p><a href="#">Hair Styling</a></p>
-                    <p><a href="">Hair cuts</a></p>
+                    <p><a href="">Hair Cuts</a></p>
                     <p><a href="">Hair Dying</a></p>
                 </div>
                 <div class="col socials-info">

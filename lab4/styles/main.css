@@ -370,6 +370,41 @@ body{
     text-align: center;
 }
 
+
+/* Styles for barber team */
+
+.barber-team{
+    background-color: var(--main-black);
+    padding: 50px;
+    text-align: center;
+}
+.barber-team .barber-container{
+    width: 90%;
+    margin: auto;
+}
+
+.barber-team .team-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin: 20px;
+    
+
+}
+
+.barber-team .barber-container .card{
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    border: 4px solid white;
+}
+
+
 /* Footer styles */
 
 footer{
