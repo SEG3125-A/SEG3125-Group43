@@ -22,6 +22,17 @@ a:hover, .nav-link:hover{
     color: var(--main-light-brown);
 }
 
+.btn-primary{
+    font-family: var(--PlayfairDisplay);
+    background-color: var(--main-brown);
+    border: 1px solid var(--main-brown);
+}
+
+.btn:hover{
+    background-color: var(--main-light-brown);
+    border: 1px solid var(--main-light-brown);
+}
+
 body{
     font-family: Arial, sans-serif;
     background-color: rgb(0, 0, 0);
@@ -30,11 +41,22 @@ body{
 /* Nav bar styles */
 
 .navbar.scrolled {
-    background-color: var(--bg-dark); /* Replace with your desired color */
+    backdrop-filter: blur(5px);
+}
+
+.navbar-nav{
+    display: flex;
+    gap: 15px;
 }
 
 .nav-link:hover{
     color: var(--main-light-brown);
+}
+
+.nav-link{
+    font-family: var(--PlayfairDisplay);
+    text-shadow: var(--main-black) 0px 1px 1px;
+    border-bottom: 1px solid var(--main-brown);
 }
 
 #booking-btn{
@@ -51,6 +73,12 @@ body{
     border: 1px solid var(--main-light-brown);
 }
 
+@media screen and (max-width: 800px){
+    #booking-btn{
+        right: 5%;
+        transition: all 0.5s ease;
+    }
+}
 /*End navbar styles*/
 
 /* Banner styles */
@@ -111,12 +139,41 @@ body{
         font-family: "Montserrat";
         margin-right: 20px;
         margin-left: 20px;
+        margin-top: 10px;
     }
 
     .col{
         /* border: 1px solid white; */
         justify-content: center;
         text-align: center;
+    }
+
+    .col .container{
+        /* border: 1px solid red; */
+        padding-top: 20px;
+        padding-bottom: 20px;
+        position: relative;
+        width: 200%;
+        transform: translate(-25%);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }  
+
+    .container i{
+        position: absolute;
+        top: 0;
+    }
+
+    .container a{
+        position: absolute;
+        bottom: 0;
+    }
+
+    .container p{
+        max-width: 70%;
     }
 
     .booking-preview{
@@ -156,15 +213,17 @@ body{
 
 .about-us {
     display: flex;
+
+    background-color: var(--main-black);
+    width: 100vw;
+
     align-items: center;
     justify-content: center;
     flex: space-between;
     text-align: center;
-    margin: 100px 80px;
-
 }
 
-.about-us #about-txt{
+.about-us #about-txt, .about-us #about-img{
     width: 90%;
     color: white;
     font-size: 17px;
@@ -173,18 +232,31 @@ body{
 }
 
 .services-offered {
-    display: flex;
+    /* border: 1px solid red; */
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
     align-items: center;
     justify-content: center;
-    flex: space-between ;
+    
+    min-height: 400px;
+
+    .col{
+        min-width: 250px;
+    }
 }
 
 .services-offered .card{
-    background-color: transparent;
+    /* border: 1px solid blue; */
+    object-position: center;
+    padding-bottom: 10px;
     width: 250px;
-    margin: 15px;
+
     align-items: center;
     justify-content: center;
+
+    background-color: transparent;
 
 }
 
@@ -209,20 +281,12 @@ body{
     text-align: center;
 }
 
-/* Add styles for the team 
-TODO fix colours, spacing, margins
-*/
-
-.team-container{
-
-}
-
-
-
+/* Footer styles */
 
 footer{
-    background-color: #000000;
-    padding: 85px;
+    background-color: var(--main-black);
+    padding-right: 85px;
+    padding-left: 85px;
     display: flex;
     flex-direction: column;
 }
@@ -242,3 +306,31 @@ footer .separator{
     margin: 30px 0 20px;
 }
 
+footer h4{
+    font-family: "Montserrat";
+    color: white;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    font-family: "Montserrat";
+    color: white;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+footer #map{
+    border: 1px solid red;
+    height: 100px;
+}
+
+footer .scrolltop{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--main-brown);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
