@@ -48,11 +48,10 @@ body{
 /* Add styles for the logo image */
 .logo img {
     width: 30px;
-    height: 30px;
   }
 
 .navbar.scrolled {
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(30px);
 }
 
 .navbar-nav{
