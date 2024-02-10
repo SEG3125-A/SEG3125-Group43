@@ -1,0 +1,69 @@
+body{
+    background-color: black;
+    color: white;
+    background-image: url(../imgs/barber-banner.png);
+    background-position: top;
+    overflow: hidden;
+}
+
+header {
+    margin-bottom: 100px;
+}
+
+.offeredBy {
+    font-size: small;
+}
+
+.form-group {
+    justify-content: space-between;
+}
+
+.bg-cover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.card {
+    background-color: black;
+    border-color: white;
+    border-radius: 1px;
+}
+
+.modal {
+    color: black;
+}
+
+.page-header{
+    text-align: center;
+}
+
+.card.service {
+    width: 286px;
+    height: 347px;
+}
+
+.service {
+    width: 286px;
+    transition: box-shadow 0.3s ease-in-out;
+    /* flex: 1 0 200px; */
+    /* Set the flex-grow, flex-shrink, and flex-basis values */
+    margin: 10px;
+}
+
+.service:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-img {
+    /* width: 286px; */
+    height: 180px;
+}
+
+.services-container {
+    width: auto;
+    margin-top: 15px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-column-gap: 100px; */
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+}
