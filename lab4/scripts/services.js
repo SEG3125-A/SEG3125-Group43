@@ -1,68 +1,36 @@
 let services = [
     {
         id: 0,
-        name: "Fade Haircut",
-        description: "Normal haircut",
-        price: 45,
-        img: "fade.jpg",
-        offeredBy: ['Provider1', 'Provider2', 'Provider3']
+        name: "Hair Consulations",
+        description: "Take an appointment with our hairstylists to get advice on how to treat and take care of your hair.",
+        price: "40",
+        img: "consultation.jpeg",
+        offeredBy: ['Marsell Wall', 'Butch Coolid', 'Marsell Wall']
     },
     {
         id: 1,
-        name: "Dye",
-        description: "Change things up and show off your new color!",
-        price: 100,
-        img: 'dye.jpg',
+        name: "Hair Styling",
+        description: "Several hairstyles, made by experts - exactly like or better than you'd expect!",
+        price: "30-40",
+        img: 'stylings.jpeg',
+        offeredBy: ['Marsell Wall', 'Jule Winfield', 'Marsell Wall']
     },
     {
         id: 2,
-        name: "Beard Cut",
-        description: "Get the best lineup in the city!",
-        price: 50,
-        img: 'beard-cut.jpg',
+        name: "Hair Cuts",
+        description: "Whatever cut, whatever style, your call - we're here to service you!",
+        price: "40-60",
+        img: 'haircut.jpg',
+        offeredBy: ['Marsell Wall', 'Butch Coolid', 'Jule Winfield']
     },
     {
         id: 3,
-        name: "Fade Haircut",
-        description: "Normal haircut",
-        price: 45,
-        img: "fade.jpg",
+        name: "Hair Dying",
+        description: "Colors, textures and bazinga.",
+        price: "60-100",
+        img: "drying.jpeg",
+        offeredBy: ['Marsell Wall', 'Butch Coolid', 'Jule Winfield']
     },
-    {
-        id: 4,
-        name: "Dye",
-        description: "Change things up and show off your new color!",
-        price: 100,
-        img: 'dye.jpg',
-    },
-    {
-        id: 5,
-        name: "Beard Cut",
-        description: "Get the best lineup in the city!",
-        price: 50,
-        img: 'beard-cut.jpg',
-    },
-    {
-        id: 6,
-        name: "Fade Haircut",
-        description: "Normal haircut",
-        price: 45,
-        img: "fade.jpg",
-    },
-    {
-        id: 7,
-        name: "Dye",
-        description: "Change things up and show off your new color!",
-        price: 100,
-        img: 'dye.jpg',
-    },
-    {
-        id: 8,
-        name: "Beard Cut",
-        description: "Get the best lineup in the city!",
-        price: 50,
-        img: 'beard-cut.jpg',
-    }
 ];
 
 function createServiceCard(service) {
@@ -72,10 +40,10 @@ function createServiceCard(service) {
     //  <a href="#" class="btn btn-info">Book Now!</a>
 
     let cardHTML = `<div class="card service" style="">
-    <img class="card-img-top service-img" src="../imgs/service/${service.img}" alt="Image of service: ${service.name}">
+    <img class="card-img-top service-img" src="./imgs/${service.img}" alt="Image of service: ${service.name}">
     <div class="card-body">
-      <h5 class="card-title">${service.name}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">$${service.price}</h6>
+      <h5 class="card-title fw-bold">${service.name}</h5>
+      <h6 class="card-subtitle mb-2 ">$${service.price}</h6>
       <p class="card-text">${service.description}</p>
       <h6 class="card-text offeredBy">Offered by: ${service.offeredBy}</h6>
      
@@ -193,14 +161,3 @@ document.addEventListener("submit", function (e) {
     console.log("Form was submitted");
 
 });
-
-/* window.onload = function() {
-    if (window.jQuery) {  
-        // jQuery is loaded  
-        // alert("Yeah!");
-        $('#exampleModal').modal('show');
-    } else {
-        // jQuery is not loaded
-        alert("Doesn't Work");
-    }
-} */

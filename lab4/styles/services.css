@@ -1,7 +1,7 @@
 body{
     background-color: black;
     color: white;
-    background-image: url(../imgs/barber-banner.png);
+    /* background-image: url(../imgs/barber-banner.png); */
     background-position: top;
     overflow: hidden;
 }
@@ -11,7 +11,11 @@ header {
 }
 
 .offeredBy {
-    font-size: small;
+    font-size: medium;
+}
+
+.content {
+    background-color:  #1f1f1f;
 }
 
 .form-group {
@@ -19,7 +23,7 @@ header {
 }
 
 .bg-cover {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.0.6);
 }
 
 .card {
@@ -38,7 +42,7 @@ header {
 
 .card.service {
     width: 286px;
-    height: 347px;
+    height: 450px;
 }
 
 .service {
