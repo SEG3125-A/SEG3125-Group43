@@ -260,7 +260,7 @@ body{
     align-items: center;
     justify-content: center;
     flex: space-between;
-    text-align: center;
+    text-align: center; 
 }
 
 .about-us #about-txt, .about-us #about-img{
@@ -285,6 +285,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 
 }
 
@@ -404,7 +405,35 @@ body{
     border: 4px solid white;
 }
 
+/* map styles */
 
+.map{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    text-align: center;
+    
+    
+}
+
+.map h4{
+    color: white;
+    font-size: 30px;
+    margin: 20px; 
+}
+
+.map p{
+    color: white;
+    font-size: 17px;
+    margin: 20px;
+}
+
+#map-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /* Footer styles */
 
 footer{
