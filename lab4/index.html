@@ -3,7 +3,7 @@
 
 <!-- The head should contain an appropriate title for your site -->
 <head>
-    <title>Module 4 - Labo</title>
+    <title>Barber Bros</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,8 +30,10 @@
         <!--Maps-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="./scripts/maps.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyAor730Mf1xsU6euyiHlZnNSe-qPdeLylU", v: "weekly"});
+        ({key: "", v: "weekly"});
     </script> -->
         <!--Main-->
     <script src="./scripts/navbar.js"></script>
@@ -47,35 +49,23 @@
     <header>
         <nav class="navbar navbar-expand-sm bg-transparent justify-content-center fixed-top">
             <a class="navbar-brand" href="#">
-                <img src="" alt="Logo" style="width:40px;">
+                <img src="imgs/logo.png" alt="Logo" style="width:40px;">
             </a>
             <!-- Links -->
             <!-- TODO add links to content and add styles-->
             <ul class="navbar-nav">
-                <li class="nav-item dropdown services">
-                    <a class="nav-link dropdown-toggle bg-transparent" 
-                    href="#" 
-                    id="services-dropdown" 
-                    role="button" 
-                    data-bs-toggle="dropdown" 
-                    aria-expanded="false"
-                    >
-                      Services
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="services-dropdown">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                
+                <li class="nav-item bg-transparent">
+                    <a class="nav-link" href="#about-us-section">About Us</a>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="#">Availability</a>
+                    <a class="nav-link" href="#services">Services</a>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="#">Photo Gallery</a>
+                    <a class="nav-link" href="#barber-team">Our Barbers</a>
                 </li>
                 <li class="nav-item bg-transparent">
-                    <a class="nav-link" href="#about-us">About us</a>
+                    <a class="nav-link" href="#location">Find Us</a>
                 </li>
                 <li class="nav-item bg-transparent booking-button">
                     <a
@@ -95,8 +85,8 @@
             <img class="img" src="imgs/barber-banner.png" alt="Banner">
                <!-- TODO Fix alignment so its ontop of image--> 
             <div class="slide-text">
-                <p class="title">Placeholder</p>
-                <p class="subtitle">Placeholder</p>
+                <p class="title">The Barber Bros</p>
+                <p class="subtitle">Best in Ottawa</p>
             </div>
         </div>
     </header>
@@ -110,23 +100,27 @@
                         <i class="fa fa-eye" aria-hidden="false"></i>
                         <h3>Hair Consultation</h3>
                         <p>Get feedback and recommendations from our top hairstylists. Satisfaction 100% guaranteed. </p>
-                        <a href="">Read more</a>
+                        <a href="#services">Read more</a>
                     </div>
                 </div>
                 <div class="col p-5 panel2">
                     <div class="container">
                         <i class="fa fa-scissors" aria-hidden="false"></i>
                         <h3>Hair Cuts</h3>
-                        <p>Good huuuhh cuts</p>
-                        <a href="">Read more</a>
+                        <p>Adult cuts, wet cuts, cut and shampoo, and trimmings.
+                            If you need it, we'll do it.
+                        </p>
+                        <a href="#services">Read more</a>
                     </div>
                 </div>
                 <div class="col p-5 panel3">
                     <div class="container">
                         <i class="fa fa-paint-brush" aria-hidden="false"></i>
                         <h3>Hair Dying</h3>
-                        <p>Dye today !</p>
-                        <a href="">Read more</a>
+                        <p>Hair colouring, highlights, balayage and foilyage.
+                            There's exists no colour that we can't dye.
+                        </p>
+                        <a href="#services">Read more</a>
                     </div>
                 </div>
             </div>
@@ -145,11 +139,15 @@
         </div>
         <!-- A container for the about us section -->
         <!-- TODO add header and styles-->
-        <div class="about-us my-4">
+        <div class="about-us my-4" id="about-us-section">
             <div class="row mx-5 mt-3">
                 <div class="col" id = "about-txt">
-                    <p>Our barbershop is the best in Ottawa. We have been in business for over 20 years and have a team of experienced barbers. We offer a variety of services and are open 7 days a week. We are located in the heart of downtown Ottawa and are easily accessible by public transit. We are committed to providing the best service to our clients and are always looking for ways to improve. We are proud to be a part of the Ottawa community and look forward to serving you.</p>
-                </div>
+                    <h1>The Barber Bros</h1>
+                    <p>Barber Bros has been in business for over 20 years and we have a team of experienced barbers. 
+                        We offer a variety of services and are open 7 days a week. We are located in the heart of downtown Ottawa and are easily 
+                        accessible by public transit. We are committed to providing the best service to our clients and are always looking for ways 
+                        to improve. </p>
+                    </div>
                 <div class="col" id="about-img">
                     <img src="imgs/front.png" alt="">
                 </div>
@@ -160,56 +158,75 @@
         <!-- Held in row col as seperate cards -->
         <!-- Each card has a collapsible part -->
         <!-- TODO add images and header and fix buttons-->
-        <div class="services-offered px-5 mx-5">
+        <div class="services-offered px-5 mx-5" id="services">
             <div class="row">
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/consultation.jpeg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Consultation</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Consultation</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile1" aria-expanded="false" aria-controls="profile1">Learn More</button>
+                            <div id="profile1" class="collapse p-5">
+                                <p class="px-3">Take an appointment with our hairstylists to get advice on how to treat and take care of your hair.
+                                    1 on 1 session : $40
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/stylings.jpeg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Stylings</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Stylings</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile2" aria-expanded="false" aria-controls="profile2">Learn More</button>
+                            <div id="profile2" class="collapse p-5">
+                                <p class="px-3">Several hairstyles, made by experts - exactly like or better than you'd excpect!
+                                    Mens: $30
+                                    Womens: $40
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/haircut.jpg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Cuts</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Cuts</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile3" aria-expanded="false" aria-controls="profile3">Learn More</button>
+                            <div id="profile3" class="collapse p-5">
+                                <p class="px-3">Whatever cut, whatever style, your call - we're here to service you !
+                                    Mens: $40
+                                    Womens: $60
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img class="card-img-top img-thumbnail" src="imgs/example.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top img-thumbnail" src="imgs/drying.jpeg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title">Hair Dying</h4>
+                            <div class="title">
+                                <h4 class="card-title">Hair Dying</h4>
+                            </div>
                             <!-- collapsible part -->
-                            <a href="#profile" class="btn btn-primary" data-toggle="collapse">Learn More</a>
-                            <div id="profile" class="collapse p-3">
-                                <p>Types of services offered</p>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile4" aria-expanded="false" aria-controls="profile4">Learn More</button>
+                            <div id="profile4" class="collapse p-5">
+                                <p class="px-3">Colors, textures and bazinga.
+                                    Mens: $60
+                                    Womens: $100
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -218,14 +235,89 @@
             </div>
         </div>
     </div>
+    <!-- Our barbers section -->
+    <div class="barber-team" id="barber-team">
+        <div class="team-header">
+            <div class="col mx-5 my-2"><h4>Meet our talent</h4></div>
+                <div class="col my-2">
+                    <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#mechanics">The Bros</button>
+                </div>
+        </div>
+        <div id="mechanics" class="collapse">
+            <div class="barber-container">
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/man1.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Vincent Vega</h4>
+                                <p class="card-text">Haircuts, styling and consultations</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/man2.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Jule Winfield</h4>
+                                <p class="card-text">Haircuts, styling and dyes.</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/man3.jpg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Butch Coolid</h4>
+                                <p class="card-text">Haircuts, dyes and consultation</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-lg-3">
+                        <div class="card bg-transparent">
+                            <img class="card-img-top" src="imgs/man4.jpeg" alt="Card image" style="width:100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Marsell Wall</h4>
+                                <p class="card-text">Haircuts, styling and dyes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- map section -->
+    <div class="map" id="location">
+        <div class="row">
+            <div class="col" id="map-img">
+            <a href="https://www.google.com/maps/dir//123+Rideau+St,+Ottawa,+ON+K1N+5X4/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x4cce050228db6cbd:0x812f6242f4debecb?sa=X&ved=2ahUKEwiPl7D4wJ-EAxX1l4kEHVdJD6kQwwV6BAgJEAA" target="_blank">
+                <img src="imgs/map.png" alt="" style="width: 80%; height: auto;">
+            </a>
+        </div>
+
+            <div class="col">
+                <h4>Location</h4>
+                <p>123 Rideau St, Ottawa ON</p>
+                <p>Phone: (613)-123-4567</p>
+
+                <h4>Opening Hours</h4>
+                <p>Monday - Friday: 9am - 7pm</p>
+                <p>Saturday - Sunday: 10am - 5pm</p>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="btn btn-primary scrolltop" id="scrolltop">
             <i class="fa fa-arrow-up px-2 py-2" aria-hidden="true"></i>
-        </div>
-        <div class="maps-container">
-            <div class="map" id="map"></div>
         </div>
         <div class="locations">
             <div class="location">
@@ -253,13 +345,13 @@
                 <div class="col contact-info">
                     <h4>Contact us</h4>
                     <p>Phone: 613-123-4567</p>
-                    <p>Email: 
+                    <p>Email: barberbros@gmail.com
                 </div>
                 <div class="col service-info">
                     <h4>Services</h4>
-                    <p><a href="#">Hair consultation</a></p>
+                    <p><a href="#">Hair Consultation</a></p>
                     <p><a href="#">Hair Styling</a></p>
-                    <p><a href="">Hair cuts</a></p>
+                    <p><a href="">Hair Cuts</a></p>
                     <p><a href="">Hair Dying</a></p>
                 </div>
                 <div class="col socials-info">
@@ -275,7 +367,7 @@
 
         <div class="top">
             <div class="credits">
-                <span>Made by ..........</span>
+                <span>Made by Tevin, Christian and Oscar</span>
             </div>
         </div>
         <div class="separator"></div>
