@@ -4,6 +4,7 @@ html {
     scroll-behavior: smooth;
 }
 
+
 *{
     padding: 0;
     margin: 0;
@@ -253,7 +254,7 @@ body{
 .about-us {
     display: flex;
     overflow: hidden;
-
+    font-family: "Montserrat";
     background-color: var(--main-black);
     width: 100vw;
 
@@ -271,14 +272,8 @@ body{
 }
 
 
-.about-us .shop-info {
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-.about-us .shop-info p {
-    font-size: 15px;
-    margin: 5px 0; /* Add this line */
+.about-us p {
+    font-size: 17px;
 }
 
 #about-img{
@@ -375,6 +370,7 @@ body{
 /* Styles for barber team */
 
 .barber-team{
+    font-family: "Montserrat";
     background-color: var(--main-black);
     padding: 10px;
     text-align: center;
@@ -385,6 +381,7 @@ body{
 }
 
 .barber-team .team-header{
+    font-family: "Montserrat";
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -397,6 +394,7 @@ body{
 }
 
 .barber-team .barber-container .card{
+    font-family: "Montserrat";
     background-color: transparent;
     color: white;
     text-align: center;
@@ -408,6 +406,7 @@ body{
 /* map styles */
 
 .map{
+    font-family: "Montserrat";
     display: flex;
     align-items: center;
     justify-content: center;
