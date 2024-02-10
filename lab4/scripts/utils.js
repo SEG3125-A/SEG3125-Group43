@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Select the links
-    const links = document.querySelectorAll('a');
+    const links = document.querySelectorAll('a:not(#booking-btn, #navbar-brand)');
 
     // Add a click event listener to each link
     links.forEach((link) => {
