@@ -376,7 +376,7 @@ body{
 
 .barber-team{
     background-color: var(--main-black);
-    padding: 50px;
+    padding: 10px;
     text-align: center;
 }
 .barber-team .barber-container{
