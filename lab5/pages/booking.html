@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- The head should contain an appropriate title for your site -->
+<head>
+    <title>Barber Bros</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Style sheet (CSS) and JavaScript scripts necessary to use Bootstrap -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>     -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Your own additional style sheet -->
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../guideline.css">
+    <link rel="stylesheet" href="../styles/content.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Additional fonts -->
+        <!--Monserrat-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Services -->
+    <link rel="stylesheet" href="../styles/services.css">
+    <script src="../scripts/services.js"></script>
+
+    <!--Scripts-->
+        <!--Maps-->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="./scripts/maps.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "", v: "weekly"});
+    </script> -->
+        <!--Main-->
+    <script src="../scripts/navbar.js"></script>
+    <script src="../scripts/utils.js" defer></script>
+</head>
+<body>
+
+    <!-- TODO fix general styles, maybe add Google maps API for a small map widget at bottom-->
+    <!-- TODO add opening times and address somewhere-->
+    <!-- LAYOUT banner -> about us -> services -> prices? -> employees ->general contact info/booking -->
+
+    <div class="bg-cover">
+        <header>
+            <nav class="navbar navbar-expand-sm bg-transparent justify-content-center fixed-top">
+                <a class="navbar-brand" href="#">
+                    <img src="../imgs/logo.png" alt="Logo" style="width:40px;">
+                </a>
+                <!-- Links -->
+                <!-- TODO add links to content and add styles-->
+                <ul class="navbar-nav">
+                    
+                    <li class="nav-item bg-transparent">
+                        <a class="nav-link" href="../index.html#about-us-section">About Us</a>
+                    </li>
+                    <li class="nav-item bg-transparent">
+                        <a class="nav-link" href="../index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item bg-transparent">
+                        <a class="nav-link" href="../index.html#barber-team">Our Barbers</a>
+                    </li>
+                    <li class="nav-item bg-transparent">
+                        <a class="nav-link" href="../index.html#location">Find Us</a>
+                    </li>
+                    <!-- <li class="nav-item bg-transparent booking-button">
+                        <a
+                            name=""
+                            id="booking-btn"
+                            class="btn btn-primary"
+                            href="./pages/booking.html"
+                            role="button"
+                            >Book us</a
+                        >
+                    </li> -->
+                </ul>
+            </nav>
+        
+    </div>
+
+    <!-- NAVBAR TODO add logo-->
+    
+
+    <!--Page content-->
+    <div class="content">
+        
+        <div class="page-header">
+            <h1 class="page-title">Booking</h1>
+            <p class="page-desc">Select one of our services below to book with our professionals.</p>
+
+            <!-- Button trigger modal -->
+            
+
+            <!-- Modal -->
+            <div class="booking-modal-container">
+                
+            </div>
+        </div>
+
+        <!-- A container for the services offered -->
+        <!-- i dont think a table will be the best design ideabut im leaving it here for now-->
+        <div class="services-container">
+
+        </div>
+
+    </div>
+    
+    <!-- Our barbers section -->
+    
+
+    <!-- map section -->
+    <div class="map" id="location">
+        <div class="row">
+            <div class="col" id="map-img">
+            <a href="https://www.google.com/maps/dir//123+Rideau+St,+Ottawa,+ON+K1N+5X4/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x4cce050228db6cbd:0x812f6242f4debecb?sa=X&ved=2ahUKEwiPl7D4wJ-EAxX1l4kEHVdJD6kQwwV6BAgJEAA" target="_blank">
+                <img src="../imgs/map.png" alt="" style="width: 80%; height: auto;">
+            </a>
+        </div>
+
+            <div class="col">
+                <h4>Location</h4>
+                <p>123 Rideau St, Ottawa ON</p>
+                <p>Phone: (613)-123-4567</p>
+
+                <h4>Opening Hours</h4>
+                <p>Monday - Friday: 9am - 7pm</p>
+                <p>Saturday - Sunday: 10am - 5pm</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="btn btn-primary scrolltop" id="scrolltop">
+            <i class="fa fa-arrow-up px-2 py-2" aria-hidden="true"></i>
+        </div>
+        <div class="locations">
+            <div class="location">
+                <div class="img"></div>
+                <div class="desc"></div>
+            </div>
+            <div class="location">
+                <div class="img"></div>
+                <div class="desc"></div>
+            </div>
+            <div class="location">
+                <div class="img"></div>
+                <div class="desc"></div>
+            </div>
+            <div class="location">
+                <div class="img"></div>
+                <div class="desc"></div>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+        
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col contact-info">
+                    <h4>Contact us</h4>
+                    <p>Phone: 613-123-4567</p>
+                    <p>Email: barberbros@gmail.com
+                </div>
+                <div class="col service-info">
+                    <h4>Services</h4>
+                    <p><a href="#">Hair Consultation</a></p>
+                    <p><a href="#">Hair Styling</a></p>
+                    <p><a href="">Hair Cuts</a></p>
+                    <p><a href="">Hair Dying</a></p>
+                </div>
+                <div class="col socials-info">
+                    <h4>Socials</h4>
+                    <p>Facebook</p>
+                    <p>Instagram</p>
+                    <p>Twitter</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="top">
+            <div class="credits">
+                <span>Made by Tevin, Christian and Oscar</span>
+            </div>
+        </div>
+        <div class="separator"></div>
+    </footer>
+    
+    <!--Bootstrap scripts-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <!--Google Maps API script-->
+    <script src="./scripts/maps.js"></script>
+</body>
+</html>
