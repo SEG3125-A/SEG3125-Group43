@@ -19,8 +19,44 @@ header {
 }
 
 .form-group {
-    justify-content: space-between;
+    /* justify-content: space-between;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    border-color: black; */
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
 }
+
+.form-group label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #616161;
+  }
+
+/* .date-label, .date-input {
+    display: inline-block;
+    vertical-align: middle;
+} */
+
+.form-group input,
+.form-group select {
+    padding: 8px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #424242;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #1976D2;
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.5);
+  }
+  
+  
 
 .bg-cover {
     background-color: rgba(0, 0, 0, 0.0.6);
