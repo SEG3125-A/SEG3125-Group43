@@ -1,3 +1,4 @@
+
 let services = [
     {
         id: 0,
@@ -53,9 +54,7 @@ function createServiceCard(service) {
 
     return cardHTML;
 }
-
 function createBookingModal(service) {
-
     let bookingModal = `
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${service.id}">
                         Book Now!
@@ -106,13 +105,53 @@ function createBookingModal(service) {
                     </div>
 
                     <div class="form-group">
+                        <label for="ccNumber" class="col-form-label">Credit Card Number:</label>
+                        <input type="text" class="form-control" id="ccNumber" required pattern="^[0-9]{16}$"  placeholder="1234123412341234">
+
+                        <label for="expiryDate" class="col-form-label">Expiry Date:</label>
+                        <input type="month" class="form-control" id="expiryDate" required min="${new Date().toISOString().substring(0,7)}">
+
+                        <label for="cvv" class="col-form-label">CVV:</label>
+                        <input type="text" class="form-control" id="cvv" required pattern="^[0-9]{3}$"  placeholder="123">
+
+                        <label for="billingAddress" class="col-form-label">Billing Address:</label>
+                        <input type="text" class="form-control" id="address1" required>
                     
+                        <label for="address2" class="col-form-label">Address Line 2:</label>
+                        <input type="text" class="form-control" id="address2">
+                    
+                        <label for="city" class="col-form-label">City:</label>
+                        <input type="text" class="form-control" id="city" required>
+                    
+                        <label for="province" class="col-form-label">Province:</label>
+                        <select id="province" class="form-control" required>
+                            <option value="">Select Province</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                    
+                        <label for="country" class="col-form-label">Country:</label>
+                        <input type="text" class="form-control" id="country" required>
+                    
+                        <label for="postalCode" class="col-form-label">Postal Code:</label>
+                        <input type="text" class="form-control" id="postalCode" required pattern="^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$"  placeholder="A1B2C3">
                     </div>
 
                     <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" value="submit" class="btn btn-primary confirm-booking">Confirm Booking</button>
-            </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="submit" class="btn btn-primary confirm-booking">Confirm Booking</button>
+                    </div>
 
                 </form>
 
@@ -123,8 +162,6 @@ function createBookingModal(service) {
 </div>`;
 
     return bookingModal;
-
-
 }
 
 function loadServices() {
