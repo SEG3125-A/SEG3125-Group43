@@ -119,7 +119,7 @@ function createBookingModal(service) {
                     <div class="form-group provider-div">
                         <label for="bk-provider-${service.id}">Choose from our Professionals:</label>
                         <select name="" id="bk-provider-${service.id}">
-                            <option value="none">Anyone who is available</option>
+                            <option value="any">Anyone who is available</option>
                             <option value="provider-1">Tevin</option>
                             <option value="provider-2">Christian</option>
                         </select>
@@ -135,15 +135,15 @@ function createBookingModal(service) {
                     
                     <label for="bk-time-${service.id}">Booking Time:</label>
                     <select name="" id="bk-time-${service.id}">
-                        <option value="op1">9:00AM</option>
-                        <option value="op2">10:00AM</option>
-                        <option value="op3">11:00AM</option>
-                        <option value="op4">12:00PM</option>
-                        <option value="op5">1:00PM</option>
-                        <option value="op6">2:00PM</option>
-                        <option value="op7">3:00PM</option>
-                        <option value="op8">4:00PM</option>
-                        <option value="op8">5:00PM</option>
+                        <option value="1">9:00AM</option>
+                        <option value="2">10:00AM</option>
+                        <option value="3">11:00AM</option>
+                        <option value="4">12:00PM</option>
+                        <option value="5">1:00PM</option>
+                        <option value="6">2:00PM</option>
+                        <option value="7">3:00PM</option>
+                        <option value="8">4:00PM</option>
+                        <option value="8">5:00PM</option>
                     </select>
 
                     </div>
@@ -190,9 +190,22 @@ function loadServices() {
   servicesContainer.innerHTML = ``;
 
   services.forEach((service) => {
-    // console.log(service);
     let sCard = createServiceCard(service);
     servicesContainer.innerHTML += sCard;
+  });
+
+  services.forEach((service) => {
+    const providerElement = document.querySelector(
+      "#bk-provider-" + service.id
+    );
+    providerElement.innerHTML = ``;
+    // providerElement.innerHTML += `<option value="any">Anyone who is available</option>`;
+
+    for (const prov of providers) {
+      if (prov.service.includes(service.id)) {
+        providerElement.innerHTML += `<option value="prov-${prov.id}">${prov.name}</option>`;
+      }
+    }
   });
 
   var today = new Date().toISOString().split("T")[0];
@@ -202,30 +215,6 @@ function loadServices() {
 
   getAllIds("booking-date").forEach((el) => el.setAttribute("min", today));
   getAllIds("booking-date").forEach((el) => el.setAttribute("max", wMax));
-
-  /* document
-    .querySelectorAll(".booking-date")
-    .forEach((el) => el.setAttribute("min", today));
-  document
-    .querySelectorAll(".booking-date")
-    .forEach((el) => el.setAttribute("max", wMax)); */
-}
-
-function validateBookingDate() {
-  // Get the selected date from the input field
-  var selectedDate = document.getElementById("booking-date").value;
-  console.log(selectedDate);
-
-  // Example: Assume dates 2024-02-20 and 2024-02-25 are booked
-  var bookedDates = ["2024-02-20", "2024-02-25"];
-
-  // Check if the selected date is in the array of booked dates
-  if (bookedDates.includes(selectedDate)) {
-    alert("This date is booked. Please choose another date.");
-    document.getElementById("bookingDate").value = ""; // Clear the input field
-    return false;
-  }
-  return true;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -251,21 +240,31 @@ document.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log("Form was submitted");
 
-  /* var data = null;
-  for (var i = 0; i < e.target.elements.length - 2; i++) {
-    data = e.target.elements[i].value;
-    switch (i) {
-      case 0:
-        if (data == null || data == "") {
-          // validation failed, throw error
-        }
-        break;
+  const startHour = 9;
+  const providerId = e.target.elements[2].value.substring(5);
+  const bkDate = e.target.elements[3].value;
+  const bkTime = e.target.elements[4].value;
+  const bkDateTime = new Date(bkDate + "T00:00:00").setHours(
+    startHour + bkTime
+  );
 
-        case 1:
-        if (data == null || data == "") {
-          // validation failed, throw error
-        }
-        break;
+  if (providers[providerId].bookedDates.includes(bkDateTime)) {
+    console.log("Provider already booked for this date and time");
+    alert("This date is booked. Please choose another date or time.");
+
+  } else {
+    console.log("Provider not booked and confirmd");
+    providers[providerId].bookedDates.push(bkDateTime);
+
+    // Get service id for below
+    const serviceId = e.target.elements[0].id.substring(14);
+
+    var myModalEl = document.getElementById(`modal-${serviceId}`);
+    var modal = bootstrap.Modal.getInstance(myModalEl);
+    modal.hide();
+
+    for(var i = 0; i < (e.target.elements.length-2); i++){
+        e.target.elements[i].value = '';
     }
-  } */
+  }
 });
