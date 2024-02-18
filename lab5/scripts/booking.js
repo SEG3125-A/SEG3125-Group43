@@ -86,7 +86,9 @@ function createServiceCard(service) {
 
 function createBookingModal(service) {
   let bookingModal = `
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${service.id}">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-${
+      service.id
+    }">
                         Book Now!
                     </button>
     
@@ -96,7 +98,9 @@ function createBookingModal(service) {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Booking for: ${service.name}</h5>
+                <h5 class="modal-title" id="modalLabel">Booking for: ${
+                  service.name
+                }</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -106,18 +110,28 @@ function createBookingModal(service) {
 
                 <form>
                     <div class="form-group">
-                        <label for="customer-name-${service.id}" class="col-form-label">Customer Name:</label>
-                        <input type="text" class="form-control" id="customer-name-${service.id}" required>
+                        <label for="customer-name-${
+                          service.id
+                        }" class="col-form-label">Customer Name:</label>
+                        <input type="text" class="form-control" id="customer-name-${
+                          service.id
+                        }" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-${service.id}" class="col-form-label">Phone Contact:</label>
-                        <input type="tel" class="form-control" id="contact-${service.id}"
+                        <label for="contact-${
+                          service.id
+                        }" class="col-form-label">Phone Contact:</label>
+                        <input type="tel" class="form-control" id="contact-${
+                          service.id
+                        }"
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="613-123-4567" required>
                     </div>
 
                     <div class="form-group provider-div">
-                        <label for="bk-provider-${service.id}">Choose from our Professionals:</label>
+                        <label for="bk-provider-${
+                          service.id
+                        }">Choose from our Professionals:</label>
                         <select name="" id="bk-provider-${service.id}">
                             <option value="any">Anyone who is available</option>
                             <option value="provider-1">Tevin</option>
@@ -126,8 +140,12 @@ function createBookingModal(service) {
                     </div>
 
                     <div class="form-group">
-                        <label for="booking-date-${service.id}" class="col-form-label date-label">Booking Date:</label>
-                        <input type="date" name="date" id="booking-date-${service.id}" class="date-input" onchange="" required>
+                        <label for="booking-date-${
+                          service.id
+                        }" class="col-form-label date-label">Booking Date:</label>
+                        <input type="date" name="date" id="booking-date-${
+                          service.id
+                        }" class="date-input" onchange="" required>
                     </div>
 
                     
@@ -148,9 +166,57 @@ function createBookingModal(service) {
 
                     </div>
 
+                    <div class="form-group">
+                        <label for="ccNumber" class="col-form-label">Credit Card Number:</label>
+                        <input type="text" class="form-control" id="ccNumber" required pattern="^[0-9]{16}$"  placeholder="1234123412341234">
+
+                        <label for="expiryDate" class="col-form-label">Expiry Date:</label>
+                        <input type="month" class="form-control" id="expiryDate" required min="${new Date()
+                          .toISOString()
+                          .substring(0, 7)}">
+
+                        <label for="cvv" class="col-form-label">CVV:</label>
+                        <input type="text" class="form-control" id="cvv" required pattern="^[0-9]{3}$"  placeholder="123">
+
+                        <label for="billingAddress" class="col-form-label">Billing Address:</label>
+                        <input type="text" class="form-control" id="address1" required>
+                    
+                        <label for="address2" class="col-form-label">Address Line 2:</label>
+                        <input type="text" class="form-control" id="address2">
+                    
+                        <label for="city" class="col-form-label">City:</label>
+                        <input type="text" class="form-control" id="city" required>
+                    
+                        <label for="province" class="col-form-label">Province:</label>
+                        <select id="province" class="form-control" required>
+                            <option value="">Select Province</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">Newfoundland and Labrador</option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="YT">Yukon</option>
+                        </select>
+                    
+                        <label for="country" class="col-form-label">Country:</label>
+                        <input type="text" class="form-control" id="country" required>
+                    
+                        <label for="postalCode" class="col-form-label">Postal Code:</label>
+                        <input type="text" class="form-control" id="postalCode" required pattern="^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$"  placeholder="A1B2C3">
+                    </div>
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" value="submit" id="confirm-${service.id}" class="btn btn-primary confirm-booking">Confirm Booking</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="submit" id="confirm-${
+                          service.id
+                        }" class="btn btn-primary confirm-booking">Confirm Booking</button>
                     </div>
 
                 </form>
@@ -165,20 +231,8 @@ function createBookingModal(service) {
 }
 
 function getAllIds(id) {
-  // Replace 'yourKeyword' with the actual keyword you're looking for
-  var keyword = id;
-
-  // Select all elements whose id contains the specified keyword
-  var elementsWithKeyword = document.querySelectorAll("[id*=" + keyword + "]");
-
-  // elementsWithKeyword is a NodeList, you can convert it to an array if needed
+  var elementsWithKeyword = document.querySelectorAll("[id*=" + id + "]");
   var elementsArray = Array.from(elementsWithKeyword);
-
-  // Now you can loop through the array of elements or perform other operations
-  /* elementsArray.forEach(function (element) {
-    // Your code to work with each matching element
-    console.log(element.id);
-  }); */
 
   return elementsArray;
 }
@@ -218,28 +272,10 @@ function loadServices() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  // const home = document.querySelector('#services');
-
   loadServices();
-  //   getAllIds("booking-date");
 });
 
-document.addEventListener("click", function (e) {
-  const confirmBtns = getAllIds("confirm-");
-  if (confirmBtns.includes(e.target)) {
-    console.log("Confirm button clicked for ");
-  }
-  //   if (e.target.classList.contains("confirm-booking")) {
-  //       console.log('Booking confirmed!');
-  //   }
-
-  // window.jQuery('#exampleModal').modal('show');
-});
-
-document.addEventListener("submit", function (e) {
-  e.preventDefault();
-  console.log("Form was submitted");
-
+function validateBookingRequest(e) {
   const startHour = 9;
   const providerId = e.target.elements[2].value.substring(5);
   const bkDate = e.target.elements[3].value;
@@ -251,7 +287,6 @@ document.addEventListener("submit", function (e) {
   if (providers[providerId].bookedDates.includes(bkDateTime)) {
     console.log("Provider already booked for this date and time");
     alert("This date is booked. Please choose another date or time.");
-
   } else {
     console.log("Provider not booked and confirmd");
     providers[providerId].bookedDates.push(bkDateTime);
@@ -263,8 +298,14 @@ document.addEventListener("submit", function (e) {
     var modal = bootstrap.Modal.getInstance(myModalEl);
     modal.hide();
 
-    for(var i = 0; i < (e.target.elements.length-2); i++){
-        e.target.elements[i].value = '';
+    for (var i = 0; i < e.target.elements.length - 2; i++) {
+      e.target.elements[i].value = "";
     }
   }
+}
+
+document.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log("A Form was submitted");
+  validateBookingRequest(e);
 });

@@ -19,11 +19,6 @@ header {
 }
 
 .form-group {
-    /* justify-content: space-between;
-    margin-bottom: 10px;
-    border-radius: 2px;
-    border-color: black; */
-
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
@@ -34,11 +29,6 @@ header {
     font-size: 14px;
     color: #616161;
   }
-
-/* .date-label, .date-input {
-    display: inline-block;
-    vertical-align: middle;
-} */
 
 .form-group input,
 .form-group select {
