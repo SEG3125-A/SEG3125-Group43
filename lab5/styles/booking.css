@@ -1,0 +1,157 @@
+body{
+    background-color: black;
+    color: white;
+    /* background-image: url(../imgs/barber-banner.png); */
+    /* background-position: top; */
+    overflow: hidden;
+}
+
+/* header {
+    margin-bottom: 100px;
+} */
+
+.offeredBy {
+    font-size: medium;
+}
+
+/* .content {
+    background-color:  #1f1f1f;
+} */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #616161;
+  }
+
+.form-group input,
+.form-group select {
+    padding: 8px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #424242;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #1976D2;
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.5);
+  }
+  
+  
+
+.bg-cover {
+    background-color: rgba(0, 0, 0, 0.0.6);
+}
+
+.card {
+    background-color: black;
+    border-color: white;
+    border-radius: 1px;
+}
+
+.modal {
+    color: black;
+}
+
+.page-header{
+    text-align: center;
+
+    h1{
+        margin-top: 50px;
+        margin-bottom: 20px;
+        font-family: var(--PlayfairDisplay);
+    }
+}
+
+.card.service {
+    width: 286px;
+    height: 500px;
+}
+
+.card-body:not(.modal-footer, form){
+    text-align: center;
+    
+    .btn:not(.footer-btn) {
+        position: absolute;
+        bottom: 0;
+        transform: translate(-50%, -110%);
+    }
+
+    label{
+        text-align: start;
+    }
+}
+.modal-header{
+    .close{
+        border-radius: 100%;
+    }
+}
+
+.modal-footer{
+    display: flex;
+
+    .footer-btn{
+        font-family: "Montserrat", sans-serif;
+    }
+    .btn-danger{
+        transform: translate(-100px);
+    }
+
+    .btn-danger:hover{
+        background-color: #ff0000a3;
+    }
+
+    .submit{
+        transform: translate(-110px);
+    }
+}
+
+.service {
+    width: 286px;
+    transition: box-shadow 0.3s ease-in-out;
+    /* flex: 1 0 200px; */
+    /* Set the flex-grow, flex-shrink, and flex-basis values */
+    margin: 10px;
+}
+
+.service:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-img {
+    /* width: 286px; */
+    height: 180px;
+}
+
+.services-container {
+    width: auto;
+    margin-top: 15px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-column-gap: 100px; */
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+}
+
+.notification {
+    position: fixed;
+    z-index: 1000;
+    bottom: 80px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 20px;
+    width: 90vw;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+}
