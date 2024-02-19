@@ -2,21 +2,21 @@ body{
     background-color: black;
     color: white;
     /* background-image: url(../imgs/barber-banner.png); */
-    background-position: top;
+    /* background-position: top; */
     overflow: hidden;
 }
 
-header {
+/* header {
     margin-bottom: 100px;
-}
+} */
 
 .offeredBy {
     font-size: medium;
 }
 
-.content {
+/* .content {
     background-color:  #1f1f1f;
-}
+} */
 
 .form-group {
     display: flex;
@@ -64,11 +64,55 @@ header {
 
 .page-header{
     text-align: center;
+
+    h1{
+        margin-top: 50px;
+        margin-bottom: 20px;
+        font-family: var(--PlayfairDisplay);
+    }
 }
 
 .card.service {
     width: 286px;
-    height: 450px;
+    height: 500px;
+}
+
+.card-body:not(.modal-footer, form){
+    text-align: center;
+    
+    .btn:not(.footer-btn) {
+        position: absolute;
+        bottom: 0;
+        transform: translate(-50%, -110%);
+    }
+
+    label{
+        text-align: start;
+    }
+}
+.modal-header{
+    .close{
+        border-radius: 100%;
+    }
+}
+
+.modal-footer{
+    display: flex;
+
+    .footer-btn{
+        font-family: "Montserrat", sans-serif;
+    }
+    .btn-danger{
+        transform: translate(-100px);
+    }
+
+    .btn-danger:hover{
+        background-color: #ff0000a3;
+    }
+
+    .submit{
+        transform: translate(-110px);
+    }
 }
 
 .service {
@@ -96,4 +140,18 @@ header {
     flex-wrap: wrap;
     /* grid-column-gap: 100px; */
     /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+}
+
+.notification {
+    position: fixed;
+    z-index: 1000;
+    bottom: 80px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 20px;
+    width: 90vw;
+    background-color: red;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
 }

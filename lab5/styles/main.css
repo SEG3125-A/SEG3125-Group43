@@ -225,6 +225,10 @@ body{
         text-align: center;
         padding-bottom: 10px;
         font-family: var(--PlayfairDisplay);
+
+        h4{
+            margin-top: 10px;
+        }
     }
 
     .panel1{
@@ -257,7 +261,7 @@ body{
     font-family: "Montserrat";
     background-color: var(--main-black);
     width: 100vw;
-    padding-bottom: 20px;
+    border-top: 5px solid var(--main-brown);
 
     align-items: center;
     justify-content: center;
@@ -294,6 +298,11 @@ body{
     font-size: large;
     max-height: 300px;
     max-width: 650px;
+
+    h1{
+        font-family: var(--PlayfairDisplay);
+        margin-bottom: 20px;
+    }
 }
 
 /* Services section */
@@ -377,8 +386,11 @@ body{
 .barber-team{
     font-family: "Montserrat";
     background-color: var(--main-black);
+    border-top: 1px solid var(--main-brown);
+    border-bottom: 5px solid var(--main-brown);
     padding: 10px;
     text-align: center;
+    margin-top: -30px;
 }
 .barber-team .barber-container{
     width: 90%;
@@ -394,11 +406,6 @@ body{
     color: white;
     font-size: 30px;
     margin: 20px;
-    
-    
-
-
-
 }
 
 .barber-team .barber-container .card{
@@ -414,6 +421,9 @@ body{
     max-height: 400px;
 }
 
+.barber-team .btn{
+    font-size: large;
+}
 /* map styles */
 
 .map{
@@ -423,8 +433,7 @@ body{
     justify-content: center;
     padding: 50px;
     text-align: center;
-    
-    
+    background-color: var(--main-black);
 }
 
 .map h4{
@@ -479,8 +488,13 @@ footer h4{
 footer p {
     font-family: "Montserrat";
     color: white;
-    font-size: 15px;
+    font-size: 18px;
     margin-bottom: 20px;
+}
+
+footer i:not(.scrolltop){
+    transform: translate(0, 4px);
+    padding-right: 20px;
 }
 
 /* footer #map{

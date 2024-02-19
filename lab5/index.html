@@ -17,7 +17,7 @@
     <!-- Your own additional style sheet -->
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="guideline.css">
-    <link rel="stylesheet" href="./styles/content.css">
+    <link rel="stylesheet" href="./styles/booking.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Additional fonts -->
@@ -38,6 +38,7 @@
         <!--Main-->
     <script src="./scripts/navbar.js"></script>
     <script src="./scripts/utils.js"></script>
+    <script src="./scripts/booking.js"></script>
 </head>
 <body>
 
@@ -72,7 +73,7 @@
                         name=""
                         id="booking-btn"
                         class="btn btn-primary"
-                        href="./booking.html"
+                        href="#services"
                         role="button"
                         >Book us</a
                     >
@@ -130,7 +131,7 @@
                     name=""
                     id="booking-btn"
                     class="btn btn-primary"
-                    href="./booking.html"
+                    href="#services"
                     role="button"
                     >Book us
                     </a></div>
@@ -158,7 +159,7 @@
         <!-- Held in row col as seperate cards -->
         <!-- Each card has a collapsible part -->
         <!-- TODO add images and header and fix buttons-->
-        <div class="services-offered px-5 mx-5" id="services">
+        <!-- <div class="services-offered px-5 mx-5" id="services">
             <div class="row">
                 <div class="col">
                     <div class="card">
@@ -167,7 +168,7 @@
                             <div class="title">
                                 <h4 class="card-title">Hair Consultation</h4>
                             </div>
-                            <!-- collapsible part -->
+                            
                             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile1" aria-expanded="false" aria-controls="profile1">Learn More</button>
                             <div id="profile1" class="collapse p-5">
                                 <p class="px-3">Take an appointment with our hairstylists to get advice on how to treat and take care of your hair.
@@ -184,7 +185,7 @@
                             <div class="title">
                                 <h4 class="card-title">Hair Stylings</h4>
                             </div>
-                            <!-- collapsible part -->
+                            
                             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile2" aria-expanded="false" aria-controls="profile2">Learn More</button>
                             <div id="profile2" class="collapse p-5">
                                 <p class="px-3">Several hairstyles, made by experts - exactly like or better than you'd excpect!
@@ -202,7 +203,7 @@
                             <div class="title">
                                 <h4 class="card-title">Hair Cuts</h4>
                             </div>
-                            <!-- collapsible part -->
+                            
                             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile3" aria-expanded="false" aria-controls="profile3">Learn More</button>
                             <div id="profile3" class="collapse p-5">
                                 <p class="px-3">Whatever cut, whatever style, your call - we're here to service you !
@@ -220,7 +221,7 @@
                             <div class="title">
                                 <h4 class="card-title">Hair Dying</h4>
                             </div>
-                            <!-- collapsible part -->
+                            
                             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile4" aria-expanded="false" aria-controls="profile4">Learn More</button>
                             <div id="profile4" class="collapse p-5">
                                 <p class="px-3">Colors, textures and bazinga.
@@ -234,7 +235,7 @@
                 
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Our barbers section -->
     <div class="barber-team" id="barber-team">
         <div class="team-header">
@@ -291,18 +292,40 @@
         </div>
     </div>
 
+    <!--Booking section-->
+    <div class="booking-section" id="services">
+        <div class="page-header">
+            <h1 class="page-title">Services</h1>
+            <p class="page-desc">Select one of our services below to book with our professionals.</p>
+
+            <!-- Button trigger modal -->
+            
+
+            <!-- Modal -->
+            <div class="booking-modal-container">
+                
+            </div>
+        </div>
+
+        <!-- A container for the services offered -->
+        <!-- i dont think a table will be the best design ideabut im leaving it here for now-->
+        <div class="services-container">
+
+        </div>
+    </div>
+
     <!-- map section -->
     <div class="map" id="location">
         <div class="row">
             <div class="col" id="map-img">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.134505835733!2d-75.69368492266281!3d45.42678987107334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce050228db6cbd%3A0x812f6242f4debecb!2s123%20Rideau%20St%2C%20Ottawa%2C%20ON%20K1N%205X4!5e0!3m2!1sen!2sca!4v1707531326091!5m2!1sen!2sca" 
-                width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                width="1000" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <!-- <a href="https://www.google.com/maps/dir//123+Rideau+St,+Ottawa,+ON+K1N+5X4/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x4cce050228db6cbd:0x812f6242f4debecb?sa=X&ved=2ahUKEwiPl7D4wJ-EAxX1l4kEHVdJD6kQwwV6BAgJEAA" target="_blank">
                 <img src="imgs/map.png" alt="" style="width: 80%; height: auto;">
             </a> -->
         </div>
 
-            <div class="col">
+            <div class="col" id="location-desc">
                 <h4>Location</h4>
                 <p>123 Rideau St, Ottawa ON</p>
                 <p>Phone: (613)-123-4567</p>
@@ -315,8 +338,6 @@
         </div>
     </div>
 
-    <!-- Payment -->
-    
 
     <!-- Footer -->
     <footer>
@@ -353,16 +374,16 @@
                 </div>
                 <div class="col service-info">
                     <h4>Services</h4>
-                    <p><a href="#">Hair Consultation</a></p>
-                    <p><a href="#">Hair Styling</a></p>
-                    <p><a href="">Hair Cuts</a></p>
-                    <p><a href="">Hair Dying</a></p>
+                    <p><a href="#services">Hair Consultation</a></p>
+                    <p><a href="#services">Hair Styling</a></p>
+                    <p><a href="#services">Hair Cuts</a></p>
+                    <p><a href="#services">Hair Dying</a></p>
                 </div>
                 <div class="col socials-info">
                     <h4>Socials</h4>
-                    <p>Facebook</p>
-                    <p>Instagram</p>
-                    <p>Twitter</p>
+                    <p><i class="fa fa-facebook"></i> Facebook</p>
+                    <p><i class="fa fa-instagram"></i>Instagram</p>
+                    <p><i class="fa fa-twitter-square"></i>Twitter</p>
                 </div>
             </div>
         </div>

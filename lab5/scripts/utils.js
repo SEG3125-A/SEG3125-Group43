@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Select the links
-    const links = document.querySelectorAll('a:not(#booking-btn, #navbar-brand)');
+    const links = document.querySelectorAll('a:not(#navbar-brand)');
 
     // Add a click event listener to each link
     links.forEach((link) => {
@@ -23,7 +23,15 @@ $(document).ready(function() {
         });
     });
 
-    $("#scrolltop").on('click', function () {
-        $('html, body').animate({ scrollTop: 0 });
+    document.getElementById("scrolltop").addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    $('[data-toggle="tooltip"]').tooltip({
+        'placement': 'top'
+    });
+    $('[data-toggle="popover"]').popover({
+        trigger: 'hover',
+            'placement': 'top'
     });
 });

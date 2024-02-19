@@ -148,10 +148,8 @@ function createPaymentModal(serviceId) {
 
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="submit" value="submit" id="confirm-${serviceId}" class="btn btn-primary confirm-booking">Confirm Booking</button>
-    
-        </div>
+        <button type="submit" value="submit" id="confirm-${serviceId}" class="btn btn-primary confirm-booking footer-btn submit">Confirm Booking</button>
+        <button type="button" class="btn btn-danger footer-btn" data-bs-dismiss="modal">Close</button>
     </div>
     
         </form>
@@ -175,7 +173,7 @@ function createBookingModal(service) {
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel">Booking for: ${service.name}</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="close px-2" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -204,8 +202,16 @@ function createBookingModal(service) {
                     </div>
 
                     <div class="form-group">
-                        <label for="booking-date-${service.id}" class="col-form-label date-label">Booking Date:</label>
-                        <input type="date" name="date" id="booking-date-${service.id}" class="date-input" onchange="" required>
+                      <label for="booking-date-${service.id}" class="col-form-label date-label">
+                        Booking Date:
+                        <span class="info-card" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        title="Dates greyed out are already booked. Please select from our available dates.">
+                          <i class="fa fa-info-circle"></i>
+                        </span>
+                      </label>
+                      <input type="date" name="date" id="booking-date-${service.id}" class="date-input" onchange="" required>
                     </div>
 
                     
@@ -227,8 +233,8 @@ function createBookingModal(service) {
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        <button type ="button" id="service-pay-${service.id}" class="btn btn-primary go-to-payment" data-bs-target="#paymentModal-${service.id}" ">Proceed to payment</button>
+                        <button type ="button" id="service-pay-${service.id}" class="btn btn-primary footer-btn submit go-to-payment" data-bs-target="#paymentModal-${service.id}" ">Proceed to payment</button>
+                        <button type="button" class="btn btn-danger footer-btn" data-bs-dismiss="modal">Close</button>
                     </div>
 
                 </form>
@@ -289,14 +295,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("go-to-payment")) {
+    console.log("Payment button clicked");
     const serviceId = e.target.id.substring(12);
     const form = document.getElementById(`form-serv-${serviceId}`);
     // console.log(form.checkValidity());
     // console.log(form.elements[2].value);
 
-    if (form.checkValidity()) {
+    // if (form.checkValidity()) {
       validateBookingRequest(form);
-    }
+    // }
 
     console.log("Payment button clicked");
   }
@@ -318,6 +325,36 @@ function validateBookingRequest(form) {
     return false;
   } else {
     console.log("Provider not booked and confirmd");
+
+    function showNotification(message) {
+      const notification = document.createElement('div');
+  
+      notification.textContent = message;
+  
+      notification.classList.add('notification');
+  
+      document.body.appendChild(notification);
+  
+      setTimeout(() => {
+        notification.style.opacity = 0;
+        document.body.removeChild(notification);
+      }, 3000);
+  }
+  
+  if (!form.elements[0].value) {
+      showNotification("Please enter your name.");
+      return false;
+  }
+  
+  if (!form.elements[3].value) {
+      showNotification("Please choose a date.");
+      return false;
+  }
+  
+  if (!form.elements[4].value) {
+      showNotification("Please choose a time.");
+      return false;
+  }
 
     bookingDetails.name = form.elements[0].value;
     bookingDetails.dateTime = bkDateTime;
