@@ -180,6 +180,8 @@ function createBookingModal(service) {
 
             <div class="modal-body">
 
+                <p id="bk-form-error-${service.id}" class=""></p>
+
                 <form id="form-serv-${service.id}">
                     <div class="form-group">
                         <label for="customer-name-${service.id}" class="col-form-label">Customer Name:</label>
@@ -326,18 +328,32 @@ function validateBookingRequest(form) {
   } else {
     console.log("Provider not booked and confirmd");
 
+    const serviceId = form.elements[0].id.substring(14);
+
+
     function showNotification(message) {
-      const notification = document.createElement('div');
+
+
+      const notifyError = document.getElementById(`bk-form-error-${serviceId}`);
+      notifyError.classList.add("alert");
+      notifyError.classList.add("alert-danger");
+      notifyError.innerHTML = message;
+      console.log(notifyError.classList);
+      console.log(notifyError.innerHTML);
+
+      /* const notification = document.createElement('div');
   
       notification.textContent = message;
   
       notification.classList.add('notification');
   
-      document.body.appendChild(notification);
+      document.body.appendChild(notification); */
   
       setTimeout(() => {
-        notification.style.opacity = 0;
-        document.body.removeChild(notification);
+        notifyError.classList = "";
+        notifyError.innerHTML = "";
+        /* notification.style.opacity = 0;
+        document.body.removeChild(notification); */
       }, 3000);
   }
   
@@ -363,18 +379,13 @@ function validateBookingRequest(form) {
     // providers[providerId].bookedDates.push(bkDateTime);
 
     // Get service id for below
-    const serviceId = form.elements[0].id.substring(14);
 
     var myModalEl = document.getElementById(`modal-${serviceId}`);
     var modal = bootstrap.Modal.getInstance(myModalEl);
     modal.hide();
 
-    var paymentModal = new bootstrap.Modal(
-      document.getElementById(`paymentModal-${serviceId}`),
-      {
-        keyboard: false,
-      }
-    );
+    var paymentModal = new bootstrap.Modal( document.getElementById(`paymentModal-${serviceId}`),
+    {keyboard: false,});
     paymentModal.show();
 
     for (var i = 0; i < form.elements.length - 2; i++) {
