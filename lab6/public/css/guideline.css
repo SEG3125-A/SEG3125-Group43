@@ -1,0 +1,122 @@
+:root{
+    --main-background : rgba(0,0,0,0.88);
+
+    --title-font : 'pp_telegrafultralight', sans-serif;
+    --title-size : 1rem;
+
+    --text-font: 'pp_telegrafregular', sans-serif;
+    --text-size: 30px;
+
+    --footer-text-size: 0.8rem;
+
+    --hero-gradient : linear-gradient(to top, rgba(0,0,0,0.5), black);
+    --hero-background: rgba(0,0,0,0.14);
+
+    --adveris-beige: #f8f7f3;
+
+    --adveris-green: #226d68;
+}
+
+*{
+    transition: all 0.3s ease-in-out; 
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'pp_telegrafregular';
+    src: url('../fonts/pptelegraf-regular-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafregular_oblique';
+    src: url('../fonts/pptelegraf-regularoblique-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-regularoblique-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafregular_slanted';
+    src: url('../fonts/pptelegraf-regularslanted-webfont.woff2') format('woff2'),
+         url('./fonts/.pptelegraf-regularslanted-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafultrabold';
+    src: url('../fonts/pptelegraf-ultrabold-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-ultrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafultrabold_oblique';
+    src: url('../fonts/pptelegraf-ultraboldoblique-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-ultraboldoblique-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafultrabold_slanted';
+    src: url('../fonts/pptelegraf-ultraboldslanted-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-ultraboldslanted-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafultralight';
+    src: url('../fonts/pptelegraf-ultralight-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-ultralight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafultralight_oblique';
+    src: url('../fonts/pptelegraf-ultralightoblique-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-ultralightoblique-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'pp_telegrafultralight_slanted';
+    src: url('../fonts/pptelegraf-ultralightslanted-webfont.woff2') format('woff2'),
+         url('../fonts/pptelegraf-ultralightslanted-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html{
+    background-color: var(--adveris-beige);
+    overflow: scroll;
+    scroll-behavior: smooth;
+
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}

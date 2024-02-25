@@ -1,0 +1,13 @@
+{
+  "firstname": "a",
+  "lastname": "a",
+  "rating": "3",
+  "rating2": "3",
+  "comments": "a",
+  "impression": "Very good",
+  "aspects": {
+    "navigation": "navigation",
+    "experience": "experience",
+    "pallete": "pallete"
+  }
+}

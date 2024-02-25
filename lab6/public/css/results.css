@@ -1,0 +1,86 @@
+@import './guideline.css';
+
+body{
+    background-color: var(--adveris-beige);
+}
+
+button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: var(--text-font);
+    font-size: medium;
+    border-radius: 5px;
+    border: 1px rgba(0,0,0,0.44) solid;
+    background-color: transparent;
+    color: black;
+    width: 100px;
+    height: 50px
+}
+
+button:hover{
+    background-color: var(--adveris-green);
+    cursor: pointer;
+}
+
+.header{
+    position: fixed;
+    z-index: 100;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-family: 'pp_telegrafultrabold', sans-serif;
+    font-size: var(--title-size);
+    color: black;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 5px;
+    top: 25px;
+    left: 50%;
+    transform: translateX(5%);
+    border-bottom: 1px solid black;
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px); 
+}
+
+.website-redirect-button{
+    right: 100px;
+    position: fixed;
+
+    width: 300px;
+    top: 30px;
+        
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    :hover{
+        cursor: pointer;
+        color: var(--adveris-green);
+    }
+}
+
+.website-redirect-button-text{
+    margin: 5px;
+    font-family: var(--text-font);
+    color: black;
+}
+
+.backend-door{
+    position: fixed;
+    top: -10px;
+    left: 90px;
+}
+
+.container{
+    position: relative;
+    top: 100px;
+}
