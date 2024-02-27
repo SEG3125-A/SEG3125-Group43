@@ -114,3 +114,14 @@ button:hover{
     right: 10px;
     cursor: pointer;
 }
+
+.footer .scrolltop{
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    color: black;
+    border-radius: 50%;
+    cursor: pointer;
+}

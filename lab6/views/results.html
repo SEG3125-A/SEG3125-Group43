@@ -12,6 +12,14 @@
     <!--Linked Resources-->
     <link rel="stylesheet" href="./css/results.css">
     <script src="./js/charts.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        $(document).ready(function (){
+            $('.scrolltop').click(function (){
+                $(window).scrollTop(0);
+            });
+        })
+    </script>
     <title>Survey Results</title>
 </head>
 <body>
@@ -77,6 +85,9 @@
         </div>
     </div>
     <section class="footer">
+        <div class="btn btn-primary scrolltop" id="scrolltop">
+            <i class="fa fa-arrow-up px-2 py-2" aria-hidden="true"></i>
+        </div>
         <div class="signature">
             <p>Website designed by Tevin, Christian and Oscar</p>
         </div>

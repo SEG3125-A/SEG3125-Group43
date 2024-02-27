@@ -5,6 +5,11 @@ This app was developped using `nodeJS`. Below are a list of specifications and i
 ## Requirements
 - Make sure you have `node.js` installed. 
 - Upon downloading the lab folder or the repo, run `npm install` to install all dependencies. 
+- `.env` Environment variables stored in a `.env` file on the same layer as the `server.js` file, 
+    containing the firebase serviceKey
+    + Note that the Vercel deployment uses a database already containing the database setup
+        * Main collection : results --verbatim
+        * Sub-directories : (username) --auto-generated
 
 ## Node commands
 - `npm run start`: Starts app in product mode
