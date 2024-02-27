@@ -7,8 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <!--Charter-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!--Linked Resources-->
     <link rel="stylesheet" href="./css/results.css">
+    <script src="./js/charts.js"></script>
     <title>Survey Results</title>
 </head>
 <body>
@@ -25,50 +28,64 @@
     </section>
     <!--Feed through JS-->
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Question</th>
-                                <th>Answer</th>
-                            </tr>
-                        </thead>
-                        <tbody id="results">
-                            <tr>
-                                <td>Question 1</td>
-                                <td>{{firstname}}</td>
-                            </tr>
-                            <tr>
-                                <td>Question 2</td>
-                                <td>{{lastname}}</td>
-                            </tr>
-                            <tr>
-                                <td>How would you rate your experience with the website ?</td>
-                                <td>{{rating}} out of 5</td>
-                            </tr>
-                            <tr>
-                                <td>How likely are you to recommend the services based on the look of the website ?</td>
-                                <td>{{rating2}} out of 5</td>
-                            </tr>
-                            <tr>
-                                <td>What aspects of the website do you enjoy the most ?</td>
-                                <td>{{aspects}}</td>
-                            </tr>
-                            <tr>
-                                <td>Comments</td>
-                                <td>{{comments}}</td>
-                            </tr>
-                            <tr>
-                                <td>What was your first impression of the website ?</td>
-                                <td>{{impression}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="col">
+            <div class="row">
+                <h4 class="d-flex justify-content-center align-items-center pb-5">Data collected from {{number}}</h4>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <h2>Overall experience rating</h2>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <canvas class="" id="overallExperienceChart" style="width: 300px; height: 300px;"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <h2>Recommendation rating</h2>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <canvas id="recommendationChart" style="width: 300px; height: 300px;"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <h2>Aspects preferences</h2>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <canvas id="aspectsChart" style="width: 300px; height: 300px;"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <h2>First impression rating</h2>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <canvas id="firstImpressionChart" style="width: 300px; height: 300px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="comments">
+                    <h2>Comments</h2>
+                    <div id="comments">
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <section class="footer">
+        <div class="signature">
+            <p>Website designed by Tevin, Christian and Oscar</p>
+        </div>
+        <div class="github-redirect">
+            <p><a href="https://github.com/SEG3125-A/SEG3125-Group43">Check out the repository on GitHub !</a></p>
+        </div>
+    </section>
 </body>
+<script>
+
+</script>
 </html>

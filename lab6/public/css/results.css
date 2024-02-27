@@ -37,10 +37,10 @@ button:hover{
     font-size: var(--title-size);
     color: black;
     position: absolute;
-    padding: 0;
+    padding: 25px;
     margin: 0;
     padding-bottom: 5px;
-    top: 25px;
+    top: 0px;
     left: 50%;
     transform: translateX(5%);
     border-bottom: 1px solid black;
@@ -83,4 +83,34 @@ button:hover{
 .container{
     position: relative;
     top: 100px;
+}
+
+.footer{
+    width: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+
+    bottom: 0;
+    left: 0;
+    height: 30px;
+
+    background-color: rgba(0,0,0,0.77);
+
+    font-size: var(--footer-text-size);
+}
+
+.signature{
+    font-family: var(--text-font);
+    margin-top: 20px;
+    color : white;
+    padding-left: 10px;
+}
+
+.github-redirect{
+    font-family: var(--text-font);
+    margin-top: 20px;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
 }
