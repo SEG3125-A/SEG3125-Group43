@@ -175,8 +175,9 @@ button:hover{
         box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
         background-color: var(--adveris-beige);
         border-radius: 10px;
-        width: 30%;
+        max-width: 30%;
         max-height: 50%;
+        min-height: 50%;
         z-index: 1;
         object-fit: contain; 
     }

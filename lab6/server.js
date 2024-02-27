@@ -38,14 +38,14 @@ app.get('/results', async (req, res) => {
     // This is exhausting to read, but it's just a bunch of data manipulation
     try {
         // First get database from Firestore
-        const snapshot = await db.collection('results').get();
+        const snapshot = await db.collection('results').orderBy('timestamp', 'desc').get();
         const results = [];
         snapshot.forEach(doc => {
             // Then store the data in an array
             results.push(doc.data());
         });
 
-        const comments = results.map(result => result.comments).filter(comment => comment != "");
+        const comments = results.map(result => result.comments).filter(comment => comment != null && comment.trim() != "");
         // Prepare the data for the charts
         // Map the data from the database based on the format required by the charts
         const chartData = results.map(result => {
@@ -76,6 +76,13 @@ app.get('/results', async (req, res) => {
             });
         });
 
+        let commentsData = comments.map((comment, index) => ({
+            comment: comment,
+            user: results[index].firstname + ' ' + results[index].lastname
+        }));
+    
+        commentsData = commentsData.filter(data => data.comment != null && data.comment.trim() != "");
+        
         // Create the final chart data
         const finalChartData = {
             overallExperience: {
@@ -95,8 +102,8 @@ app.get('/results', async (req, res) => {
                 data: Object.values(aspectCounts)
             },
             comments: {
-                data: comments,
-                user: results.map(result => result.firstname + ' ' + result.lastname).filter(result => result.comments != "")
+                data: commentsData.map(data => data.comment),
+                user: commentsData.map(data => data.user)
             }
         };
 
@@ -130,22 +137,53 @@ app.post('/submit', async (req, res) => {
         let values = keys.map(key => jsonData[key]);
 
         let newArray = Object.fromEntries(keys.map((_, i) => [keys[i], values[i]]));
-        
+
         keys.forEach(key => delete jsonData[key]);
         jsonData['aspects'] = newArray;
+        jsonData['timestamp'] = Date.now();
 
-        const docRef = db.collection('results').doc(jsonData['firstname'] + ' ' + jsonData['lastname']); // Send to firestore 
+        // jsonData.sort((a, b) => {
+        //     const dateA = new Date(a.timestamp);
+        //     const dateB = new Date(b.timestamp);
+        //     return dateB - dateA; // For ascending order
+        // });
 
-        if(!docRef) console.log("Failed to create a Firestore reference.") && alert("Failed to create a Firestore reference.") && res.redirect('/'); // TODO:Make error appear on page
-        // if(docRef.get().then((docSnapshot) => {if(!docSnapshot.exists) console.log("Document already exists.") && alert("First and last name combo already exists in the database. Please try again.") && res.redirect('/')})); // TODO:Make error appear on page
+        const docRef = db.collection('results').doc(jsonData['firstname'] + ' ' + jsonData['lastname']); // Send to firestore
 
-        await docRef.set(jsonData) && console.log("Data has been written to Firestore");
+        if (!docRef) {
+            console.log("Failed to create a Firestore reference. Incorrect path or data.");
+            Toastify({
+                text: "Internal server error. Please try again.",
+                duration: 3000,
+                gravity: "bottom",
+                position: 'right',
+                backgroundColor: "red",
+            }).showToast();
+            res.redirect('/');
+        }
+
+        if (docRef.get().then((docSnapshot) => { // Doesn't work 
+            if (docSnapshot['firstname'] != null) {
+                console.log("Document already exists.");
+                Toastify({
+                    text: "First and last name combo already exists in the database. Please try again.",
+                    duration: 3000,
+                    gravity: "bottom",
+                    position: 'right',
+                    backgroundColor: "red",
+                }).showToast();
+                return;
+            }
+        }));
+
+        await docRef.set(jsonData);
+        console.log("Data has been written to Firestore");
+        setTimeout(() => res.redirect('/'), 2000);
     } catch (err) {
         console.error(err);
     }
-    res.redirect('/');
 });
 
 app.listen(PORT, () =>
-    console.log(current.getHours() + ":" + current.getMinutes() + " - " + `Server is running on http://localhost:${PORT}`)
+    console.log(current.getHours() + ":" + current.getMinutes() + " - " + `Server now running on http://localhost:${PORT}`)
 );

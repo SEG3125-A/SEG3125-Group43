@@ -7,17 +7,13 @@
     <!--Style sheet-->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <!--Animation script-->
     <script src="./js/script.js"></script>
     <!--Scrapped Mouse scroll effect-->
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(window).on('scroll', function() {
-        $("#realcontent").css("left", -$(window).scrollTop());
-        });
-    </script>
     <!--Confetti effect-->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
     <!--Fonts-->
@@ -45,8 +41,8 @@
                     <a href="https://www.adveris.fr/"><img class="image3" src="./images/main-logo.png" alt="" id="image"></a>
                     <div class="hero-content">
                         <p>Enter your information</p>
-                        <p>First name: <input required id="input" type="text" name="firstname"></p>
-                        <p>Last name: <input required id="input" type="text" name="lastname"></p>
+                        <p>First name: <input id="input" type="text" name="firstname"></p>
+                        <p>Last name: <input id="input" type="text" name="lastname"></p>
                     </div>
                 </div>
                 <div class="buttons">
@@ -126,6 +122,8 @@
                     <label for="checkbox5">The overall experience</label><br>
                     <input type="checkbox" id="checkbox6" name="pallete" value="pallete">
                     <label for="checkbox6">The color pallete</label><br>
+                    <input type="checkbox" id="checkbox7" name="none" value="none">
+                    <label for="checkbox7">None</label><br>
                 </div>
             </div>
             <div class="right-panel panel">
@@ -222,5 +220,162 @@
             <p><a href="https://github.com/SEG3125-A/SEG3125-Group43">Check out the repository on GitHub !</a></p>
         </div>
     </section>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
+<script>
+    $(document).ready(function() {
+        $("#body").on("submit", function(e) {
+            $("#survey-submit").prop("disabled", true);
+            e.preventDefault();
+            if(validate() == true) {
+                confetti({
+                particleCount: 100,
+                spread: 360,
+                origin: { y: 0.6 },
+                });
+                
+                var form = $(this);
+                var url = form.attr('action');
+                var type = form.attr('method');
+                var data = form.serialize();
+
+                $.ajax({
+                    url: url,
+                    type: type,
+                    data: data,
+                    success: function(response) {
+                        Toastify({
+                            text: "Thank you for your feedback!",
+                            gravity: "bottom",
+                            position: "right",
+                            className: "success",
+                            stopOnFocus: true,
+                            style: {
+                                background: "green",
+                                width: "300px",
+                            }
+                        }).showToast();
+                    }
+                })
+
+                
+            } else {
+                $("#survey-submit").prop("disabled", false);
+            }
+        })
+
+        function validate() {
+            var firstname = $("input[name='firstname']").val();
+            var lastname = $("input[name='lastname']").val();
+
+            if(firstname == "" || lastname == "") {
+                Toastify({
+                    text: "Please fill out your name information.",
+                    gravity: "bottom",
+                    position: "right",
+                    className: "error",
+                    stopOnFocus: true,
+                    style: {
+                        background: "red",
+                        width: "300px",
+                    }
+                }).showToast();
+                return false;
+            }
+
+            var ratings = document.querySelectorAll('input[type=radio][name=rating]');
+
+            var isRatingChecked = false;
+            for (rating of ratings) {
+                if (rating.checked) {
+                    isRatingChecked = true;
+                    break;
+                }
+            }
+            if (!isRatingChecked) {
+                Toastify({
+                    text: "Please answer the second question.",
+                    gravity: "bottom",
+                    position: "right",
+                    className: "error",
+                    stopOnFocus: true,
+                    style: {
+                        background: "red",
+                        width: "300px", 
+                    }
+                }).showToast();
+                return false;
+            }
+
+            var ratings2 = document.querySelectorAll('input[type=radio][name=rating2]');
+
+            var isRating2Checked = false;
+            for (rating2 of ratings2) {
+                if (rating2.checked) {
+                    isRating2Checked = true;
+                    break;
+                }
+            }
+            if (!isRating2Checked) {
+                Toastify({
+                    text: "Please answer the first rating question.",
+                    gravity: "bottom",
+                    position: "right",
+                    className: "error",
+                    stopOnFocus: true,
+                    style: {
+                        background: "red",
+                        width: "300px", 
+                    }
+                }).showToast();
+                return false;
+            }
+
+            var checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+            var isCheckboxChecked = false;
+            for (checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    isCheckboxChecked = true;
+                    break;
+                }
+            }
+            if (!isCheckboxChecked) {
+                Toastify({
+                    text: "Please answer the second rating question.",
+                    gravity: "bottom",
+                    position: "right",
+                    className: "error",
+                    stopOnFocus: true,
+                    style: {
+                        background: "red",
+                        width: "300px", 
+                    }
+                }).showToast();
+                return false;
+            }
+
+            var selector = document.getElementById('impression');
+
+            var impression = selector.options[selector.selectedIndex].value;
+
+            if (impression == "") {
+                Toastify({
+                    text: "Please answer the impression question.",
+                    gravity: "bottom",
+                    position: "right",
+                    className: "error",
+                    stopOnFocus: true,
+                    style: {
+                        background: "red",
+                        width: "300px", 
+                    }
+                }).showToast();
+                return false;
+            }
+
+            return true;
+        }
+    })
+</script>
 </html>
