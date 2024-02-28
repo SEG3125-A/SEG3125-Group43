@@ -221,6 +221,7 @@
         </div>
     </section>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </body>
 <script>
     $(document).ready(function() {
@@ -377,5 +378,52 @@
             return true;
         }
     })
+
+    $(window).on('load resize', function() {
+        if ($(this).innerWidth() > 768) {
+            $('#comments').attr('cols', '100');
+        } else {
+            $('#comments').attr('cols', '50');
+        }
+    })
+
+    $(window).resize(function() {
+    if ($(window).width() < 768) {
+
+    } else {
+        $('.selection1').css({
+            'display': 'inline-block',
+            'width': '50%',
+            'font-family': 'var(--text-font)',
+            'display': 'flex',
+            'gap': '10px',
+            'justify-content': 'center',
+            'align-items': 'center'
+        });
+
+        $('.selection1').children('label').css({
+            'align-items': 'center',
+            'justify-content': 'center',
+            'display': 'flex'
+        })
+
+        $('.selection2').css({
+            'display': 'inline-block',
+            'width': '50%',
+            'font-family': 'var(--text-font)',
+            'display': 'flex',
+            'gap': '10px',
+            'justify-content': 'center',
+            'align-items': 'center',
+            'top' : '20px',
+        });
+
+        $('.selection2').children('label').css({
+            'align-items': 'center',
+            'justify-content': 'center',
+            'display': 'flex'
+        })
+    }
+    }).trigger('resize'); // Trigger the resize event initially
 </script>
 </html>

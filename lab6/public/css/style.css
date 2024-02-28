@@ -66,9 +66,9 @@ button:hover{
     width: 300px;
     top: 30px;
         
-    justify-content: center;
+    /* justify-content: center;
     align-items: center;
-    display: flex;
+    display: flex; */
 
     :hover{
         cursor: pointer;
@@ -549,5 +549,74 @@ button:hover{
     p{
         text-align: center;
         width: 100vw;
+    }
+}
+
+@media screen and (max-width : 1400px){
+    #section1{
+        .image-container:nth-child(1){
+            height: 300px;
+        }
+
+        .image-container:nth-child(2){
+            height: 300px;
+        }
+
+        .image-container:nth-child(3){
+            height: 300px;
+        }
+
+        .image1, .image2, .image4{
+            height: 30%;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px){
+    .header{
+        .website-redirect-button{
+            position: absolute;
+            top: 90vh;
+            right: -105vw;
+        }
+
+    }
+    #section1{
+        .right-panel{
+            display: none;
+        }
+    }
+    #section4{
+        display: flex;
+        flex-direction: column;
+
+        .panel{
+            margin: 0;
+        }
+
+        .left-panel{
+            top: 0;
+            margin-top: -230px;
+        }
+
+        .right-panel{
+            width: 100vw;
+            margin-top: -420px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    .header{
+        .website-redirect-button{
+            position: absolute;
+            top: 90vh;
+            right: -110vw;
+        }
+
+        .backend-door{
+            left: 5px;
+        }
     }
 }
