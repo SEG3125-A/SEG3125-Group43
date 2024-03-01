@@ -17,3 +17,4 @@ This app was developped using `nodeJS`. Below are a list of specifications and i
 
 #### Known issues
 - Nodemon doesn't refresh the home page;
+- Edge's rendition of the results page looks horrendous
