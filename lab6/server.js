@@ -46,6 +46,9 @@ app.get('/results', async (req, res) => {
         });
 
         const comments = results.map(result => result.comments).filter(comment => comment != null && comment.trim() != "");
+        const users = results.filter(result => result.comments != null && result.comments.trim() != "").map(result => result.firstname + " " + result.lastname);
+        // Filter 1 
+
         // Prepare the data for the charts
         // Map the data from the database based on the format required by the charts
         const chartData = results.map(result => {
@@ -76,12 +79,16 @@ app.get('/results', async (req, res) => {
             });
         });
 
-        let commentsData = comments.map((comment, index) => ({
+        let commentsData = comments
+        .map((comment, index) => ({
             comment: comment,
-            user: results[index].firstname + ' ' + results[index].lastname
-        }));
+            user: users[index]
+        }))
+        .filter(data => data.comment && data.comment.trim() !== '');
+        // Filter 2
     
-        commentsData = commentsData.filter(data => data.comment != null && data.comment.trim() != "");
+        commentsData = commentsData.filter(data => data.comment != null && data.comment.trim() != "" && !/^[\r\n\t]*$/.test(data.comment));
+        //Filter 3
         
         // Create the final chart data
         const finalChartData = {
@@ -102,8 +109,9 @@ app.get('/results', async (req, res) => {
                 data: Object.values(aspectCounts)
             },
             comments: {
-                data: commentsData.map(data => data.comment),
-                user: commentsData.map(data => data.user)
+                user: commentsData.filter(data => data.comment && data.comment.trim() !== "").map(data => data.user),
+                data: commentsData.filter(data => data.comment && data.comment.trim() !== "").map(data => data.comment)
+                // Filtered 5 times because Firebase hates me
             }
         };
 
