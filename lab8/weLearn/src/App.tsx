@@ -1,37 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react'
+
+// Routing library 
+import { Route, Routes } from 'react-router-dom'
+
+// Routers for logged in and logged out users
+import PublicRoute from './routes/public'
+import PrivateRoute from './routes/private'
+
+// Auth context and provider
+import { useAuth } from './hooks/useAuth';
+import { AuthProvider } from './context/auth'
+
+// Page components for the routes
+import SignUp from './pages/signup'
+import Login from './pages/login'
+
+import Dashboard from './pages/dashboard'
 
 // Main render function
 // Could be home page, could be a redirect to a login page, etc.
 // Not really anything concrete
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <AuthProvider > 
+      {/*Provides user authentication context*/}
+      <Routes> {/*Routing wrapper for declared routes */}
+          <Route path='/' element={ 
+            <PublicRoute>
+                <SignUp />
+            </PublicRoute>
+          } /> {/*Home page when user isn't logged in. Checks if there is user then redirects to dashboard if yes. Set to signup for now*/}
+
+          <Route path='/signup' element={ 
+           <PublicRoute>
+              <SignUp />
+           </PublicRoute>
+          } /> {/*Signup page when user isn't logged in. Check if there is user then redirects to dashboard if yes*/}
+
+          <Route path='/login' element={ 
+            <PublicRoute>
+                <Login />
+            </PublicRoute>
+          } /> {/*Login page when user isn't logged in. Check if there is user then redirects to dashboard if yes*/}
+
+          <Route path='/dashboard' element={ 
+            <PrivateRoute>
+                <Dashboard />
+            </PrivateRoute>
+          } /> {/*Dashboard page when user is logged in. Checks if there is user then redirects to login if no*/}
+      </Routes>
+    </AuthProvider>
   )
 }
 

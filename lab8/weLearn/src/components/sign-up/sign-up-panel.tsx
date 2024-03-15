@@ -1,0 +1,36 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react'
+
+// Page context to keep track of which page is being displayed in the sign up process
+import  PageContext  from '../../context/PageContext';
+
+// Pages
+import Page1 from './page1';
+import Page2 from './page2';
+import Page3 from './page3';
+import Page4 from './page4';
+
+// Navbar component 
+import Header from './nav';
+
+// Footer component
+import Footer from './footer';
+
+function SignUp() {
+
+const [page, setPage] = useState(0);
+return (
+    <PageContext.Provider value={{page, setPage}}>
+        <div className='min-w-screen min-h-screen overflow-hidden bg-white font-ubuntu'>
+        <Header type='signup'/>
+        {page === 0 && <Page1/>}
+        {page === 1 && <Page2/>}
+        {page === 2 && <Page3/>}
+        {page === 3 && <Page4/>}
+        <Footer />
+        </div>
+    </PageContext.Provider>
+)
+}
+
+export default SignUp
