@@ -4,25 +4,76 @@ import React, { useState, useEffect } from "react";
 // Database reference 
 import { getTopics } from "../../firebase/utils";
 
+// Storing user topic information
+import useTopics from "../../hooks/useTopics";
+
+// Moving page
+import usePage  from "../../hooks/usePage";
+
+// Utils 
+import { updateUserTopics, getUserTopics, getUserCredentials } from "../../firebase/utils"
+
 // Components
 import CardDivided from "./cardDivided";
 import ErrorAlert from "../ErrorAlert";
 import Card from "./card";
+import IsLoading from "../isLoading";
 import { DocumentData } from "firebase/firestore";
 
 function Page2 () {
-    const [isChecked, setIsChecked] = useState(false);
+  // THIS IS MESSY AND NEEDS TO BE CLEANED UP
+  // APOLOGIES 
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+
     const [topics, setTopics] = useState<DocumentData[]>([]); 
     const [filter, setFilter] = useState('');
+
+    const { userTopics, selectedTopics, setSelectedTopics } = useTopics();
+
+    const { page, setPage } = usePage();
+
+    // Ran into an issue where the data wasn't stored properly
+    // After a page switch 
+    // Temporary fix: store the final data in a variable set in Utils
+    // and then retrieve it when needed
+    const handleSelect = (topicId: number | string) => {
+      const topicIdNumber = typeof topicId === 'string' ? parseInt(topicId) : topicId;
+    
+      if (selectedTopics.includes(topicIdNumber)) {
+        const newSelectedTopics = selectedTopics.filter((topic) => topic !== topicIdNumber);
+        setSelectedTopics(newSelectedTopics);
+        updateUserTopics(newSelectedTopics);
+      } else {
+        const newSelectedTopics = [...selectedTopics, topicIdNumber];
+        setSelectedTopics(newSelectedTopics);
+        updateUserTopics(newSelectedTopics);
+      }
+    };
+
+    // Adds a condition where if the user has already selected topics 
+    // They will appear checked in the grid 
     useEffect(() => {
-        getTopics()
+      // If getUserTopics() is not empty, set selectedTopics to 
+      // the user's topics
+      if (getUserTopics() && getUserTopics().length > 0) {
+        setSelectedTopics(getUserTopics());
+      }
+    }, []); 
+
+    // Fetches the topics from the database
+    useEffect(() => {
+        getTopics(setIsLoading)
             .then((topics: DocumentData[] | undefined) => setTopics(topics || []))
             .catch(error => setError(error));
-    }, []);
+    }, [userTopics]);
+
     return (
-      <div className='flex justify-center items-center h-full'>
+      <div className='flex justify-center items-center h-full overflow-hidden'>
         {error && <ErrorAlert error = {error} />}
+        <div className="absolute top-[490px] ml-[315px] z-[2000]">
+          {isLoading && <IsLoading />}
+        </div>
         <CardDivided 
         divPosition={0.35}
         title="What topic would you like to learn about ?"
@@ -33,6 +84,10 @@ function Page2 () {
         nextBtn={true}
         nextBtnText='Continue'
         nextBtnStyle="absolute bottom-10 ml-[130px]"
+        nextBtnFunction={() => {
+          updateUserTopics(userTopics)
+          setPage(page + 1)
+        }}
 
         prevBtn={true}
         prevBtnText='Go Back'
@@ -46,19 +101,22 @@ function Page2 () {
                         setFilter(e.target.value)
                     }}/>
                 </div>
-                <div className="h-[400px] overflow-auto flex flex-wrap gap-2 mt-3 mb-5 pr-2">
+                <div className="h-[500px] overflow-auto flex flex-wrap overflow-x-hidden gap-2 mt-3 mb-5 -mx-12 pr-2">
                 {topics
-                    .filter(topic => topic.title.toLowerCase().includes(filter.toLowerCase()))
-                    .map((topic, index) => (
+                  .filter(topic => topic.title.toLowerCase().includes(filter.toLowerCase()))
+                  .map((topic) => (
                     <Card
-                        key={topic.id || index}
-                        title={topic.title}
-                        detail={topic.detail}
-                        image={true}
-                        imagelink={topic.image}
-                        id={index.toString()}
+                      key={topic.id}
+                      title={topic.title}
+                      detail={topic.detail}
+                      image={true}
+                      imagelink={topic.image}
+                      id={topic.id}
+                      onSelect={handleSelect}
+                      className={selectedTopics.includes(topic.id) || getUserTopics()?.includes(topic.id) ?  'selected' : ''}
                     />
-                    ))}
+                ))}
+                {/*Can't select element 0 - Animation*/}
                 </div>
               </div>
             </>

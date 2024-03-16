@@ -40,17 +40,22 @@ type cardProps = {
     googleSignupFunction?: () => void;
 };
 
-const CardDivided: React.FC<cardProps> = ({title, titleStyle, subtitle, subtitleStyle, childrenRight: children, childrenRightStyle: childrenStyle, cardStyle, divPosition = 0.5, leftStyle, rightStyle, nextBtn: nextBtn, nextBtnText, nextBtnStyle, nextBtnFunction,nextBtnDisabled= false, prevBtn, prevBtnText, prevBtnStyle, googleSignup, googleSignupFunction}) => {
+const CardDivided: React.FC<cardProps> = 
+({title, titleStyle, subtitle, subtitleStyle, childrenRight: children, 
+    childrenRightStyle: childrenStyle, cardStyle, divPosition = 0.5, 
+    leftStyle, rightStyle, nextBtn: nextBtn, nextBtnText, nextBtnStyle, 
+    nextBtnFunction,nextBtnDisabled= false, prevBtn, prevBtnText, 
+    prevBtnStyle, googleSignup, googleSignupFunction}) => {
+
     const {page, setPage} = usePage();
     return (
-        <div className={`bg-white rounded-xl p-6 border-2 border-primary-transparent-purplish-blue  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex min-w-[1100px] min-h-card-h ${cardStyle}`}>
+        <div className={`bg-white rounded-xl p-6 border-2 border-primary-transparent-purplish-blue absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex min-w-[1100px] min-h-card-h ${cardStyle}`}>
            <div className={`flex-grow bg-sidebar-desktop bg-cover bg-bottom rounded-lg pr-20 pl-5 pt-10 ${leftStyle}`} style={{flex: divPosition}}>
              <Tracker 
              steps={[
                 {'title' : 'STEP 1', 'subtitle' : 'Account creation'}, 
                 {'title' : 'STEP 2', 'subtitle' : 'Topics of Interest'},
-                {'title' : 'STEP 3', 'subtitle' : 'Courses'},
-                {'title' : 'STEP 4', 'subtitle' : 'Finalization'}
+                {'title' : 'STEP 3', 'subtitle' : 'Finalization'}
              ]}
              />
            </div>
@@ -63,7 +68,7 @@ const CardDivided: React.FC<cardProps> = ({title, titleStyle, subtitle, subtitle
                 <div className={`${childrenStyle}`}>{children}</div>
                 {nextBtn && <button className={`btn bg-primary-marine-blue text-neutral-magnolia px-6 ${nextBtnStyle}`} disabled={nextBtnDisabled} onClick={() => {
                     nextBtnFunction? nextBtnFunction() : setPage(page + 1);
-                }}>{page === 3? `Confirm` : `${nextBtnText}`}</button>}
+                }}>{page === 2? `Finish` : `${nextBtnText}`}</button>}
                 {prevBtn && <button className={`btn bg-primary-marine-blue text-neutral-magnolia px-8 ${prevBtnStyle} ${page === 0? `hidden` : `btn-active`}`} onClick={() => {
                     setPage(page - 1);
                 }}>{prevBtnText}</button>}

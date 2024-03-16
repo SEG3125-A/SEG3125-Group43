@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 
 type cardProps = {
     cardStyle?: string;
@@ -12,19 +12,17 @@ type cardProps = {
 
     detail: string;
 
-    id?: string;
-    onSelect?: (id: string) => void;
+    id?: number | string;
+    onSelect?: (id: number | string) => void;
 
     children?: React.ReactNode;
     childrenStyle?: string;
+
+    className? : string,
 };
 
-const Card: React.FC<cardProps> = ({title, titleStyle, cardStyle, image, imagelink, id, onSelect, children, childrenStyle, detail}) => {
-    // const [toggled, setToggled] = React.useState(false);
-
-    // const handleToggle = () => {
-    //     setToggled(!toggled);
-    // };
+const Card: React.FC<cardProps> = ({title, titleStyle, cardStyle, image, imagelink, id, onSelect, children, childrenStyle, detail, className}) => {
+    const isSelected = className?.includes('selected');
 
     return (
         <div 
@@ -33,7 +31,7 @@ const Card: React.FC<cardProps> = ({title, titleStyle, cardStyle, image, imageli
                 rounded-xl 
                 flex-grow
                 w-card-sm-w 
-                min-h-card-sm-h
+                h-card-sm-h
                 border-2 
                 flex 
                 flex-col 
@@ -44,6 +42,7 @@ const Card: React.FC<cardProps> = ({title, titleStyle, cardStyle, image, imageli
                 hover:cursor-pointer
                 hover:bg-primary-transparent-purplish-blue2 ${cardStyle}
                 ${image && `bg-[url('${imagelink}')]`}
+                ${isSelected && `border-2 border-primary-purplish-blue`}
             `}
             onClick={() => {id && onSelect && onSelect(id)}}
             
@@ -52,7 +51,7 @@ const Card: React.FC<cardProps> = ({title, titleStyle, cardStyle, image, imageli
             
             </div>
             <div className="txt p-4 bg-primary-pastel-blue text-black font-montserrat">
-                <h3 className={`text-xl font-semibold ${titleStyle}`}>{title}</h3>
+                <h3 className={`text-xl font-semibold whitespace-nowrap  ${titleStyle}`}>{title}</h3>
                 <div className={`${childrenStyle}`}>{[children, detail]}</div>
             </div>
         </div>

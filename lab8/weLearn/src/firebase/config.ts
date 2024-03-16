@@ -6,6 +6,7 @@ import { User, getAuth } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
 
 const apiKey = import.meta.env.VITE_APIKEY;
 const authDomain = import.meta.env.VITE_AUTHDOMAIN;
@@ -35,7 +36,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const database = getDatabase();
+const storage = getStorage(app);
 
 
 export const provider = new GoogleAuthProvider();
-export { auth, db, database };
+export { auth, db, database, storage };

@@ -41,11 +41,16 @@ module.exports = {
           'desktop': 1440,
           'card-w': 'calc(100% / 1.10)',
           'card-h': 'calc(100% / 1.25 )',
-          'card-sm-h' : '280px',
-          'card-sm-w' : '160px',
+          'card-sm-h' : '300px',
+          'card-sm-w' : '180px',
           'btn-bottom': '50px',
           'btn-right': '110px',
           'btn-left': '470px',
+          'profile-sm': '40px',
+          'profile-sm-2': '60px',
+          'profile-md': '80px',
+          'profile-lg': '120px',
+
         },
         backgroundImage: {
           'sidebar-desktop' : 'url(./src/assets/images/bg-sidebar-desktop.svg)',
