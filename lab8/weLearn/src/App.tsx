@@ -16,8 +16,10 @@ import { AuthProvider } from './context/auth'
 // Page components for the routes
 import SignUp from './pages/signup'
 import Login from './pages/login'
+import Landing from './pages/landing'
 
 import Dashboard from './pages/dashboard'
+import LandingPage from './pages/landing'
 
 // Main render function
 // Could be home page, could be a redirect to a login page, etc.
@@ -29,7 +31,7 @@ function App() {
       <Routes> {/*Routing wrapper for declared routes */}
           <Route path='/' element={ 
             <PublicRoute>
-                <SignUp />
+                <LandingPage />
             </PublicRoute>
           } /> {/*Home page when user isn't logged in. Checks if there is user then redirects to dashboard if yes. Set to signup for now*/}
 

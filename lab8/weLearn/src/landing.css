@@ -1,0 +1,6 @@
+
+.landing-content {
+    background-image: url(./assets/images/landing-hero.png);
+    background-size: cover;
+    height: 32rem;
+}
