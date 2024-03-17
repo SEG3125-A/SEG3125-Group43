@@ -13,6 +13,9 @@ import usePage  from "../../hooks/usePage";
 // Utils 
 import { updateUserTopics, getUserTopics, getUserCredentials } from "../../firebase/utils"
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 // Components
 import CardDivided from "./cardDivided";
 import ErrorAlert from "../ErrorAlert";
@@ -21,6 +24,7 @@ import IsLoading from "../isLoading";
 import { DocumentData } from "firebase/firestore";
 
 function Page2 () {
+  const { t } = useTranslation();
   // THIS IS MESSY AND NEEDS TO BE CLEANED UP
   // APOLOGIES 
     const [isLoading, setIsLoading] = useState(false);
@@ -76,39 +80,39 @@ function Page2 () {
         </div>
         <CardDivided 
         divPosition={0.35}
-        title="What topic would you like to learn about ?"
+        title={t("What topic would you like to learn about ?")}
         titleStyle="text-[22px] text-center"
 
         rightStyle='flex flex-col py-10 mx-16 -px-10'
 
         nextBtn={true}
-        nextBtnText='Continue'
-        nextBtnStyle="absolute bottom-10 ml-[130px]"
+        nextBtnText={t('Continue')}
+        nextBtnStyle="absolute bottom-10 ml-[110px]"
         nextBtnFunction={() => {
           updateUserTopics(userTopics)
           setPage(page + 1)
         }}
 
         prevBtn={true}
-        prevBtnText='Go Back'
-        prevBtnStyle="absolute bottom-10 right-0 mr-[230px]"
+        prevBtnText={t('Go Back')}
+        prevBtnStyle="absolute bottom-10 right-0 mr-[210px]"
 
         childrenRight={
             <>
               <div className='mx-5'>
                 <div className="items-center text-center">
-                    <input type="text" placeholder="Search..." className="input input-bordered w-full max-w-md bg-transparent mr-2" onChange={(e) => {
+                    <input type="text" placeholder={t("Search...")} className="input input-bordered w-full max-w-md bg-transparent mr-2" onChange={(e) => {
                         setFilter(e.target.value)
                     }}/>
                 </div>
-                <div className="h-[500px] overflow-auto flex flex-wrap overflow-x-hidden gap-2 mt-3 mb-5 -mx-12 pr-2">
+                <div className="h-[480px] overflow-auto flex flex-wrap overflow-x-hidden gap-1 mt-3 mb-5 -mx-12 px-4">
                 {topics
                   .filter(topic => topic.title.toLowerCase().includes(filter.toLowerCase()))
                   .map((topic) => (
                     <Card
                       key={topic.id}
-                      title={topic.title}
-                      detail={topic.detail}
+                      title={t(topic.title)}
+                      detail={t(topic.detail)}
                       image={true}
                       imagelink={topic.image}
                       id={topic.id}

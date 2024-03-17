@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
 // Icons
@@ -8,17 +9,19 @@ import { faMoon, faQuestionCircle, faVolumeMute, faLanguage } from '@fortawesome
 
 export default function Footer () {
     const location = useLocation();
+    const { t } = useTranslation();
+    const { i18n } = useTranslation();
     return (
         <div className='absolute bottom-0 text-montserrat text-black justify-between flex w-screen px-12 mb-3'>
             <div>
-                <p className='font-montserrat font-extrabold mt-5 cursor-pointer' onClick={() => (document.getElementById('tos') as HTMLDialogElement)?.showModal()}>Terms of Service</p>
+                <p className='font-montserrat font-extrabold mt-5 cursor-pointer' onClick={() => (document.getElementById('tos') as HTMLDialogElement)?.showModal()}>{t('Terms of Service')}</p>
                 <dialog id="tos" className="modal">
                 <div className="modal-box bg-white">
-                    <h3 className="font-bold text-lg text-center">Terms of service</h3>
+                <h3 className="font-bold text-lg text-center">{t("Terms of Service")}</h3>
                     <div>
-                        <p>1. Be nice</p>
-                        <p>2. Be respectful</p>
-                        <p>3. Be responsible</p>
+                        <p>1. {t('Be nice')}</p>
+                        <p>2. {t('Be respectful')}</p>
+                        <p>3. {t('Be responsible')}</p>
                     </div>
                 </div>
                 <form method="dialog" className="modal-backdrop">
@@ -34,7 +37,10 @@ export default function Footer () {
                     </div>
                     <div tabIndex={0} className="card compact dropdown-content bg-white z-[1] shadow rounded-box w-64">
                         <div tabIndex={0} className="card-body">
-                            {location.pathname === '/' && 'Home page help'}
+                            {location.pathname === '/' && 'Home page help - placeholder'}
+                            {location.pathname === '/login' && 'Login page help - placeholder'}
+                            {location.pathname === '/signup' && 'Sign up page help - placeholder'}
+                            {location.pathname === '/dashboard' && 'Dashboard page help - placeholder'}
                         </div>
                     </div>
                 </div>
@@ -42,9 +48,9 @@ export default function Footer () {
                 <div className="dropdown dropdown-top dropdown-end">
                 <div tabIndex={0} role="button" className="btn m-1 text-xl bg-transparent text-black"><FontAwesomeIcon icon = {faLanguage} /></div>
                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
-                        <li><a>ENG</a></li>
-                        <li><a>FRE</a></li>
-                        <li><a>SPA</a></li>
+                    <li><a onClick={() => i18n.changeLanguage('ENG')}>{t('ENG')}</a></li>
+                    <li><a onClick={() => i18n.changeLanguage('FRE')}>{t('FRE')}</a></li>
+                    <li><a onClick={() => i18n.changeLanguage('SPA')}>{t('SPA')}</a></li>
                     </ul>
                 </div>
             </div>

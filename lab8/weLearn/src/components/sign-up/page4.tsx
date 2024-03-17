@@ -13,13 +13,18 @@ import { usePhoto } from "../../hooks/usePhoto";
 import { createUser, getUserCredentials } from "../../firebase/utils";
 import { useNavigate } from "react-router-dom";
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 
 function Page4 () {
-  const navigate = useNavigate();
+  const navigate = useNavigate();  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   // For authentication
-  const {name, email, password} = getUserCredentials();
+  // Will break if any of these are empty or undefined
+  // const {name, email, password} = getUserCredentials();
+  const [name, email, password] = ['name', 'email', 'password']
   
   const [error, setError] = useState('');
   const {photo, handleChange, imagePreviewUrl} = usePhoto();
@@ -36,13 +41,13 @@ function Page4 () {
 
   const sanityCheck = async () => {
     if (!photo && noPhoto) {
-      setAlertText('Continue without a profile picture?');
+      setAlertText(t('Continue without a profile picture?'));
       setAlertConfirm(() => () => { setNoPhoto(false); setShowAlert(false); });
       setAlertDeny(() => () => { setShowAlert(false); });
       setShowAlert(true);
 
       if (!bio && noBio) {
-        setAlertText('Continue without a bio?');
+        setAlertText(t('Continue without a bio?'));
         setAlertConfirm(() => () => { setNoBio(false); setShowAlert(false); });
         setAlertDeny(() => () => { setShowAlert(false); });
         setShowAlert(true);
@@ -69,33 +74,34 @@ function Page4 () {
         {/* ... */}
         <CardDivided 
         divPosition={0.35}
-        title="Customize your user profile"
+        title={t("Customize your user profile")}
         titleStyle="text-[22px] text-center"
 
         rightStyle='flex flex-col py-10 mx-16 -px-10'
 
         nextBtn={true}
-        nextBtnText='Continue'
-        nextBtnStyle="absolute bottom-10 ml-[130px]"
+        nextBtnStyle="absolute bottom-10 ml-[110px]"
         nextBtnFunction={() => {
-          sanityCheck()
-        }}
+          sanityCheck();
+            }}
+            prevBtn={true}
+            prevBtnText={t('Go Back')}
+            prevBtnStyle="absolute bottom-10 right-0 mr-[210px]"
 
-        prevBtn={true}
-        prevBtnText='Go Back'
-        prevBtnStyle="absolute bottom-10 right-0 mr-[230px]"
+            childrenRight={
+                <>
+                <div className="flex justify-center items-center -mt-6 mb-3">
+                  <div className="flex text-center align-center items-center">
+                    <h1 className="text-xl text-center text-black">{t('Almost there,')}&nbsp;</h1>
+                    <p className="text-xl text-primary-purplish-blue">{name ? name : 'undefined'}</p><p className="text-xl text-black">&nbsp;!</p>
+                  </div>
+                </div>
 
-        childrenRight={
-            <>
-            <div className="flex text-center align-center items-center ml-[125px] -mt-6 mb-3">
-                <h1 className="text-xl text-center text-black">Almost there,&nbsp;</h1>
-                <p className="text-xl text-primary-purplish-blue">{name ? name : 'undefined'}</p><p className="text-xl text-black">&nbsp;!</p>
-            </div>
               <div className={`bg-white flex rounded-xl py-6 border-2 h-[480px] -mx-10 `}>
                 <div className={`flex-grow`} style={{flex: 0.6}}>
                   <div className="text-center text-black">
-                    <h1 className="text-xl">Add a profile pitcure !</h1>
-                    <p className="px-2 mt-2">The best way to personalize your profile is with a descriptive picture.</p>
+                    <h1 className="text-xl">{t('Add a profile pitcure !')}</h1>
+                    <p className="px-2 mt-2">{t('The best way to personalize your profile is with a descriptive picture.')}</p>
                   </div>
                   <div className='form-control w-full text-center align-center items-center mt-10 mb-24'>
 
@@ -111,7 +117,7 @@ function Page4 () {
                 <div className={`flex-grow text-center items-center align-center `} style={{flex: 1 - 0.5, paddingLeft: 20}}>
                     <div className=" -ml-5">
                       <label>
-                        <p className="text-black mb-3 text-xl">Add a bio to your profile !</p>
+                        <p className="text-black mb-3 text-xl">{t('Add a bio to your profile !')}</p>
                       </label>
                       <textarea className="textarea bg-transparent border-2 border-neutral-light-gray" placeholder="Bio" onChange={(e) => setBio(e.target.value)}></textarea>
                     </div>

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
+import './i18n.js'
 
 // Routing library 
 import { Route, Routes } from 'react-router-dom'

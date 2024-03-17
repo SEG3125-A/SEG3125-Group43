@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import App from './App.tsx'
 import { AuthProvider } from './context/auth.tsx'
 import './index.css'
+import './i18n.js'
 
 // Domain router, renders the App component
 // Add all route wrappers here
