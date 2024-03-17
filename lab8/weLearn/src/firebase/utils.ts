@@ -4,7 +4,8 @@ import { auth, db, database, storage } from "./config";
 import { collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { UploadResult, getDownloadURL, getStorage, ref as storageref, uploadBytes, updateMetadata, deleteObject, ref } from "firebase/storage";
 import { set, get, ref as dbref } from "firebase/database";
-import { User, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 // Utility functions used across the website
 
@@ -43,6 +44,15 @@ export const updateCredentials = (name: string, email: string, password: string)
 
 export const getUserCredentials = () => {
     return useCredentialsData;
+}
+
+let loginCredentialsData: { email: string; password: string; };
+export const updateLoginCredentials = (email: string, password: string) => {
+    loginCredentialsData = {email, password};
+}
+
+export const getLoginCredentials = () => {
+    return loginCredentialsData;
 }
 
 /**
@@ -154,4 +164,32 @@ export async function updateUserMetadata(user: User | null, setLoading: (value: 
       });
     }
     setLoading(false);
+}
+
+/**
+ * 
+ * @param email User email
+ * @param password User password
+ * @param setLoading useState function to set loading state
+ */
+export async function authenticateUser(email: string, password: string, setLoading: (value: boolean) => void) {
+  setLoading(true);
+  await signInWithEmailAndPassword(auth, email, password).then(() => {
+    console.log("User signed in");
+  }).catch((error) => {
+    console.log(error);
+  });
+  setLoading(false);
+}
+
+export const signUserOut = async (setLoading: (value: boolean) => void) => {
+  setLoading(true);
+  await signOut(auth).then(() => {
+    console.log("User signed out");
+    const navigate = useNavigate();
+    navigate('/login');
+  }).catch((error) => {
+    console.log(error);
+  });
+  setLoading(false);
 }

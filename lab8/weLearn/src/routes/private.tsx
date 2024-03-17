@@ -15,7 +15,7 @@ const PrivateRoute : FC<PrivateRouteProps> = ({ children }) => {
     const { user } = useAuth();
     if ( !user ) {
         return (
-            <Navigate to="/signup" replace ={true} />
+            <Navigate to="/login" replace ={true} />
           )
     }
     return children;
