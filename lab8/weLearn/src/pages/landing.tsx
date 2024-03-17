@@ -26,7 +26,7 @@ const LandingPage: React.FC = () => {
 
             <h1 className='font-bold text-5xl text-white'>{t('Welcome to weLearn 🌟')}</h1>
             <div className="landing-description text-white w-[30rem]">
-                <p>{t('An innovative ed-tech platform redefining the landscape of online learning. By seamlessly fusing learning and play, we offer a customized journey through an educational experience unlike any other 🔥! With a large library of courses spanning a variety of topics, real-time progress tracking, and an ever growing community, weLearn is transforming education into the most captivating experience yet.')}</p>
+                <p>{t('An innovative ed-tech platform redefining the landscape of online learning. By seamlessly fusing learning and play, we offer a customized journey through an educational experience unlike any other 🔥! With a large library of courses spanning a variety of topics, real-time progress tracking, and an ever growing community, weLearn is transforming education into the most captivating experience yet')}</p>
                 </div>
 
             <div className="landing-buttons flex items-center mt-5">
