@@ -21,7 +21,7 @@ function SignUp() {
     // const [cont, setCont] = useState(false);
     return (
         <PageContext.Provider value={{page, setPage}}>
-            <div className='min-w-screen min-h-screen overflow-hidden bg-white font-ubuntu'>
+            <div className='min-w-screen min-h-screen overflow-hidden bg-white dark:bg-dark-page-bg font-ubuntu'>
             <Header type='signup'/>
             {page === 0 && <Page1/>}
             {page === 1 && <Page2/>}

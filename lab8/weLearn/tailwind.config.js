@@ -5,6 +5,7 @@ const daisyui = require('daisyui');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,ts,jsx,tsx}', './index.html'],
+  darkMode : 'class',
   theme: {
     extend: {
         // Add all extra colors, fonts, spacings, etc. here
@@ -19,7 +20,7 @@ module.exports = {
             'strawberry-red': 'hsl(354, 84%, 57%)',
             'link-purp' : '#6E41E2', 
             'link-blue' : '#3443D1',
-            'faded-text' : '#a7a7a781'
+            'faded-text' : '#a7a7a781', 
           }, 
           neutral: {
             'cool-gray': 'hsl(231, 11%, 63%, 0.6)',
@@ -28,6 +29,8 @@ module.exports = {
             'alabaster': 'hsl(231, 100%, 99%)',
             'white': 'hsl(0, 0%, 100%)',
           },
+          'dark-card-bg' : '#3C3C3C',
+          'dark-page-bg' : '#1F1E1E',
         },
         fontFamily: {
           ubuntu: ['Ubuntu', 'sans-serif'],

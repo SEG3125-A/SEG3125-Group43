@@ -43,6 +43,7 @@ const Card: React.FC<cardProps> = ({title, titleStyle, cardStyle, image, imageli
                 hover:bg-primary-transparent-purplish-blue2 ${cardStyle}
                 ${image && `bg-[url('${imagelink}')]`}
                 ${isSelected && `border-2 border-primary-purplish-blue`}
+                dark:bg-dark-card-bg dark:border-2
             `}
             onClick={() => {id && onSelect && onSelect(id)}}
             

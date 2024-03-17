@@ -80,8 +80,9 @@ function Page2 () {
         </div>
         <CardDivided 
         divPosition={0.35}
+        cardStyle="dark:bg-dark-card-bg dark:text-white dark:border-0"
         title={t("What topic would you like to learn about ?")}
-        titleStyle="text-[22px] text-center"
+        titleStyle="text-[22px] text-center dark:text-white"
 
         rightStyle='flex flex-col py-10 mx-16 -px-10'
 
@@ -101,7 +102,7 @@ function Page2 () {
             <>
               <div className='mx-5'>
                 <div className="items-center text-center">
-                    <input type="text" placeholder={t("Search...")} className="input input-bordered w-full max-w-md bg-transparent mr-2" onChange={(e) => {
+                    <input type="text" placeholder={t("Search...")} className="input input-bordered w-full max-w-md bg-transparent mr-2 dark:bg-white" onChange={(e) => {
                         setFilter(e.target.value)
                     }}/>
                 </div>

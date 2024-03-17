@@ -89,8 +89,9 @@ function Page1 () {
         {error && <ErrorAlert error = {error} />}
         <CardDivided 
         divPosition={0.35}
+        cardStyle="dark:bg-dark-card-bg dark:text-white dark:border-0"
         title={t("Enter your personal information")}
-        titleStyle="text-[22px] text-center"
+        titleStyle="text-[22px] text-center dark:text-white"
 
         rightStyle='flex flex-col py-10 mx-16 -px-10'
 
@@ -109,16 +110,16 @@ function Page1 () {
 
         childrenRight={
             <>
-              <div className='mx-5'>
+              <div className='mx-5 '>
                 <div className='flex flex-col gap-4 w-full'>
                 <label className=''>
                     <div className="label">
-                      <span className='label-text text-primary-marine-blue'>
+                      <span className='label-text text-primary-marine-blue dark:text-white'>
                         {t('Username')} {usernameError && <span className="text-red-500"> - {usernameError}</span>}
                         <div className="dropdown dropdown-hover dropdown-top">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle btn-xs text-md"><FontAwesomeIcon icon = {faQuestionCircle} /></div>
-                          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
-                            <li><a className="text-black">{t('Username cannot contains spaces.')}</a></li>
+                          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white dark:bg-dark-card-bg dark:border-2 rounded-box w-52">
+                            <li><a className="text-black dark:text-white ">{t('Username cannot contains spaces.')}</a></li>
                           </ul>
                         </div>
                         </span>
@@ -132,7 +133,7 @@ function Page1 () {
                   </label>
                   <label className=''>
                     <div className="label">
-                      <span className='label-text text-primary-marine-blue'>
+                      <span className='label-text text-primary-marine-blue dark:text-white'>
                         {t('Email Address')} {emailError && <span className="text-red-500"> - {emailError}</span>}
                       </span>
                     </div>
@@ -147,12 +148,12 @@ function Page1 () {
                   </label>
                   <label className=''>
                     <div className="label">
-                      <span className='label-text text-primary-marine-blue'>
+                      <span className='label-text text-primary-marine-blue dark:text-white'>
                         {t('Password')}
                         <div className="dropdown dropdown-hover dropdown-top">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle btn-xs text-md"><FontAwesomeIcon icon = {faQuestionCircle} /></div>
-                          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
-                            <li><a className="text-black">{t('Avoid using simple words. Include symbols and numbers.')}</a></li>
+                          <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52  dark:bg-dark-card-bg dark:border-2">
+                            <li><a className="text-black dark:text-white">{t('Avoid using simple words. Include symbols and numbers.')}</a></li>
                           </ul>
                         </div>
                       </span>
@@ -168,7 +169,7 @@ function Page1 () {
                       <progress className="progress progress-primary w-full" value={`${passwordStrength * 25}`} max="100"></progress>
                     </span>
                     <span>
-                      <p className="text-primary-marine-blue text-xs">{t('Password strength')} - {getColorForStrength(passwordStrength)}</p>
+                      <p className="text-primary-marine-blue text-xs dark:text-neutral-magnolia">{t('Password strength')} - {getColorForStrength(passwordStrength)}</p>
                     </span>
                   </label>
                 </div>

@@ -59,9 +59,10 @@ const CardDivided: React.FC<cardProps> =
                 {'title' : t('STEP 2'), 'subtitle' : t('Topics of Interest')},
                 {'title' : t('STEP 3'), 'subtitle' : t('Finalization')}
              ]}
+            currentStep={page}
              />
            </div>
-           <div className="border-neutral-alabaster h-full border-2">
+           <div className="border-neutral-alabaster dark:border-dark-card-bg h-full border-2">
              {/* Divider */}
            </div>
            <div className={`flex-grow ${rightStyle}`} style={{flex: 1 - divPosition, paddingLeft: 20}}>
