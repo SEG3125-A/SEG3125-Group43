@@ -56,7 +56,7 @@ module.exports = {
           'profile-md': '80px',
           'profile-lg': '120px',
           'banner-h': '470px',
-          'large-banner-h': '1200px'
+          'large-banner-h': '1400px'
 
         },
         backgroundImage: {
