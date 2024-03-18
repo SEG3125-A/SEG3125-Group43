@@ -10,13 +10,11 @@ import PublicRoute from './routes/public'
 import PrivateRoute from './routes/private'
 
 // Auth context and provider
-import { useAuth } from './hooks/useAuth';
 import { AuthProvider } from './context/auth'
 
 // Page components for the routes
 import SignUp from './pages/signup'
 import Login from './pages/login'
-import Landing from './pages/landing'
 
 import Dashboard from './pages/dashboard'
 import LandingPage from './pages/landing'
@@ -33,7 +31,7 @@ function App() {
             <PublicRoute>
                 <LandingPage />
             </PublicRoute>
-          } /> {/*Home page when user isn't logged in. Checks if there is user then redirects to dashboard if yes. Set to signup for now*/}
+          } /> {/*Home page when user isn't logged in. Checks if there is user then redirects to dashboard if yes*/}
 
           <Route path='/signup' element={ 
            <PublicRoute>

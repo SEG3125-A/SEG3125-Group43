@@ -16,9 +16,14 @@ import Header from '../header/authnav';
 // Footer component
 import Footer from '../footer/footer';
 
+import { useTranslation } from 'react-i18next';
+
 function SignUp() {
     const [page, setPage] = useState(0);
-    // const [cont, setCont] = useState(false);
+    const {i18n} = useTranslation();
+    useEffect(() => {
+      i18n.changeLanguage(localStorage.getItem('language') ?? 'ENG');
+    }, [])
     return (
         <PageContext.Provider value={{page, setPage}}>
             <div className='min-w-screen min-h-screen overflow-hidden bg-white dark:bg-dark-page-bg font-ubuntu'>

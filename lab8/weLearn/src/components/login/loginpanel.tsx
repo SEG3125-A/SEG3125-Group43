@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 // Components
@@ -29,6 +29,11 @@ export default function LoginPanel() {
 
     const navigate = useNavigate();
     const { t }= useTranslation();
+
+    const {i18n} = useTranslation();
+    useEffect(() => {
+      i18n.changeLanguage(localStorage.getItem('language') ?? 'ENG');
+    }, [])
 
     return (
         <>
@@ -71,12 +76,12 @@ export default function LoginPanel() {
                                 <label className=''>
                                     <div className="label">
                                     <span className='label-text text-primary-marine-blue dark:text-white'>
-                                        {t('Email Address')}
+                                        {t("emailAddress")}
                                     </span>
                                     </div>
                                     <input
                                     type='email'
-                                    placeholder='Enter your email address'
+                                    placeholder={t("enterYourEmailAddress")}
                                     className='input input-bordered w-full bg-transparent'
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
@@ -87,12 +92,12 @@ export default function LoginPanel() {
                                 <label className=''>
                                     <div className="label">
                                     <span className='label-text text-primary-marine-blue dark:text-white'>
-                                        {t('Password')}
+                                    {t("password")}
                                     </span>
                                     </div>
                                     <input
                                     type='password'
-                                    placeholder={t('Enter your password')}
+                                    placeholder={t("enterYourPassword")}
                                     required
                                     className='input input-bordered w-full bg-transparent'
                                     onChange={(e) => setPassword(e.target.value)}

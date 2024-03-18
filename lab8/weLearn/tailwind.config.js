@@ -31,6 +31,8 @@ module.exports = {
           },
           'dark-card-bg' : '#3C3C3C',
           'dark-page-bg' : '#1F1E1E',
+          'dark-banner-bg': '#181A1B',
+          'landing-bg' : '#101010'
         },
         fontFamily: {
           ubuntu: ['Ubuntu', 'sans-serif'],
@@ -53,12 +55,20 @@ module.exports = {
           'profile-sm-2': '60px',
           'profile-md': '80px',
           'profile-lg': '120px',
+          'banner-h': '470px',
+          'large-banner-h': '1200px'
 
         },
         backgroundImage: {
           'sidebar-desktop' : 'url(./src/assets/images/bg-sidebar-desktop.svg)',
           'sidebar-mobile' : 'url(./src/assets/images/bg-sidebar-mobile.svg)',
+          'logo-bg' : 'url(/logo.svg)',
+          'landing-bg' : 'url(./src/assets/images/blacktexture.png)',
         },
+        backgroundPosition: {
+          'right-bg-100': 'center right 100px',
+          'right-bg-50': 'center right 50px',
+        }
     },
   },
   plugins: [

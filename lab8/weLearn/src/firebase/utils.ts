@@ -187,7 +187,7 @@ export const signUserOut = async (setLoading: (value: boolean) => void) => {
   await signOut(auth).then(() => {
     console.log("User signed out");
     const navigate = useNavigate();
-    navigate('/login');
+    navigate('/');
   }).catch((error) => {
     console.log(error);
   });

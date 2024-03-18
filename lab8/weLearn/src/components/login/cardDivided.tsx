@@ -55,15 +55,15 @@ const CardDivided: React.FC<cardProps> =
              {/* Divider */}
            </div>
            <div className={`flex-grow ${rightStyle}`} style={{flex: 1 - divPosition, paddingLeft: 20}}>
-                <h2 className={`text-4xl pb-4 pl-6 font-semibold text-primary-marine-blue translate-y-8 ${titleStyle}`}>{title}</h2>
-                <p className={`text-neutral-charcoal mb-10 pl-6 text-lg ${subtitleStyle}`}>{subtitle}</p>
-                <div className={`${childrenStyle}`}>{children}</div>
+                <h2 className={`text-4xl pb-4 pl-6 font-semibold text-primary-marine-blue translate-y-8 ${titleStyle}`}>{t(title)}</h2>
+                <p className={`text-neutral-charcoal mb-10 pl-6 text-lg ${subtitleStyle}`}>{t(subtitle!)}</p>
+                <div className={`${childrenStyle}`}>{(children)}</div>
                 {nextBtn && <button className={`btn bg-primary-marine-blue dark:bg-primary-link-purp text-neutral-magnolia px-6 ${nextBtnStyle}`} disabled={nextBtnDisabled} onClick={() => {
                     nextBtnFunction? nextBtnFunction() : null;
-                }}>{`${nextBtnText}`}</button>}
+                }}>{`${t(nextBtnText!)}`}</button>}
                 {prevBtn && <button className={`btn bg-primary-marine-blue dark:bg-primary-link-purp text-neutral-magnolia px-8 ${prevBtnStyle}}`} onClick={() => {
                     null
-                }}>{prevBtnText}</button>}
+                }}>{t(prevBtnText!)}</button>}
                 {googleSignup &&
                 <button className={`btn bg-neutral-alabaster text-black mt-4 hover:bg-neutral-light-gray`} onClick={() => {
                     googleSignupFunction && googleSignupFunction();
