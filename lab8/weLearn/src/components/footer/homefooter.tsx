@@ -6,7 +6,7 @@ export const HomeFooter = () => {
     return (
         <>
         {/*Courses*/}
-            <footer className="footer grid-rows-1 p-10 bg-neutral text-neutral-content text-lg">
+            <footer className="footer grid-rows-1 p-10 bg-neutral text-neutral-content text-lg w-screen">
             <nav>
                 <h6 className="footer-title">{t('Creative')}</h6> 
                 <a className="link link-hover">{t('Animation')}</a>

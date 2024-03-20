@@ -56,7 +56,7 @@ module.exports = {
           'profile-md': '80px',
           'profile-lg': '120px',
           'banner-h': '470px',
-          'large-banner-h': '1400px'
+          'large-banner-h': '1500px'
 
         },
         backgroundImage: {
@@ -68,11 +68,20 @@ module.exports = {
         backgroundPosition: {
           'right-bg-100': 'center right 100px',
           'right-bg-50': 'center right 50px',
-        }
-    },
+        }, 
+        animation: {
+          'scroll': 'scroll 50s linear infinite',
+        },
+        keyframes: {
+          scroll: {
+            'from': { transform: 'translateX(0)' },
+            'to': { transform: 'translateX(-50%)' },
+          },
+        },
+      },
   },
   plugins: [
     daisyui, 
-    {"name" : "typescript-plugin-css-modules"}
+    {"name" : "typescript-plugin-css-modules"}, 
   ]
 };

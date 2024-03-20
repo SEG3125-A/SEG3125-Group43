@@ -11,7 +11,6 @@ const Header = () => {
 
     const getUserLanguage = () => {
         const language = navigator.language;
-        console.log(language)
     
         if (language.includes('fr')) return 'FRA';
         if (language.includes('es')) return 'SPA';
@@ -30,7 +29,6 @@ const Header = () => {
 
     useEffect(() => {
         const savedLanguage = localStorage.getItem('language');
-        console.log(savedLanguage)
         const languageToUse = savedLanguage || getUserLanguage();
         i18n.changeLanguage(languageToUse);
     }, [])
@@ -48,16 +46,16 @@ const Header = () => {
       }, [i18n.language]);
 
       return (
-        <div className='flex justify-between items-center h-18 py-1 px-6 border-b-2 dark:border-dark-card-bg z-[100]'>
-            <h1 className='text-5xl p-2 flex text-black dark:text-white font-extrabold font-montserrat'><img className='mr-3 ' src="/logo.svg" alt="" /><a href="/">weLearn</a></h1>
+        <div className='flex justify-between items-center h-[80px] py-1 px-8 bg-transparent absolute w-screen dark:border-dark-card-bg z-[100]'>
+            <h1 className='text-5xl p-2 flex text-black dark:text-white font-extrabold font-montserrat'><img className='mr-3 ' src="/logo.svg" alt="weLearn" /><a href="/">weLearn</a></h1>
             <div className='flex items-center space-x-4'>
-                <a className='text-primary-marine-blue dark:text-primary-link-purp' href='/login'>{t('Login')}</a>
-                <a className='text-primary-marine-blue dark:text-primary-link-purp' href='/signup'>{t('Signup')}</a>
-                <div tabIndex={0} role="button" className="btn btn-circle btn-ghost btn-md text-xl border-1 border-black dark:border-white" onClick={toggleTheme}>
+                <a className='text-white dark:text-primary-link-purp' href='/login'>{t('Login')}</a>
+                <a className='text-white dark:text-primary-link-purp' href='/signup'>{t('Signup')}</a>
+                <div tabIndex={0} role="button" className="btn btn-circle btn-ghost btn-md text-xl border-1 border-black dark:border-white text-white" onClick={toggleTheme}>
                     <FontAwesomeIcon icon = {faMoon} />
                 </div>
                 <div className="dropdown dropdown-bottom dropdown-end">
-                    <div tabIndex={0} role="button" className="btn m-1 text-xl bg-transparent text-black dark:text-white dark:border-white"><FontAwesomeIcon icon = {faLanguage} /></div>
+                    <div tabIndex={0} role="button" className="btn m-1 text-xl bg-transparent text-white dark:text-white dark:border-white"><FontAwesomeIcon icon = {faLanguage} /></div>
                     <ul tabIndex={0} className="dropdown-content z-[9999] menu p-2 shadow bg-white dark:bg-dark-card-bg rounded-box w-52">
                         <li>
                             <a className='dark:text-white' onClick={() => {
