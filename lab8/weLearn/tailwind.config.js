@@ -29,6 +29,10 @@ module.exports = {
             'alabaster': 'hsl(231, 100%, 99%)',
             'white': 'hsl(0, 0%, 100%)',
           },
+          charcoal: {
+            'transparent': 'rgba(0,0,0,0)',
+            'surface2': 'rgba(0,0,0,0.56)',
+          }, 
           'dark-card-bg' : '#3C3C3C',
           'dark-page-bg' : '#1F1E1E',
           'dark-banner-bg': '#181A1B',

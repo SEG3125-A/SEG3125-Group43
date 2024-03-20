@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { auth, db, database, storage } from "./config";
 import { collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { UploadResult, getDownloadURL, getStorage, ref as storageref, uploadBytes, updateMetadata, deleteObject, ref } from "firebase/storage";
@@ -8,7 +8,6 @@ import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 import { useNavigate } from 'react-router-dom';
 
 // Utility functions used across the website
-
 
 /**
  * Get the topics list from the database
@@ -192,4 +191,12 @@ export const signUserOut = async (setLoading: (value: boolean) => void) => {
     console.log(error);
   });
   setLoading(false);
+}
+
+export const getCurrentUser = () => { return auth.currentUser; }
+
+export const getProfilePicture = async (uid: string) => {
+  const storageRef = storageref(storage, "profile-photos/" + uid + "/profile.jpg");
+  const photoURL = await getDownloadURL(storageRef);
+  return photoURL;
 }

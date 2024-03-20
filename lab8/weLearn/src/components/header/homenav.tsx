@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProfilePicture from './profilePicture'
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,8 @@ const Header = () => {
 
     const { i18n } = useTranslation();
 
+    const [theme, setTheme] = useState('light');
+
     const getUserLanguage = () => {
         const language = navigator.language;
     
@@ -17,13 +19,16 @@ const Header = () => {
         return 'ENG';
     };
 
+
     const toggleTheme = () => {
         if (document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('theme', 'light');
+            setTheme('light');
         } else {
             document.documentElement.classList.add('dark');
             localStorage.setItem('theme', 'dark');
+            setTheme('dark');
         }
     };
 
@@ -47,7 +52,7 @@ const Header = () => {
 
       return (
         <div className='flex justify-between items-center h-[80px] py-1 px-8 bg-transparent absolute w-screen dark:border-dark-card-bg z-[100]'>
-            <h1 className='text-5xl p-2 flex text-black dark:text-white font-extrabold font-montserrat'><img className='mr-3 ' src="/logo.svg" alt="weLearn" /><a href="/">weLearn</a></h1>
+            <h1 className='text-5xl p-2 flex text-black dark:text-white font-extrabold font-montserrat'><img className='mr-3 ' src={theme === 'light' ? '/logo.svg' : '/logo-white.svg'} alt="" /><a href="/">weLearn</a></h1>
             <div className='flex items-center space-x-4'>
                 <a className='text-white dark:text-primary-link-purp' href='/login'>{t('Login')}</a>
                 <a className='text-white dark:text-primary-link-purp' href='/signup'>{t('Signup')}</a>
