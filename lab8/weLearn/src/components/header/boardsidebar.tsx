@@ -5,7 +5,9 @@ import ProfilePicture from './profilePicture'
 import { useTranslation } from 'react-i18next';
 
 // Utility functions 
-import { signUserOut } from '../../firebase/utils';
+import { signUserOut, getDatabaseRef, updateCourses } from '../../firebase/utils';
+
+import { hideSidebar } from '../../pages/dashboard';
 
 // Icons 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,6 +18,7 @@ import { CiClock2, CiSquarePlus } from "react-icons/ci";
 import { MdOutlineHome } from "react-icons/md";
 import { LuBookMarked } from "react-icons/lu";
 import { FaCog, FaSignOutAlt } from "react-icons/fa";
+import { RiArrowLeftDoubleFill } from "react-icons/ri";
 
 // Alert
 import Alert from '@mui/material/Alert';
@@ -83,10 +86,14 @@ const Sidebar = ({ setTab, currentTab }: { setTab: Function, currentTab: string 
                     </Stack>
                 </div>
             )}
-        <div className='absolute left-0 flex flex-col border-r dark:border-dark-banner-bg w-20 h-screen bg-dark-card-bg text-white'>
+        <div className='fixed left-0 flex flex-col border-r dark:border-dark-banner-bg w-20 h-screen bg-dark-card-bg text-white'>
             <div className='flex flex-col gap-6 p-6 py-10 border-b dark:border-black'>
                 <img className='' src="/logo-purp.svg" alt="weLearn" /><a href="/"></a>
-                <FontAwesomeIcon icon = {faSearch} size='lg'/>
+                <div onClick={hideSidebar}>
+                <button>
+                <RiArrowLeftDoubleFill size={'32px'} className='-translate-x-[1px]'/>
+                </button>
+                </div>
             </div>
             <div className='flex flex-col gap-1 justify-center items-center py-10 ml-1 -mr-1 border-b dark:border-black '>
                 <div className={`-translate-x-[6px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Home' ? 'bg-primary-link-purp' : ''}`}
@@ -109,13 +116,11 @@ const Sidebar = ({ setTab, currentTab }: { setTab: Function, currentTab: string 
                 </div>
                 <div className={`-translate-x-[5px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Timestable' ? 'bg-primary-link-purp' : ''}`}
                     onClick={() => setTab('Timestable')}>
-                    <button
-                    onClick={() => setTab('Timestable')}
-                    >
+                    <button>
                         <CiClock2 size={'28px'} />
                     </button>
                 </div>
-                <div className='-translate-x-[6px] mt-8'>
+                <div className='-translate-x-[6px] mt-8 cursor-pointer' onClick={() => updateCourses(getDatabaseRef())}>
                     <CiSquarePlus size={'30px'}/>
                 </div>
             </div>

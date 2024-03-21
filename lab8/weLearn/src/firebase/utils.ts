@@ -1,13 +1,33 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useState } from 'react'
 import { auth, db, database, storage } from "./config";
-import { collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
 import { UploadResult, getDownloadURL, getStorage, ref as storageref, uploadBytes, updateMetadata, deleteObject, ref } from "firebase/storage";
-import { set, get, ref as dbref } from "firebase/database";
+import { set, get, ref as dbref, child, DatabaseReference } from "firebase/database";
 import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 // Utility functions used across the website
+interface Course {
+  title: string;
+  id: number;
+  subscribed: number;
+  exp: string;
+}
+
+interface Course1 {
+  title: string;
+  id: number;
+  subscribed: number;
+  exp: string;
+  topic: number;
+}
+
+interface SubscribedCourse {
+  title: string;
+  id: number;
+  exp: string;
+}
 
 /**
  * Get the topics list from the database
@@ -199,4 +219,281 @@ export const getProfilePicture = async (uid: string) => {
   const storageRef = storageref(storage, "profile-photos/" + uid + "/profile.jpg");
   const photoURL = await getDownloadURL(storageRef);
   return photoURL;
+}
+export const getDatabaseRef = () => { return dbref(database); }
+
+export const updateCourses = (dbref : DatabaseReference) => {
+  const courses = [
+    {
+      title: "Introduction to Computer Engineering: Basics and Fundamentals",
+      id: 0,
+      subscribed: 0,
+      exp: "beginner"
+  },
+  {
+      title: "Digital Logic Design and Computer Architecture",
+      id: 1,
+      subscribed: 0,
+      exp: "beginner"
+  },
+  {
+      title: "Programming Fundamentals with C or Python",
+      id: 2,
+      subscribed: 0,
+      exp: "beginner"
+  },
+  {
+      title: "Data Structures and Algorithms",
+      id: 3,
+      subscribed: 0,
+      exp: "intermediate"
+  },
+  {
+      title: "Computer Networks and Communications",
+      id: 4,
+      subscribed: 0,
+      exp: "intermediate"
+  },
+  {
+      title: "Operating Systems Principles",
+      id: 5,
+      subscribed: 0,
+      exp: "intermediate"
+  },
+  {
+      title: "Embedded Systems Design",
+      id: 6,
+      subscribed: 0,
+      exp: "advanced"
+  },
+  {
+      title: "Software Engineering and Project Management",
+      id: 7,
+      subscribed: 0,
+      exp: "advanced"
+  },
+  {
+      title: "Cybersecurity Fundamentals",
+      id: 8,
+      subscribed: 0,
+      exp: "advanced"
+  },
+  {
+      title: "Artificial Intelligence for Computer Engineers",
+      id: 9,
+      subscribed: 0,
+      exp: "advanced"
+  }
+  ];
+  
+  courses.forEach((course) => {
+    const courseRef = child(dbref, `courses/1/${course.id.toString()}` );
+    set(courseRef, {
+      title: course.title,
+      subscribed: course.subscribed,
+      exp: course.exp
+    }).then(() => {
+      console.log("Data saved successfully.");
+    }).catch((error) => {
+      console.log("Data could not be saved." + error);
+    });
+  });
+}
+
+export const getCourseData = async (courseTopic : number, courseId: number) => {
+  const courseRef = doc(db, `courses/${courseTopic}` + courseId);
+  const courseData = await getDoc(courseRef);
+  return courseData.data();
+}
+
+/**
+ * Returns all the courses from the specified topic
+ * @param topic Requested topic
+ * @returns the courses from the requested topic
+ */
+export const getCoursesFromTopic = async (topic: number) : Promise<Course[]> => {
+  const coursesRef = child(getDatabaseRef(), `courses/${topic}`);
+  const coursesSnapshot = await get(coursesRef);
+  const coursesData = coursesSnapshot.val();
+
+  const courses: Course[] = Object.keys(coursesData).map(key => {
+    return {
+      title: coursesData[key].title,
+      id: coursesData[key].id,
+      subscribed: coursesData[key].subscribed,
+      exp: coursesData[key].exp
+    };
+  });
+
+  return courses;
+}
+
+/**
+ * Most difficult function to implement for some reason
+ * Had to workaround the naming of the topics in the firestore database
+ * Returns the name of a topic given its id
+ * @param id Identier of the topic
+ * @returns the name of the request topic by ID
+ */
+export const getTopicName = async (id: number) => {
+  try {
+    const topicsCollection = collection(db, 'topics');
+    const querySnapshot = await getDocs(query(topicsCollection, where('id', '==', id)));
+    if (!querySnapshot.empty) {
+      const topicDoc = querySnapshot.docs[0].data();
+      return topicDoc.title; 
+    } else {
+      console.log('No such document!');
+    }
+  } catch (error) {
+    console.error('Error getting document:', error);
+  }
+};
+
+/**
+ * Returns an array of all course objects from the database
+ * @param dbref Database reference
+ * @returns 
+ */
+export const getCourses = async (dbref : DatabaseReference) : Promise<Course[]> => {
+  const coursesSnapshot = await get(child(dbref, 'courses'));
+  const coursesData = coursesSnapshot.val();
+
+  const courses: Course[] = Object.keys(coursesData).map(key => {
+    let i = 0;
+    return {
+      title: coursesData[key].title,
+      id: i++,
+      subscribed: coursesData[key].subscribed,
+      exp: coursesData[key].exp
+    };
+  });
+
+  return courses;
+};
+
+/**
+ * Returns an array of all course objects which have a high subscriber number
+ * @returns all courses which have 10 or more subscribers
+ */
+export const getFeaturedCourses = async () : Promise<Course[]> => {
+  let featuredCourses: Course[] = [];
+
+  // Each topic has 10 courses
+  for(let i = 0; i < 10; i++){
+    const courseRef = child(getDatabaseRef(), `courses/${i}`);
+    const coursesSnapshot = await get(courseRef);
+
+    if (coursesSnapshot.exists()) {
+      const coursesData = coursesSnapshot.val();
+      const courses: Course[] = Object.keys(coursesData).map(key => {
+        return {
+          title: coursesData[key].title,
+          id: coursesData[key].id,
+          subscribed: coursesData[key].subscribed,
+          exp: coursesData[key].exp
+        };
+      }).filter(course => course.subscribed > 10);
+      featuredCourses = [...featuredCourses, ...courses];
+    }
+  }
+
+  return featuredCourses;
+}
+
+/**
+ * Currently unused. 
+ * Returns an array of all the courses which the current user is subscribed to
+ * @param uid User ID
+ */
+export const getUserSignedCourses = async (uid: string) => {
+  const userRef = child(getDatabaseRef(), `users/${uid}`);
+  const userSnapshot = await get(userRef);
+
+  if(userSnapshot.exists()){
+    const userData = userSnapshot.val();
+
+    const courses : SubscribedCourse[] = Object.keys(userData.courses).map(key => {
+      return {
+        title: userData.courses[key].title,
+        id: userData.courses[key].id,
+        exp: userData.courses[key].exp
+      };
+    });
+  }
+}
+
+/**
+ * Returns an array of courses of the same level as the user's global experience and in the same category of 'interest'
+ * @param uid User ID
+ * @returns returns an array of courses based on the courses the current user is subscribed to
+ */
+export const suggestCourses = async (uid: string) => {
+  const userRef = child(getDatabaseRef(), `users/${uid}`);
+  const userSnapshot = await get(userRef);
+
+  const globalExp = await getGlobalExp(uid);
+
+  if(userSnapshot.exists()){
+    const userData = userSnapshot.val();
+    const userTopics = userData.interests;
+
+    // Get the courses for each topic
+    const suggestedCourses: Course1[] = [];
+    for(let i = 0; i < userTopics.length; i++){
+      const coursesRef = child(getDatabaseRef(), `courses/${userTopics[i]}`);
+      const coursesSnapshot = await get(coursesRef);
+      const coursesData = coursesSnapshot.val();
+
+      const courses: Course1[] = Object.keys(coursesData).map(key => {
+        return {
+          title: coursesData[key].title,
+          id: coursesData[key].id,
+          subscribed: coursesData[key].subscribed,
+          exp: coursesData[key].exp,
+          topic: userTopics[i],
+        };
+      }).filter(course => {
+        return course.exp === (globalExp < 100 ? "beginner" : globalExp < 500 ? "intermediate" : "advanced") ;
+      });
+      suggestedCourses.push(...courses);
+    }
+
+    return suggestedCourses;
+  }
+}
+
+/**
+ * Returns the user's global experience
+ * Global exp increases as the user completes courses
+ * @param uid User ID
+ * @returns returns user's global experience
+ */
+export const getGlobalExp = async (uid: string) => {
+  const userRef = child(getDatabaseRef(), `users/${uid}`);
+  const userSnapshot = await get(userRef);
+
+  return userSnapshot.val().globalexp;
+}
+
+/**
+ * Currently unused
+ * Updates the user's global experience after completing a course
+ * @param uid User ID
+ */
+export const updateGlobalExp = async (uid: string) => {
+  const UserRef = child(getDatabaseRef(), `users/${uid}`);
+  const userSnapshot = await get(UserRef);
+
+  const userExp = userSnapshot.val().globalexp;
+
+  const addedExp : number = userSnapshot.val().courses.reduce((acc: number, course: Course) => {
+    return acc + course.exp;
+  }, 0);
+
+  const newExp = userExp + addedExp;
+
+  await set(UserRef, {
+    globalexp: newExp
+  });
 }
