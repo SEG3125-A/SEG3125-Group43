@@ -51,7 +51,7 @@ const CardDivided: React.FC<cardProps> =
            <div className={`flex-grow bg-sidebar-desktop bg-cover bg-bottom rounded-lg pr-14 pl-5 pt-10 ${leftStyle}`} style={{flex: divPosition}}>
 
            </div>
-           <div className="border-neutral-alabaster dark:border-dark-card-bg h-full w-full border-2">
+           <div className="border-neutral-alabaster dark:border-dark-card-bg h-full border-2">
              {/* Divider */}
            </div>
            <div className={`flex-grow ${rightStyle}`} style={{flex: 1 - divPosition, paddingLeft: 20}}>
