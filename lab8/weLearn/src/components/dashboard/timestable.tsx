@@ -1,9 +1,11 @@
 import React from 'react'
 
+import {WIP} from '../WIP';
+
 export const TimesTable = () => {
     return (
         <div>
-            <h1>TimesTable</h1>
+            <><WIP /></>
         </div>
     )
 }

@@ -7,6 +7,7 @@ const QuickStartGuide = () => (
       <span>Get started with these easy steps:</span>
       <ul className="list-disc pl-8">
         <li>Pick a course that interests you.</li>
+        <li>Go to your alalytics to view your courses and begin a new lesson.</li>
         <li>Take on challenges to test your knowledge.</li>
         <li>Track your progress and level up.</li>
       </ul>

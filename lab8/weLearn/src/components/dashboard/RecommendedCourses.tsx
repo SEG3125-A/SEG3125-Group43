@@ -29,12 +29,6 @@ const groupByTopic = (courses: Course1[]) => {
   }, {} as Record<number, Course1[]>);
 };
 
-const fetchTopicName = async (id: number) => {
-  const topicName = await getTopicName(id);
-  return topicName;
-};
-
-
 const RecommendedCourses = ({ courses } : {courses : Course1[]}) => {
   const groupedCourses = groupByTopic(courses);
   const [topicNames, setTopicNames] = useState<Record<string, string>>({});
@@ -52,6 +46,7 @@ const RecommendedCourses = ({ courses } : {courses : Course1[]}) => {
     fetchTopicNames();
   }, [courses]);
 
+  let i = 0;
   return (
     <div className="p-8">
       <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">Recommended Courses</h2>
@@ -60,7 +55,7 @@ const RecommendedCourses = ({ courses } : {courses : Course1[]}) => {
         <div key={topic} className='my-10'>
         <h3 className="text-xl font-bold mb-2 text-black dark:text-white">Because you love {topicNames[topic]}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {courses.map(course => <CourseCard key={course.id} course={course} />)}
+            {courses.map(course => <CourseCard key={i++} course={course} />)}
           </div>
         </div>
       ))}

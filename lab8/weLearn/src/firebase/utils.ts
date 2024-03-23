@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 import { auth, db, database, storage } from "./config";
 import { collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
 import { UploadResult, getDownloadURL, getStorage, ref as storageref, uploadBytes, updateMetadata, deleteObject, ref } from "firebase/storage";
-import { set, get, ref as dbref, child, DatabaseReference } from "firebase/database";
+import { set, get, ref as dbref, child, DatabaseReference, update } from "firebase/database";
 import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -311,15 +311,16 @@ export const getCourseData = async (courseTopic : number, courseId: number) => {
  * @param topic Requested topic
  * @returns the courses from the requested topic
  */
+let a = 0;
 export const getCoursesFromTopic = async (topic: number) : Promise<Course[]> => {
   const coursesRef = child(getDatabaseRef(), `courses/${topic}`);
   const coursesSnapshot = await get(coursesRef);
   const coursesData = coursesSnapshot.val();
-
+  a++;
   const courses: Course[] = Object.keys(coursesData).map(key => {
     return {
       title: coursesData[key].title,
-      id: coursesData[key].id,
+      id: a,
       subscribed: coursesData[key].subscribed,
       exp: coursesData[key].exp
     };
@@ -355,22 +356,32 @@ export const getTopicName = async (id: number) => {
  * @param dbref Database reference
  * @returns 
  */
-export const getCourses = async (dbref : DatabaseReference) : Promise<Course[]> => {
-  const coursesSnapshot = await get(child(dbref, 'courses'));
-  const coursesData = coursesSnapshot.val();
-
-  const courses: Course[] = Object.keys(coursesData).map(key => {
-    let i = 0;
-    return {
-      title: coursesData[key].title,
-      id: i++,
-      subscribed: coursesData[key].subscribed,
-      exp: coursesData[key].exp
-    };
-  });
-
+export const getCourses = async (dbref : DatabaseReference, setLoading: (value: boolean) => void) : Promise<Course1[]> => {
+  const courses: Course1[] = []; 
+  let i = 0;
+  setLoading(true);
+  do {
+    const courseRef = child(dbref, `courses/${i}`);
+    const courseSnapshot = await get(courseRef);
+    if (courseSnapshot.exists()) {
+      const courseData = courseSnapshot.val();
+      for (let j = 0; j < 10; j++) {
+        if (courseData[j]) {
+          courses.push({
+            title: courseData[j].title,
+            id: j,
+            subscribed: courseData[j].subscribed,
+            exp: courseData[j].exp, 
+            topic: i
+          });
+        }
+      }
+    }
+    i++;
+  } while (i < 25)
+  setLoading(false);
   return courses;
-};
+}
 
 /**
  * Returns an array of all course objects which have a high subscriber number
@@ -496,4 +507,38 @@ export const updateGlobalExp = async (uid: string) => {
   await set(UserRef, {
     globalexp: newExp
   });
+}
+
+export const isAlreadySignedUp = async (topic : number, course : number) => {
+  const userRef = child(getDatabaseRef(), `users/${auth.currentUser?.uid}`);
+  const userSnapshot = await get(userRef);
+
+  const userData = userSnapshot.val();
+  
+  return (userData.courses && userData.courses[topic] && userData.courses[topic][course] != undefined);
+}
+
+export const signUpToCourse = async (topic : number, course : number) => {
+
+  const userRef = child(getDatabaseRef(), `users/${auth.currentUser?.uid}`);
+
+  const courseRef = child(getDatabaseRef(), `courses/${topic}/${course}`);
+  const courseSnapshot = await get(courseRef);
+
+  const courseData = courseSnapshot.val();
+  const courseSubscribers = courseData.subscribed;
+
+  await update(courseRef, {
+    subscribed: courseSubscribers + 1
+  });
+
+  await update(userRef, {
+    [`courses/${topic}/${course}`]: {
+      title: courseData.title,
+      exp: courseData.exp
+    }
+  }).catch((error) => {
+    console.log(error);
+  });
+
 }

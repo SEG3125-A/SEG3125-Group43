@@ -24,12 +24,12 @@ import { RiArrowLeftDoubleFill } from "react-icons/ri";
 import Alert from '@mui/material/Alert';
 import { Button, Stack } from '@mui/material';
 
-
-
 const Sidebar = ({ setTab, currentTab }: { setTab: Function, currentTab: string }) => {
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
     const [signOut, setSignOut] = useState(false);
+
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
     const handleSignOut = () => {
         if (signOut) {
@@ -47,9 +47,11 @@ const Sidebar = ({ setTab, currentTab }: { setTab: Function, currentTab: string 
         if (document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.remove('dark');
             localStorage.setItem('theme', 'light');
+            setTheme('light')
         } else {
             document.documentElement.classList.add('dark');
             localStorage.setItem('theme', 'dark');
+            setTheme('dark')
         }
     };
 
@@ -88,33 +90,33 @@ const Sidebar = ({ setTab, currentTab }: { setTab: Function, currentTab: string 
             )}
         <div className='fixed left-0 flex flex-col border-r dark:border-dark-banner-bg w-20 h-screen bg-dark-card-bg text-white'>
             <div className='flex flex-col gap-6 p-6 py-10 border-b dark:border-black'>
-                <img className='' src="/logo-purp.svg" alt="weLearn" /><a href="/"></a>
+                <img className='' src={theme === 'light' ? '/logo-blue.svg' : '/logo-purp.svg'} alt="weLearn" /><a href="/"></a>
                 <div onClick={hideSidebar}>
-                <button>
-                <RiArrowLeftDoubleFill size={'32px'} className='-translate-x-[1px]'/>
-                </button>
+                    <button>
+                        <RiArrowLeftDoubleFill size={'32px'} className='-translate-x-[1px]'/>
+                    </button>
                 </div>
             </div>
             <div className='flex flex-col gap-1 justify-center items-center py-10 ml-1 -mr-1 border-b dark:border-black '>
-                <div className={`-translate-x-[6px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Home' ? 'bg-primary-link-purp' : ''}`}
+                <div className={`-translate-x-[6px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Home' ? 'dark:bg-primary-link-purp bg-primary-marine-blue' : ''}`}
                 onClick={() => setTab('Home')}>
                     <button>
                         <MdOutlineHome size={'34px'}/>
                     </button>
                 </div>
-                <div className={`-translate-x-[5px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Courses' ? 'bg-primary-link-purp' : ''}`}
+                <div className={`-translate-x-[5px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Courses' ? 'dark:bg-primary-link-purp bg-primary-marine-blue' : ''}`}
                     onClick={() => setTab('Courses')}>
                     <button>
                         <LuBookMarked size={'28px'}/>
                     </button>
                 </div>
-                <div className={`-translate-x-[2px] w-full py-5 mr-1 items-center justify-center text-center cursor-pointer ${currentTab === 'Analytics' ? 'bg-primary-link-purp' : ''}`}
+                <div className={`-translate-x-[2px] w-full py-5 mr-1 items-center justify-center text-center cursor-pointer ${currentTab === 'Analytics' ? 'dark:bg-primary-link-purp bg-primary-marine-blue' : ''}`}
                 onClick={() => setTab('Analytics')}>
                     <button>   
                         <BsGraphUp size={'22px'}/>
                     </button>
                 </div>
-                <div className={`-translate-x-[5px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Timestable' ? 'bg-primary-link-purp' : ''}`}
+                <div className={`-translate-x-[5px] w-full py-5 items-center justify-center text-center cursor-pointer ${currentTab === 'Timestable' ? 'dark:bg-primary-link-purp bg-primary-marine-blue' : ''}`}
                     onClick={() => setTab('Timestable')}>
                     <button>
                         <CiClock2 size={'28px'} />

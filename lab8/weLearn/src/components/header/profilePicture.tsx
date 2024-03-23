@@ -49,7 +49,7 @@ function ProfilePicture({imagePreviewUrl}: {imagePreviewUrl?: string | null}) {
   return (
     <>
       {signOut && (
-                <div className='fixed left-1/2 top-[100px] -translate-x-64'>
+                <div className='fixed left-1/2 top-[100px] -translate-x-64 font-montserrat'>
                     <Stack sx={{ width: '200%'}}>
                         <Alert
                             severity="info"
@@ -111,18 +111,6 @@ function ProfilePicture({imagePreviewUrl}: {imagePreviewUrl?: string | null}) {
                       >
                         
                         Settings
-                      </button>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`${
-                          active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                        } group flex w-full items-center rounded-md px-2 py-2 text-sm dark:text-white`}
-                      >
-                        
-                        Duplicate
                       </button>
                     )}
                   </Menu.Item>
