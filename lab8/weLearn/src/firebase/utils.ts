@@ -3,9 +3,10 @@ import React, { useContext, useState } from 'react'
 import { auth, db, database, storage } from "./config";
 import { collection, addDoc, getDocs, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where } from "firebase/firestore";
 import { UploadResult, getDownloadURL, getStorage, ref as storageref, uploadBytes, updateMetadata, deleteObject, ref } from "firebase/storage";
-import { set, get, ref as dbref, child, DatabaseReference, update } from "firebase/database";
+import { set, get, ref as dbref, child, DatabaseReference, update, push } from "firebase/database";
 import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import fs from 'fs';
 
 // Utility functions used across the website
 interface Course {
@@ -27,6 +28,7 @@ interface SubscribedCourse {
   title: string;
   id: number;
   exp: string;
+  lessons : [];
 }
 
 /**
@@ -201,6 +203,10 @@ export async function authenticateUser(email: string, password: string, setLoadi
   setLoading(false);
 }
 
+/**
+ * Function to sign a user out
+ * @param setLoading useState function to set loading state
+ */
 export const signUserOut = async (setLoading: (value: boolean) => void) => {
   setLoading(true);
   await signOut(auth).then(() => {
@@ -215,6 +221,11 @@ export const signUserOut = async (setLoading: (value: boolean) => void) => {
 
 export const getCurrentUser = () => { return auth.currentUser; }
 
+/**
+ * Function to get the current user's profile picture
+ * @param uid User ID
+ * @returns the database reference URL of the current user's profile picture
+ */
 export const getProfilePicture = async (uid: string) => {
   const storageRef = storageref(storage, "profile-photos/" + uid + "/profile.jpg");
   const photoURL = await getDownloadURL(storageRef);
@@ -222,84 +233,80 @@ export const getProfilePicture = async (uid: string) => {
 }
 export const getDatabaseRef = () => { return dbref(database); }
 
+/**
+ * Function used to update the databse with various items, 
+ * including topics, courses, and lessons. 
+ * Not used in the website, but used during development
+ * @param dbref Database reference
+ */
 export const updateCourses = (dbref : DatabaseReference) => {
-  const courses = [
+  const lessons = [
     {
-      title: "Introduction to Computer Engineering: Basics and Fundamentals",
-      id: 0,
-      subscribed: 0,
-      exp: "beginner"
-  },
-  {
-      title: "Digital Logic Design and Computer Architecture",
-      id: 1,
-      subscribed: 0,
-      exp: "beginner"
-  },
-  {
-      title: "Programming Fundamentals with C or Python",
-      id: 2,
-      subscribed: 0,
-      exp: "beginner"
-  },
-  {
-      title: "Data Structures and Algorithms",
-      id: 3,
-      subscribed: 0,
-      exp: "intermediate"
-  },
-  {
-      title: "Computer Networks and Communications",
-      id: 4,
-      subscribed: 0,
-      exp: "intermediate"
-  },
-  {
-      title: "Operating Systems Principles",
-      id: 5,
-      subscribed: 0,
-      exp: "intermediate"
-  },
-  {
-      title: "Embedded Systems Design",
-      id: 6,
-      subscribed: 0,
-      exp: "advanced"
-  },
-  {
-      title: "Software Engineering and Project Management",
-      id: 7,
-      subscribed: 0,
-      exp: "advanced"
-  },
-  {
-      title: "Cybersecurity Fundamentals",
-      id: 8,
-      subscribed: 0,
-      exp: "advanced"
-  },
-  {
-      title: "Artificial Intelligence for Computer Engineers",
-      id: 9,
-      subscribed: 0,
-      exp: "advanced"
-  }
+      type: "lesson",
+      title: "AI Fundamentals",
+      description: "An overview of artificial intelligence, covering key concepts, history, and applications."
+    },
+    {
+      type: "article",
+      title: "Machine Learning Overview",
+      description: "Exploring the basics of machine learning, including supervised and unsupervised learning."
+    },
+    {
+      type: "project",
+      title: "Simple ML Project",
+      description: "Implement a simple machine learning project using a popular framework like TensorFlow or PyTorch."
+    },
+    {
+      type: "lesson",
+      title: "Neural Networks",
+      description: "Diving into the workings of neural networks and their role in powering deep learning applications."
+    },
+    {
+      type: "article",
+      title: "AI in Today's World",
+      description: "Discussing current and future applications of AI across various industries."
+    },
+    {
+      type: "lesson",
+      title: "Ethics in AI",
+      description: "Exploring ethical considerations and challenges in the development and application of AI technology."
+    },
+    {
+      type: "project",
+      title: "AI Ethics Case Study",
+      description: "Analyzing a case study to discuss ethical implications of AI in real-world scenarios."
+    },
+    {
+      type: "lesson",
+      title: "AI for Problem Solving",
+      description: "Learning how AI can be applied to solve complex engineering and societal problems."
+    }
   ];
   
-  courses.forEach((course) => {
-    const courseRef = child(dbref, `courses/1/${course.id.toString()}` );
+  let lessonCounter = 0;
+
+  lessons.forEach((lesson) => {
+    const courseRef = child(dbref, `courses/2/0/lessons/${lessonCounter}`);
     set(courseRef, {
-      title: course.title,
-      subscribed: course.subscribed,
-      exp: course.exp
+      type : lesson.type,
+      title : lesson.title,
+      description : lesson.description
     }).then(() => {
       console.log("Data saved successfully.");
     }).catch((error) => {
       console.log("Data could not be saved." + error);
     });
+
+    lessonCounter++;
   });
 }
 
+/**
+ * Function to get the course data for a specific course in the db
+ * @param courseTopic Topic containing the course
+ * @param courseId Course ID for the course to get
+ * @returns the data for the requested course
+ */
 export const getCourseData = async (courseTopic : number, courseId: number) => {
   const courseRef = doc(db, `courses/${courseTopic}` + courseId);
   const courseData = await getDoc(courseRef);
@@ -413,7 +420,6 @@ export const getFeaturedCourses = async () : Promise<Course[]> => {
 }
 
 /**
- * Currently unused. 
  * Returns an array of all the courses which the current user is subscribed to
  * @param uid User ID
  */
@@ -423,14 +429,32 @@ export const getUserSignedCourses = async (uid: string) => {
 
   if(userSnapshot.exists()){
     const userData = userSnapshot.val();
+    const topicIds = Object.keys(userData.courses);
 
-    const courses : SubscribedCourse[] = Object.keys(userData.courses).map(key => {
-      return {
-        title: userData.courses[key].title,
-        id: userData.courses[key].id,
-        exp: userData.courses[key].exp
-      };
-    });
+    const courses : SubscribedCourse[] = [];
+
+    for (let i = 0; i < topicIds.length; i++) {
+      const topicId = topicIds[i];
+      const courseIds = Object.keys(userData.courses[topicId]);
+
+      for (let j = 0; j < courseIds.length; j++) {
+        const courseId = courseIds[j];
+        const courseRef = child(getDatabaseRef(), `courses/${topicId}/${courseId}`);
+        const courseSnapshot = await get(courseRef);
+
+        if(courseSnapshot.exists()){
+          const courseData = courseSnapshot.val();
+          courses.push({
+            title: courseData.title,
+            id: courseData.id,
+            exp: courseData.exp,
+            lessons: courseData.lessons
+          });
+        }
+      }
+    }
+
+    return courses;
   }
 }
 
@@ -509,6 +533,12 @@ export const updateGlobalExp = async (uid: string) => {
   });
 }
 
+/**
+ * Function to check if a user is signed up to a topic/course pair
+ * @param topic Topic to check for 
+ * @param course Course to check for
+ * @returns Boolean value indicating if the user is already signed up for the course
+ */
 export const isAlreadySignedUp = async (topic : number, course : number) => {
   const userRef = child(getDatabaseRef(), `users/${auth.currentUser?.uid}`);
   const userSnapshot = await get(userRef);
@@ -518,6 +548,11 @@ export const isAlreadySignedUp = async (topic : number, course : number) => {
   return (userData.courses && userData.courses[topic] && userData.courses[topic][course] != undefined);
 }
 
+/**
+ * Function to sign a user up to a course
+ * @param topic Topic containing the course
+ * @param course Course to sign up to
+ */
 export const signUpToCourse = async (topic : number, course : number) => {
 
   const userRef = child(getDatabaseRef(), `users/${auth.currentUser?.uid}`);

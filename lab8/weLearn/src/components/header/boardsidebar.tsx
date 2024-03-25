@@ -122,7 +122,7 @@ const Sidebar = ({ setTab, currentTab }: { setTab: Function, currentTab: string 
                         <CiClock2 size={'28px'} />
                     </button>
                 </div>
-                <div className='-translate-x-[6px] mt-8 cursor-pointer' onClick={() => updateCourses(getDatabaseRef())}>
+                <div className='-translate-x-[6px] mt-8 cursor-pointer' onClick={() => alert('Do not click this button ! Thank you !')}>
                     <CiSquarePlus size={'30px'}/>
                 </div>
             </div>

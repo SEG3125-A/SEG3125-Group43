@@ -39,12 +39,12 @@ const CourseCard = ({ course, signedUp, setSignedUp, setShowAlert, setContext } 
     return (
         <div className="card card-compact bg-base-100 shadow-xl z-[2]">
         <div className="card-body z-[2]">
-            <h2 className="card-title">{course.title}</h2>
-            <h2 className="card-title">Difficulty : {course.exp}</h2>
+            <h2 className="card-title">{t(course.title)}</h2>
+            <h2 className="card-title">{t('Difficulty : ')}{t(course.exp)}</h2>
             <div className="card-actions justify-end">
             <button className="btn bg-primary-marine-blue text-white dark:bg-primary-link-purp" onClick={() => {
                 handleSignUp(course.topic, course.id);
-            }}>Start Learning</button>
+            }}>{t('Start Learning')}</button>
             </div>
         </div>
         </div>
@@ -115,10 +115,10 @@ export const Courses = () => {
             </div>
         }
 
-            <div className='justify-center items-center flex flex-col gap-9 bg-white dark:bg-dark-page-bg'>
-            <h1 className='text-4xl mt-5 text-black dark:text-white'>Search all courses</h1>
+            <div className='justify-center items-center flex flex-col gap-9 bg-white dark:bg-dark-page-bg font-bold'>
+            <h1 className='text-4xl mt-5 text-black dark:text-white'>{t('Search all courses')}</h1>
             <div className=''>
-            <input type="text" placeholder={t("Search all courses...")} className="input input-bordered min-w-[500px] min-w-xl bg-transparent" onChange={handleSearch}/>
+            <input type="text" placeholder={t("Search all courses...")} className="input input-bordered min-w-[500px] min-w-xl bg-transparent border-gray-500 text-black dark:text-white" onChange={handleSearch}/>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-10 text-white">
             {filteredCourses

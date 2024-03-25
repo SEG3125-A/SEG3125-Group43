@@ -33,7 +33,7 @@ export default function Dashboard() {
                     <Sidebar setTab={setTab} currentTab={tab} />
                     </div>
                     <div className='pt-20 pl-20 content'>
-                        {tab === 'Home' && <Home />}
+                        {tab === 'Home' && <Home setTab={setTab}/>}
                         {tab === 'Analytics' && <Analytics />}
                         {tab === 'Courses' && <Courses />}
                         {tab === 'Timestable' && <TimesTable />}

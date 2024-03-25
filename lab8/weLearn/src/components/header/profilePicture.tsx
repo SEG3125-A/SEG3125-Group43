@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, SVGProps } from 'react'
 
-import { getCurrentUser, getProfilePicture, signUserOut } from '../../firebase/utils'
+import { getCurrentUser, getGlobalExp, getProfilePicture, signUserOut } from '../../firebase/utils'
 import { User } from 'firebase/auth';
 
 import { useTranslation } from 'react-i18next';
@@ -18,6 +18,7 @@ function ProfilePicture({imagePreviewUrl}: {imagePreviewUrl?: string | null}) {
   const [user, setUser] = useState<User | null>(null); 
   const [picture, setPicture] = useState<string | null>(null);
   const [loading, setLoading] = React.useState(false);
+  const [exp, setExp] = useState<number>(0);
 
   const { t } = useTranslation(); 
 
@@ -30,6 +31,14 @@ function ProfilePicture({imagePreviewUrl}: {imagePreviewUrl?: string | null}) {
         }
     };
 
+    const fetchExp = async () => {
+        setUser(getCurrentUser());
+        if (user) {
+            const exp = await getGlobalExp(user?.uid);
+            setExp(exp);
+        }
+    }
+    fetchExp();
     fetchProfilePicture();
 }, [user]);
 
@@ -102,6 +111,18 @@ function ProfilePicture({imagePreviewUrl}: {imagePreviewUrl?: string | null}) {
             >
               <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-dark-card-bg dark:border dark:text-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                 <div className="px-1 py-1 ">
+                <Menu.Item>
+                    {({ active }) => (
+                      <div
+                        className={`${
+                          active ? 'bg-violet-500 text-white' : 'text-gray-900'
+                        } group flex w-full items-center rounded-md px-2 py-2 text-sm dark:text-white`}
+                      >
+                        
+                        Global Exp: {exp}
+                      </div>
+                    )}
+                  </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
                       <button

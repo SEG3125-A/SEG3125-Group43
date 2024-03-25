@@ -29,7 +29,7 @@ interface Course1 {
     topic: number;
 }
 
-export const Home = () => {
+export const Home = ({setTab} : {setTab : Function}) => {
     const { t } = useTranslation();
 
     const user = getCurrentUser();
@@ -47,18 +47,22 @@ export const Home = () => {
             <div className='h-full flex bg-white dark:bg-dark-page-bg'> 
             <div className='flex-grow z-[2]' style={{flex: 0.8}}>
                 <div>
-                    <FeaturedCourses courses={featuredCourses}/>
+                    <FeaturedCourses courses={featuredCourses} setTab={setTab}/>
                 </div>
                 <div>
-                    <RecommendedCourses courses={recommendedCourses}/>
+                    <RecommendedCourses courses={recommendedCourses} setTab={setTab}/>
                 </div>
             </div>
             <div className='border-neutral-dark-gray dark:border-dark-card-bg h-screen mt-2 border-2'>
                 {/* Divider */}
             </div>
             <div className='flex-grow items-center justify-center' style={{flex : 0.4}}>
+                <div className='flex justify-center items-center'>
                 <WelcomeSection userName={user?.displayName}/>
+                </div>
+                <div className='flex justify-center items-center'>
                 <QuickStartGuide />
+                </div>
                 <CallToAction />
                 </div>
             </div>
