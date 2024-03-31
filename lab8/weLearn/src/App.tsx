@@ -24,7 +24,7 @@ import LandingPage from './pages/landing'
 // Not really anything concrete
 function App() {
   return (
-    <AuthProvider > 
+      <AuthProvider > 
       {/*Provides user authentication context*/}
       <Routes> {/*Routing wrapper for declared routes */}
           <Route path='/' element={ 
@@ -52,6 +52,7 @@ function App() {
           } /> {/*Dashboard page when user is logged in. Checks if there is user then redirects to login if no*/}
       </Routes>
     </AuthProvider>
+
   )
 }
 

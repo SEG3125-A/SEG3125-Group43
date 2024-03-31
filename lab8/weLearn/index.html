@@ -10,4 +10,23 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
+
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+
+    .header, .content {
+      transition: all 0.1s ease-in-out;
+    }
+
+    .sidebar {
+      transition: transform 0.2s ease-out;
+    }
+
+    .sidebar.hide {
+      transition: transform 0.2s ease-in-out;
+      transform: translateX(-100%);
+    }
+  </style>
 </html>

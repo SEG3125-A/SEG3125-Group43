@@ -51,7 +51,7 @@ const CardDivided: React.FC<cardProps> =
     const {page, setPage} = usePage();
     const { t } = useTranslation();
     return (
-        <div className={`bg-white rounded-xl p-6 border-2 border-primary-transparent-purplish-blue absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex min-w-[1100px] min-h-card-h ${cardStyle}`}>
+        <div className={`bg-white rounded-xl p-6 border-2 border-primary-transparent-purplish-blue absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex min-w-[1100px] h-card-h ${cardStyle}`}>
            <div className={`flex-grow bg-sidebar-desktop bg-cover bg-bottom rounded-lg pr-14 pl-5 pt-10 ${leftStyle}`} style={{flex: divPosition}}>
              <Tracker 
              steps={[
@@ -66,9 +66,9 @@ const CardDivided: React.FC<cardProps> =
              {/* Divider */}
            </div>
            <div className={`flex-grow ${rightStyle}`} style={{flex: 1 - divPosition, paddingLeft: 20}}>
-                <h2 className={`text-4xl pb-4 pl-6 font-semibold text-primary-marine-blue translate-y-8 ${titleStyle}`}>{title}</h2>
+                <h2 className={`text-4xl pb-4 pl-6 font-semibold text-primary-marine-blue ${titleStyle}`}>{title}</h2>
                 <p className={`text-neutral-charcoal mb-10 pl-6 text-lg ${subtitleStyle}`}>{subtitle}</p>
-                <div className={`${childrenStyle}`}>{children}</div>
+                <div className={`${childrenStyle} -mt-10`}>{children}</div>
                 {nextBtn && <button className={`btn bg-primary-marine-blue dark:bg-primary-link-purp text-neutral-magnolia px-6 ${nextBtnStyle}`} disabled={nextBtnDisabled} onClick={() => {
                     nextBtnFunction? nextBtnFunction() : setPage(page + 1);
                 }}>{page === 2? t('Finish') : `${nextBtnText}`}</button>}
