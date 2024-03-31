@@ -453,6 +453,52 @@ body{
     align-items: center;
     justify-content: center;
 }
+
+/* Chatbot styles */ 
+.bot-container{
+    position: fixed;
+    right: 6rem;
+    bottom: 1rem;
+    box-shadow: black ;
+
+    height: 30rem;
+    width: 23rem;
+
+    background-color: white;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+
+    .chatbot-close{
+        position: absolute;
+        right: 0.5rem;
+        cursor: pointer;
+    }
+
+
+    #chat-input{
+        border: 1px solid black ;
+        border-radius: 10px;
+        padding: 3px;
+        padding-left: 10px;
+        padding-right: 3px;
+    }
+
+    #send-btn{
+        border-radius: 10px;
+        width: 70px;
+        height: 30px;
+
+        &:hover{
+            background-color: var(--main-brown);
+        }
+    }
+}
+
 /* Footer styles */
 
 footer{
@@ -497,11 +543,6 @@ footer i:not(.scrolltop){
     padding-right: 20px;
 }
 
-/* footer #map{
-    border: 1px solid red;
-    height: 100px;
-} */
-
 footer .scrolltop{
     position: fixed;
     bottom: 20px;
@@ -510,4 +551,29 @@ footer .scrolltop{
     color: white;
     border-radius: 50%;
     cursor: pointer;
+}
+
+footer #chat-btn-container{
+    position: fixed;
+    bottom: 20px;
+    right: 90px;
+    height: 52px;
+    width: 55px;
+    text-align: center;
+    align-items: center;
+
+    background-color: var(--main-brown);
+    color: white;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    .fa{
+        margin-top: 5px;
+    }
+}
+
+footer #chat-btn{
+    display: none;
 }

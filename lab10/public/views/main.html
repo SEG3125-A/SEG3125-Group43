@@ -8,10 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Style sheet (CSS) and JavaScript scripts necessary to use Bootstrap -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script public="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script public="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>     -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Your own additional style sheet -->
@@ -27,14 +24,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!--Scripts-->
-        <!--Maps-->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="../scripts/maps.js" type="module"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.public=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "", v: "weekly"});
-    </script> -->
         <!--Main-->
     <script src="../scripts/navbar.js"></script>
     <script src="../scripts/utils.js"></script>
@@ -146,86 +135,6 @@
             </div>
         </div>
 
-        <!-- A container for services offered-->
-        <!-- Held in row col as seperate cards -->
-        <!-- Each card has a collapsible part -->
-        <!-- <div class="services-offered px-5 mx-5" id="services">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top img-thumbnail" public="imgs/consultation.jpeg" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <div class="title">
-                                <h4 class="card-title">Hair Consultation</h4>
-                            </div>
-                            
-                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile1" aria-expanded="false" aria-controls="profile1">Learn More</button>
-                            <div id="profile1" class="collapse p-5">
-                                <p class="px-3">Take an appointment with our hairstylists to get advice on how to treat and take care of your hair.
-                                    1 on 1 session : $40
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top img-thumbnail" public="imgs/stylings.jpeg" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <div class="title">
-                                <h4 class="card-title">Hair Stylings</h4>
-                            </div>
-                            
-                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile2" aria-expanded="false" aria-controls="profile2">Learn More</button>
-                            <div id="profile2" class="collapse p-5">
-                                <p class="px-3">Several hairstyles, made by experts - exactly like or better than you'd excpect!
-                                    Mens: $30
-                                    Womens: $40
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top img-thumbnail" public="imgs/haircut.jpg" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <div class="title">
-                                <h4 class="card-title">Hair Cuts</h4>
-                            </div>
-                            
-                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile3" aria-expanded="false" aria-controls="profile3">Learn More</button>
-                            <div id="profile3" class="collapse p-5">
-                                <p class="px-3">Whatever cut, whatever style, your call - we're here to service you !
-                                    Mens: $40
-                                    Womens: $60
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img class="card-img-top img-thumbnail" public="imgs/drying.jpeg" alt="Card image" style="width:100%">
-                        <div class="card-body">
-                            <div class="title">
-                                <h4 class="card-title">Hair Dying</h4>
-                            </div>
-                            
-                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#profile4" aria-expanded="false" aria-controls="profile4">Learn More</button>
-                            <div id="profile4" class="collapse p-5">
-                                <p class="px-3">Colors, textures and bazinga.
-                                    Mens: $60
-                                    Womens: $100
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </div> -->
     <!-- Our barbers section -->
     <div class="barber-team" id="barber-team">
         <div class="team-header">
@@ -310,11 +219,7 @@
             <div class="col" id="map-img">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.134505835733!2d-75.69368492266281!3d45.42678987107334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce050228db6cbd%3A0x812f6242f4debecb!2s123%20Rideau%20St%2C%20Ottawa%2C%20ON%20K1N%205X4!5e0!3m2!1sen!2sca!4v1707531326091!5m2!1sen!2sca" 
                 width="1000" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <!-- <a href="https://www.google.com/maps/dir//123+Rideau+St,+Ottawa,+ON+K1N+5X4/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x4cce050228db6cbd:0x812f6242f4debecb?sa=X&ved=2ahUKEwiPl7D4wJ-EAxX1l4kEHVdJD6kQwwV6BAgJEAA" target="_blank">
-                <img public="imgs/map.png" alt="" style="width: 80%; height: auto;">
-            </a> -->
         </div>
-
             <div class="col" id="location-desc">
                 <h4>Location</h4>
                 <p>123 Rideau St, Ottawa ON</p>
@@ -324,16 +229,36 @@
                 <p>Monday - Friday: 9am - 7pm</p>
                 <p>Saturday - Sunday: 10am - 5pm</p>
             </div>
-
         </div>
     </div>
 
+    <!-- ChatBot section -->
+    <div class="bot-container" id="bot-container">
+        <div>
+            <div class="chatbot-content">
+                <div class="chatbot-close">
+                    <button onclick="closeChatbot()"><i class="fa fa-close"></i></button>
+                </div>
+                <iframe
+                allow="microphone;"
+                width="350"
+                height="440"
+                src="https://console.dialogflow.com/api-client/demo/embedded/90aadc4e-315f-4e29-9380-e8400700f62b">
+            </iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="btn btn-primary scrolltop" id="scrolltop">
             <i class="fa fa-arrow-up px-2 py-2" aria-hidden="true"></i>
         </div>
+        <label id="chat-btn-container">
+            <input type="checkbox" id="chat-btn">
+            <span class=""><i class="fa fa-wechat px-2 py-2" aria-hidden="true"></i></span>
+        </label>
+
         <div class="locations">
             <div class="location">
                 <div class="img"></div>
@@ -391,8 +316,13 @@
     <!--Bootstrap scripts-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
-    <!--Google Maps API script-->
-    <script src="../scripts/maps.js"></script>
 </body>
+
+<script>
+    function closeChatbot() {
+        document.getElementById('bot-container').style.display = 'none';
+        document.getElementById('chat-btn-container').style.display = 'block';
+        document.getElementById('chat-btn').checked = false;
+    }
+</script>
 </html>

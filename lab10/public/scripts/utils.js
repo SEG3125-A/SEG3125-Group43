@@ -34,4 +34,20 @@ $(document).ready(function() {
         trigger: 'hover',
             'placement': 'top'
     });
+
+    // Get the chatbot checkbox
+    const chatbotCheckbox = $("#chat-btn");
+
+    // Get the chatbot container 
+    const chatbotContainer = $("#bot-container");
+    chatbotContainer.css("display", "none");
+
+    chatbotCheckbox.on("change", function(){
+        if(chatbotCheckbox.prop("checked")){
+            chatbotContainer.css("display", "flex");
+            $("#chat-btn-container").css("display", "none");
+        } else {
+            chatbotContainer.css("display", "none");
+        }
+    }) 
 });
