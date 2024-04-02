@@ -1,0 +1,64 @@
+:root{
+    --main-brown : #be8738;
+    --main-light-brown : #D9B26A;
+    --main-black: #1F1F1F;
+    --main-grey : #F2F2F2;
+    --transparent-black: rgba(0, 0, 0, 0.7);
+    --Montserrat: 'Montserrat', sans-serif;
+    --PlayfairDisplay: 'PlayFairDisplay-Regular', serif;
+    --PlayfairDisplay-Italic: 'PlayFairDisplay-Italic', serif;
+    --Fono : 'Fono W00 Compressed uni Obl', sans-serif;
+}
+
+*{
+    transition: all 0.15s ease-in-out; 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--transparent-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #333333; 
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    border: 2px solid var(--main-brown);
+}
+
+/*Font for main banner title and other uppercase text*/
+@font-face {
+    font-family: "Fono W00 Compressed uni Obl";
+    src: url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.eot");
+    src: url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/23b0dead2935b4190b12baa5e9f396e4.svg#Fono W00 Compressed uni Obl")format("svg");
+}
+
+@font-face {
+    font-family: "PlayFairDisplay-Regular";
+    src: url(../fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "PlayFairDisplay-Italic";
+    src: url(../fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf) format("truetype");
+}
